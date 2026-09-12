@@ -1,0 +1,388 @@
+/* ============================================================
+   Grid landing page — mobile-first, BEM
+   Tokens from the Figma Design System (node 151-815) + style-guide.md
+   ============================================================ */
+
+/* -------------------- Design tokens -------------------- */
+:root {
+  /* Colors */
+  --color-white: #ffffff;
+  --color-blue-200: #e4ebff; /* secondary / description text */
+  --color-blue-400: #4784ff; /* hairlines: grid, nav, footer dividers */
+  --color-blue-600: #325cff; /* .stats__item hover / :focus-within */
+  --color-blue-700: #2854fe; /* body / .card / .stats__item background */
+  --color-neutral-100: #f2f2f7; /* .attribution text */
+  --color-neutral-900: #21214d;
+  --overlay: rgba(0, 0, 0, 0.25); /* style-guide: Black @ 25% */
+
+  /* Spacing scale (Figma "Spacing") */
+  --space-100: 0.5rem; /*   8px */
+  --space-300: 1.5rem; /*  24px */
+  --space-400: 2rem; /*  32px */
+  --space-600: 3rem; /*  48px */
+  --space-700: 3.5rem; /*  56px */
+  --space-1000: 5rem; /*  80px */
+  --space-1600: 8rem; /* 128px */
+  --pad-inline: clamp(
+    1.5rem,
+    1rem + 3vw,
+    3rem
+  ); /* fluid side padding 24 -> 48px */
+
+  /* Typography (Figma "Typography" presets, Inter) */
+  --fs-title: clamp(
+    2.25rem,
+    1.25rem + 4.5vw,
+    3.75rem
+  ); /* preset 3 -> 1 : 36 -> 60px */
+  --fs-value: 2rem; /* 32px   preset-4 */
+  --fs-500: 1.0625rem; /* 17px   preset-5 */
+  --fs-400: 0.875rem; /* 14px   preset-6 */
+
+  --hairline: 1px solid var(--color-blue-400);
+}
+
+/* -------------------- Reset / base -------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  font-size: 100%; /* keep the user's browser preference — enables rem scaling */
+}
+
+body {
+  min-height: 100vh;
+  background: var(--color-blue-700);
+  color: var(--color-white);
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* -------------------- Card -------------------- */
+.card {
+  display: flex;
+  flex-direction: column;
+  max-width: 90rem; /* 1440px — full-bleed below this, centered above */
+  margin-inline: auto;
+  background: var(--color-blue-700);
+}
+
+/* -------------------- Nav -------------------- */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 4.5rem; /* 72px */
+  padding-inline: var(--pad-inline);
+  border-bottom: var(--hairline);
+}
+
+.nav__brand {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--fs-400);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.nav__brand::before {
+  content: "";
+  display: inline-block;
+  inline-size: 8px;
+  block-size: 8px;
+  margin-right: var(--space-100);
+  border-radius: 50%;
+  background: var(--color-white);
+}
+
+.nav__brand:hover,
+.nav__brand:focus-visible {
+  text-decoration: underline;
+}
+
+.nav__toggle {
+  display: inline-flex;
+}
+
+.nav__toggle-icon {
+  width: 24px;
+}
+
+.nav__toggle:hover .nav__toggle-icon {
+  opacity: 0.8;
+}
+
+/* -------------------- Hero -------------------- */
+.hero {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero__content {
+  padding: var(--space-700) var(--pad-inline);
+}
+
+.hero__title {
+  max-width: 25rem;
+  margin-bottom: var(--space-300);
+  font-size: var(--fs-title);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.hero__text {
+  max-width: 25rem;
+  color: var(--color-blue-200);
+  font-size: var(--fs-500);
+  line-height: 1.65;
+}
+
+/* -------------------- Stats -------------------- */
+.stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px; /* the blue-400 background shows through as hairlines */
+  background: var(--color-blue-400);
+  border-top: var(--hairline);
+}
+
+.stats__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 20.5rem; /* 328px */
+  padding: var(--space-300);
+  background: var(--color-blue-700);
+  transition: background-color 150ms ease;
+}
+
+.stats__item:hover,
+.stats__item:focus-within {
+  background-color: var(--color-blue-600);
+}
+
+.stats__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stats__icon {
+  width: 32px;
+}
+
+.stats__value {
+  font-size: var(--fs-value);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.stats__label {
+  font-size: var(--fs-500);
+  font-weight: 500;
+  line-height: 1.42;
+}
+
+.stats__description {
+  margin-top: var(--space-100);
+  color: var(--color-blue-200);
+  font-size: var(--fs-400);
+  font-weight: 400;
+  line-height: 1.42;
+  letter-spacing: -0.018em;
+}
+
+/* -------------------- Footer -------------------- */
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-100);
+  min-height: 5.5rem; /* 88px */
+  padding: var(--space-300) var(--pad-inline);
+  border-top: var(--hairline);
+}
+
+.footer__copyright,
+.footer__charity {
+  font-size: var(--fs-400);
+  line-height: 1.42;
+}
+
+/* -------------------- Attribution -------------------- */
+.attribution {
+  padding: var(--space-100) var(--pad-inline);
+  color: var(--color-neutral-100);
+  font-size: 0.6875rem; /* 11px */
+  line-height: 1.42;
+  text-align: center;
+}
+
+.attribution a {
+  color: var(--color-neutral-100);
+  font-weight: 500;
+}
+
+.attribution a:hover,
+.attribution a:focus-visible {
+  color: var(--color-blue-200);
+  text-decoration: underline;
+}
+
+/* -------------------- Menu overlay -------------------- */
+.menu[hidden] {
+  display: none;
+}
+
+/* Dimmed backdrop — covers everything below the 72px header */
+.menu {
+  position: fixed;
+  inset: 4.5rem 0 0;
+  z-index: 100;
+  background: var(--overlay); /* Black @ 25% */
+}
+
+/* Panel — mobile: full-width strip, content centred (Figma "Mobile - Menu Open") */
+.menu__panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 21.375rem; /* 342px */
+  padding: var(--space-400); /* 32px */
+  background: var(--color-blue-700); /* Menu component fill #2854fe */
+}
+
+.menu__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu__link {
+  display: inline-block;
+  font-size: var(--fs-value); /* text-preset-4 — 32px */
+  font-weight: 500;
+  line-height: 1.6; /* 51px rhythm, no extra gap — matches the design's text block */
+  letter-spacing: -0.0625em;
+  text-decoration: none;
+}
+
+.menu__link:hover,
+.menu__link:focus-visible {
+  text-decoration: underline; /* Menu component "Active" state */
+}
+
+/* Tablet + desktop (768 -> 1440+): right-pinned side panel below the header */
+@media (min-width: 48em) {
+  .menu {
+    display: flex;
+    /* keep the panel's right edge aligned with .card (the 90rem band) */
+    padding-inline: max(0px, calc((100% - 90rem) / 2));
+  }
+
+  .menu__panel {
+    width: 24.75rem; /* 396px */
+    max-width: 100%;
+    min-height: 100%;
+    margin-left: auto; /* pin to the right */
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: var(--space-600); /* 48px */
+  }
+
+  .menu__list {
+    align-items: flex-end; /* right-aligned links */
+  }
+
+  .menu__link {
+    text-align: right;
+  }
+}
+
+/* ============================================================
+   Tablet — 48em (768px): stats become a 2x2 grid
+   ============================================================ */
+@media (min-width: 48em) {
+  .hero__content {
+    padding-block: var(--space-600);
+  }
+
+  .hero__title {
+    margin-bottom: var(--space-600);
+  }
+
+  .stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stats__item {
+    padding: var(--space-400);
+  }
+
+  .footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 4.5rem; /* 72px */
+  }
+}
+
+/* ============================================================
+   Desktop — 75em (1200px): hero text beside the stats grid
+   ============================================================ */
+@media (min-width: 75em) {
+  .hero {
+    display: grid;
+    grid-template-columns: 5fr 6fr; /* ~648 / 792 from Figma */
+  }
+
+  .hero__content {
+    align-self: center;
+  }
+
+  .stats {
+    border-top: 0;
+    border-left: var(--hairline); /* divider turns vertical */
+  }
+}
