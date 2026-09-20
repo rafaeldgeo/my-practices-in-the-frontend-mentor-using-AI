@@ -29,5 +29,9 @@ Your users should be able to:
 - Metodology BEM
 - Use WCAG
 - Mobile-first workflow (Responsive Design)
-- JavaScript
+- JavaScript (ES6+)
 - Access Figma Design
+
+## Code style
+
+- **JavaScript**: ES6+ only — `const`/`let` (never `var`), arrow functions, template literals, `===`/`!==`. Apply this by default in every file, not only when asked.
