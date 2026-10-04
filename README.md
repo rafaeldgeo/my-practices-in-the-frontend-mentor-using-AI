@@ -12,4 +12,6 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 
 ## Level: junior<sup>2</sup>
 
+* 1- [Tech-book-club-landing-page](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor-using-AI/junior/tech-book-club-landing-page/):link: | **CSS** | Claude Code <sup>CLI + VsCode</sup>
+
 **My Frontend Mentor: [@rafaeldgeo](https://www.frontendmentor.io/profile/rafaeldgeo)**:link:
