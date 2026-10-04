@@ -5,84 +5,285 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
+
+  <link rel="stylesheet" href="./style.css">
+
   <title>Frontend Mentor | Tech book club</title>
 </head>
 <body>
 
-  Join the ultimate tech book club
+  <header class="hero">
+    <nav class="hero__nav" aria-label="Main">
+      <a class="logo" href="#">
+        <img class="logo__img" src="./assets/images/logo.svg" alt="Tech book club">
+      </a>
+    </nav>
 
-  Turn your reading time into learning time with fellow tech enthusiasts. 
-  Get curated recommendations, join vibrant discussions, and level up your 
-  skills one chapter at a time.
+    <div class="hero__grid">
+      <div class="hero__content">
+        <h1 class="hero__title">Join the ultimate tech book club</h1>
+        <p class="hero__text">
+          Turn your reading time into learning time with fellow tech enthusiasts.
+          Get curated recommendations, join vibrant discussions, and level up your
+          skills one chapter at a time.
+        </p>
 
-  Review membership options
-  200+ developers joined already
+        <div class="hero__cta">
+          <a class="button button--primary" href="#membership">
+            <span class="button__label">Review membership options</span>
+            <img class="button__icon" src="./assets/images/icon-arrow-down.svg" alt="" aria-hidden="true">
+          </a>
 
-  Read together, grow together
+          <div class="social-proof">
+            <img class="social-proof__avatars" src="./assets/images/image-avatars.webp" alt="">
+            <div class="social-proof__rating">
+              <div class="stars" role="img" aria-label="5 out of 5 stars">
+                <img class="stars__icon" src="./assets/images/icon-star.svg" alt="">
+                <img class="stars__icon" src="./assets/images/icon-star.svg" alt="">
+                <img class="stars__icon" src="./assets/images/icon-star.svg" alt="">
+                <img class="stars__icon" src="./assets/images/icon-star.svg" alt="">
+                <img class="stars__icon" src="./assets/images/icon-star.svg" alt="">
+              </div>
+              <p class="social-proof__text">200+ developers joined already</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  Monthly curated tech reads selected by industry experts
-  Virtual and in-person meetups for deep-dive discussions
-  Early access to new tech book releases
-  Author Q&A sessions with tech thought leaders
+      <picture class="hero__media">
+        <source media="(min-width: 75em)" srcset="./assets/images/image-hero-desktop.webp">
+        <source media="(min-width: 48em)" srcset="./assets/images/image-hero-tablet.webp">
+        <img class="hero__img" src="./assets/images/image-hero-mobile.webp" alt="People reading together in a library">
+      </picture>
+    </div>
+  </header>
 
-  Not your average book club
+  <main>
+    <section class="benefits" aria-labelledby="benefits-title">
+      <picture class="benefits__media">
+        <source media="(min-width: 75em)" srcset="./assets/images/image-read-together-desktop.webp">
+        <source media="(min-width: 48em)" srcset="./assets/images/image-read-together-tablet.webp">
+        <img class="benefits__img" src="./assets/images/image-read-together-mobile.webp" alt="People holding books while talking">
+      </picture>
 
-  Connect with a community that speaks your language - from Python to TypeScript and 
-  everything in between. Our discussions blend technical depth with practical applications.
+      <div class="benefits__content">
+        <h2 class="benefits__title" id="benefits-title">Read together, <br>grow together</h2>
+        <ul class="benefits__list">
+          <li class="benefits__item">
+            <span class="check"><img class="check__icon" src="./assets/images/icon-check.svg" alt=""></span>
+            <span>Monthly curated tech reads selected by industry experts</span>
+          </li>
+          <li class="benefits__item">
+            <span class="check"><img class="check__icon" src="./assets/images/icon-check.svg" alt=""></span>
+            <span>Virtual and in-person meetups for deep-dive discussions</span>
+          </li>
+          <li class="benefits__item">
+            <span class="check"><img class="check__icon" src="./assets/images/icon-check.svg" alt=""></span>
+            <span>Early access to new tech book releases</span>
+          </li>
+          <li class="benefits__item">
+            <span class="check"><img class="check__icon" src="./assets/images/icon-check.svg" alt=""></span>
+            <span>Author Q&amp;A sessions with tech thought leaders</span>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-  Your tech reading journey
+    <section class="community" aria-labelledby="community-title">
+      <div class="community__content">
+        <h2 class="community__title" id="community-title">Not your average book <span class="community__highlight">club</span></h2>
+        <p class="community__text">
+          Connect with a community that speaks your language - from
+          <strong>Python</strong> to <strong>TypeScript</strong> and
+          everything in between. Our discussions blend technical depth with
+          practical applications.
+        </p>
+      </div>
 
-  1
-  Choose your membership tier
+      <div class="community__media">
+        <picture>
+          <source media="(min-width: 75em)" srcset="./assets/images/image-not-average-desktop.webp">
+          <source media="(min-width: 48em)" srcset="./assets/images/image-not-average-tablet.webp">
+          <img class="community__img" src="./assets/images/image-not-average-mobile.webp" alt="Members of the book club gathered together">
+        </picture>
+        <img class="community__logos" src="./assets/images/logos-tech.svg" alt="" aria-hidden="true">
+      </div>
+    </section>
 
-  2
-  Get your monthly book selection
+    <section class="journey" aria-labelledby="journey-title">
+      <h2 class="journey__title" id="journey-title">Your tech reading journey</h2>
+      <div class="journey__track">
+        <ol class="journey__steps">
+          <li class="journey__step">
+            <span class="journey__number" aria-hidden="true">1</span>
+            <p class="journey__text">Choose your membership tier</p>
+          </li>
+          <li class="journey__step">
+            <span class="journey__number" aria-hidden="true">2</span>
+            <p class="journey__text">Get your monthly book selection</p>
+          </li>
+          <li class="journey__step">
+            <span class="journey__number" aria-hidden="true">3</span>
+            <p class="journey__text">Join our discussion forums</p>
+          </li>
+          <li class="journey__step">
+            <span class="journey__number" aria-hidden="true">4</span>
+            <p class="journey__text">Attend exclusive meetups</p>
+          </li>
+        </ol>
+        <img class="journey__arrow journey__arrow--1" src="./assets/images/pattern-arrow.svg" alt="" aria-hidden="true">
+        <img class="journey__arrow journey__arrow--2" src="./assets/images/pattern-arrow.svg" alt="" aria-hidden="true">
+        <img class="journey__arrow journey__arrow--3" src="./assets/images/pattern-arrow.svg" alt="" aria-hidden="true">
+      </div>
+    </section>
 
-  3
-  Join our discussion forums
+    <section class="membership" id="membership" aria-labelledby="membership-title">
+      <h2 class="membership__title" id="membership-title">Membership options</h2>
 
-  4
-  Attend exclusive meetups
+      <div class="membership__plans">
+        <article class="plan">
+          <div class="plan__details">
+            <h3 class="plan__name">Starter</h3>
+            <p class="plan__price"><span class="plan__amount">$19</span><span class="plan__period">/month</span></p>
+            <hr class="plan__divider">
+            <ul class="plan__features">
+              <li class="plan__feature">
+                <span class="check check--small"><img class="check__icon" src="./assets/images/icon-check.svg" alt=""></span>
+                <span>1 book/month</span>
+              </li>
+              <li class="plan__feature">
+                <span class="check check--small"><img class="check__icon" src="./assets/images/icon-check.svg" alt=""></span>
+                <span>Online forums</span>
+              </li>
+            </ul>
+          </div>
+          <a class="button button--primary" href="#">
+            <span class="button__label">Subscribe now</span>
+            <span class="visually-hidden">to the Starter plan</span>
+          </a>
+        </article>
 
-  Membership options
+        <article class="plan plan--featured">
+          <div class="plan__details">
+            <h3 class="plan__name">Pro</h3>
+            <p class="plan__price"><span class="plan__amount">$29</span><span class="plan__period">/month</span></p>
+            <hr class="plan__divider">
+            <ul class="plan__features">
+              <li class="plan__feature">
+                <span class="check check--small"><img class="check__icon" src="./assets/images/icon-check.svg" alt=""></span>
+                <span>2 books/month</span>
+              </li>
+              <li class="plan__feature">
+                <span class="check check--small"><img class="check__icon" src="./assets/images/icon-check.svg" alt=""></span>
+                <span>Virtual meetups</span>
+              </li>
+            </ul>
+          </div>
+          <a class="button button--primary" href="#">
+            <span class="button__label">Subscribe now</span>
+            <span class="visually-hidden">to the Pro plan</span>
+          </a>
+        </article>
 
-  Starter
-  $19/month
+        <article class="plan">
+          <div class="plan__details">
+            <h3 class="plan__name">Enterprise</h3>
+            <p class="plan__price"><span class="plan__amount">Custom</span></p>
+            <hr class="plan__divider">
+            <ul class="plan__features">
+              <li class="plan__feature">
+                <span class="check check--small"><img class="check__icon" src="./assets/images/icon-check.svg" alt=""></span>
+                <span>Team access</span>
+              </li>
+              <li class="plan__feature">
+                <span class="check check--small"><img class="check__icon" src="./assets/images/icon-check.svg" alt=""></span>
+                <span>Private sessions</span>
+              </li>
+            </ul>
+          </div>
+          <a class="button button--primary" href="#">
+            <span class="button__label">Talk to us</span>
+          </a>
+        </article>
+      </div>
+    </section>
 
-  1 book/month
-  Online forums
+    <section class="testimonial" aria-label="Testimonial">
+      <div class="stars stars--large" role="img" aria-label="5 out of 5 stars">
+        <img class="stars__icon" src="./assets/images/icon-star.svg" alt="">
+        <img class="stars__icon" src="./assets/images/icon-star.svg" alt="">
+        <img class="stars__icon" src="./assets/images/icon-star.svg" alt="">
+        <img class="stars__icon" src="./assets/images/icon-star.svg" alt="">
+        <img class="stars__icon" src="./assets/images/icon-star.svg" alt="">
+      </div>
+      <figure class="testimonial__content">
+        <blockquote class="testimonial__quote">
+          <p>
+            "This book club transformed my technical reading from a solitary
+            activity into an enriching community experience. The discussions
+            are gold!"
+          </p>
+        </blockquote>
+        <figcaption class="testimonial__author">Sarah Chen, Software Architect</figcaption>
+      </figure>
+    </section>
+  </main>
 
-  Subscribe now
+  <footer class="footer">
+    <section class="footer__cta" aria-labelledby="footer-title">
+      <h2 class="footer__title" id="footer-title">Ready to debug your reading list?</h2>
+      <div class="footer__actions">
+        <a class="button button--alternate" href="#membership">
+          <span class="button__label">Review membership options</span>
+          <img class="button__icon" src="./assets/images/icon-arrow-up.svg" alt="" aria-hidden="true">
+        </a>
 
-  Pro
-  $29/month
+        <div class="social-proof social-proof--light">
+          <img class="social-proof__avatars" src="./assets/images/image-avatars.webp" alt="">
+          <div class="social-proof__rating">
+            <div class="stars" role="img" aria-label="5 out of 5 stars">
+              <img class="stars__icon" src="./assets/images/icon-star.svg" alt="">
+              <img class="stars__icon" src="./assets/images/icon-star.svg" alt="">
+              <img class="stars__icon" src="./assets/images/icon-star.svg" alt="">
+              <img class="stars__icon" src="./assets/images/icon-star.svg" alt="">
+              <img class="stars__icon" src="./assets/images/icon-star.svg" alt="">
+            </div>
+            <p class="social-proof__text">200+ developers joined already</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  2 books/month
-  Virtual meetups
+    <div class="footer__meta">
+      <p class="footer__copy">© 2024 – Tech Book Club</p>
+      <ul class="footer__social">
+        <li>
+          <a href="#" aria-label="Tech Book Club on Bluesky">
+            <img src="./assets/images/logo-bluesky.svg" alt="">
+          </a>
+        </li>
+        <li>
+          <a href="#" aria-label="Tech Book Club on LinkedIn">
+            <img src="./assets/images/logo-linkedin.svg" alt="">
+          </a>
+        </li>
+      </ul>
+    </div>
 
-  Subscribe now
-
-  Enterprise
-  Custom
-
-  Team access
-  Private sessions
-
-  Talk to us
-
-  "This book club transformed my technical reading from a solitary 
-  activity into an enriching community experience. The discussions 
-  are gold!"
-
-  Sarah Chen, Software Architect
-
-  Ready to debug your reading list?
-
-  Review membership options
-  200+ developers joined already
-
-  © 2024 - Tech Book Club
+    <div class="attribution">
+      Challenge by
+      <a
+        href="https://www.frontendmentor.io/profile/rafaeldgeo"
+        target="_blank"
+        rel="noopener"
+        >Frontend Mentor</a>. Coded by
+      <a
+        href="https://www.linkedin.com/in/rafaeldgeo/"
+        target="_blank"
+        rel="noopener"
+        >Rafael Dias de Almeida</a>.
+    </div>
+  </footer>
 
 </body>
 </html>

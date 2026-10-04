@@ -1,0 +1,10 @@
+#Desafio: Frontend Mentor - Tech book club landing page
+
+Nível: Junior
+Recursos e avaliação: implementado usando claude code no terminal do VS Code. Comentário: 
+Fluxo da implementação: claude.md foi criado pelo comando `/init`, assistente leu a documentação fornecida pelo desafio, além disso, encontrou o claude.md do desafio "Grid landing page solution" e considerou as instruções definidas nele além de aplicar as correções de instruções e incorporou no claude.md do desafio. Foi usado arquivo do figma e usado o  figma-developer-mcp de terceiros devido ao limite de requerimento mensal do MCP oficial do Figma; foi criado um branch para o desafio sem realizado pull-request; prompt 1 criação do HTML com inserção dos frames por link do figma; prompt 2 criação do arquivo style.css e inserção das instruções de estilo
+Ocorrência verificada: foi necessário fazer ajustes no estilo; responsividade abaixo de 375px começa a quebrar
+
+PARA O PRÓXIMO DESAFIO: Definir responsividade até 320px;
+
+
