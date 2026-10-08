@@ -4,40 +4,153 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
-  
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="./style.css">
+
   <title>Frontend Mentor | Suite landing page</title>
 </head>
 <body>
 
-  Request Beta Access
+  <header class="header">
+    <a class="header__logo" href="#" aria-label="Suite home">
+      <img src="./images/logo.svg" alt="Suite" width="79" height="26">
+    </a>
+    <a class="button button--outline header__cta" href="#">Request Beta Access</a>
+  </header>
 
-  A super solution for your business.
+  <main>
+    <section class="hero">
+      <div class="hero__content">
+        <img class="hero__line" src="./images/pattern-curved-line-1.svg" alt="" aria-hidden="true" width="289" height="39">
+        <h1 class="hero__title">A <strong>super solution</strong> for your <strong>business.</strong></h1>
+        <p class="hero__text">
+          Our marketing and sales automations help you scale your outreach to
+          get more leads for your company.
+        </p>
+        <a class="button button--primary hero__cta" href="#">Request Beta Access</a>
+      </div>
 
-  Our marketing and sales automations help you scale your outreach to 
-  get more leads for your company. 
+      <picture class="hero__media">
+        <source
+          media="(min-width: 48em)"
+          type="image/webp"
+          srcset="./images/image-hero-portrait.webp 1x, ./images/image-hero-portrait@2x.webp 2x"
+          width="350" height="600">
+        <source
+          media="(min-width: 48em)"
+          srcset="./images/image-hero-portrait.png 1x, ./images/image-hero-portrait@2x.png 2x"
+          width="350" height="600">
+        <source
+          type="image/webp"
+          srcset="./images/image-hero-landscape.webp 1x, ./images/image-hero-landscape@2x.webp 2x">
+        <img
+          class="hero__image"
+          src="./images/image-hero-landscape.png"
+          srcset="./images/image-hero-landscape.png 1x, ./images/image-hero-landscape@2x.png 2x"
+          alt="Smartphone showing a chart of growing leads"
+          width="343" height="240">
+      </picture>
 
-  Request Beta Access
+      <ul class="stats">
+        <li class="stats__item">
+          <span class="stats__value">2K+</span>
+          <span class="stats__label">Companies</span>
+        </li>
+        <li class="stats__item">
+          <span class="stats__value">8</span>
+          <span class="stats__label">Languages</span>
+        </li>
+        <li class="stats__item">
+          <span class="stats__value">1.2M</span>
+          <span class="stats__label">Leads</span>
+        </li>
+      </ul>
+    </section>
 
-  2K+
-  Companies
+    <section class="testimonial">
+      <div class="testimonial__card">
+        <span class="testimonial__glow" aria-hidden="true"></span>
 
-  8
-  Languages
+        <picture class="testimonial__photo">
+          <source
+            media="(min-width: 90em)"
+            type="image/webp"
+            srcset="./images/image-jeremy-large.webp 1x, ./images/image-jeremy-large@2x.webp 2x"
+            width="361" height="590">
+          <source
+            media="(min-width: 90em)"
+            srcset="./images/image-jeremy-large.png 1x, ./images/image-jeremy-large@2x.png 2x"
+            width="361" height="590">
+          <source
+            type="image/webp"
+            srcset="./images/image-jeremy-small.webp 1x, ./images/image-jeremy-small@2x.webp 2x">
+          <img
+            class="testimonial__image"
+            src="./images/image-jeremy-small.png"
+            srcset="./images/image-jeremy-small.png 1x, ./images/image-jeremy-small@2x.png 2x"
+            alt="Jeremy Robinson holding a smartphone and a stylus"
+            width="243" height="395">
+        </picture>
 
-  1.2M
-  Leads
+        <img class="testimonial__line" src="./images/pattern-curved-line-2.svg" alt="" aria-hidden="true" width="66" height="54">
 
-  It just works.
+        <div class="testimonial__content">
+          <h2 class="testimonial__title">It just <strong>works.</strong></h2>
+          <blockquote class="testimonial__quote">
+            <p>
+              “I really like how it is an all-in-one solution that handle many
+              of the tasks that you would normally need separate tools to do
+              the same job. This thing is a miracle worker.”
+            </p>
+          </blockquote>
+          <p class="testimonial__author">
+            <span class="testimonial__name">Jeremy Robinson</span>
+            <span class="testimonial__role">CMO, Fylo</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  “I really like how it is an all-in-one solution that handle many of 
-  the tasks that you would normally need separate tools to do the same 
-  job. This thing is a miracle worker.”
+  <footer class="footer">
+    <a class="footer__logo" href="#" aria-label="Suite home">
+      <img src="./images/logo.svg" alt="Suite" width="79" height="26">
+    </a>
 
-  Jeremy Robinson
-  CMO, Fylo
+    <p class="footer__copyright">Copyright - Suite</p>
 
-  Copyright - Suite
+    <ul class="footer__social">
+      <li>
+        <a class="footer__link" href="#" aria-label="Facebook">
+          <img class="footer__icon" src="./images/icon-facebook.svg" alt="" width="20" height="20">
+        </a>
+      </li>
+      <li>
+        <a class="footer__link" href="#" aria-label="Twitter">
+          <img class="footer__icon" src="./images/icon-twitter.svg" alt="" width="20" height="20">
+        </a>
+      </li>
+      <li>
+        <a class="footer__link" href="#" aria-label="Instagram">
+          <img class="footer__icon" src="./images/icon-instagram.svg" alt="" width="20" height="20">
+        </a>
+      </li>
+    </ul>
+
+    <div class="attribution">
+      Challenge by
+      <a
+        href="https://www.frontendmentor.io/profile/rafaeldgeo"
+        target="_blank"
+        rel="noopener"
+        >Frontend Mentor</a>. Coded by
+      <a
+        href="https://www.linkedin.com/in/rafaeldgeo/"
+        target="_blank"
+        rel="noopener"
+        >Rafael Dias de Almeida</a>.
+    </div>
+  </footer>
 
 </body>
 </html>
