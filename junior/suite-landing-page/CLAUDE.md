@@ -39,6 +39,7 @@ insert in footer  ```<div class="attribution">
 
 - HTML5 semântico, `lang="en"`, atento a WCAG (labels, `aria-*`, foco visível).
 - `style.css` externo e simples; tokens de design como custom properties em `:root` (cores, spacing, radius, escala tipográfica, com `clamp()` para tamanhos fluidos); classes em **BEM**; **mobile-first** com media queries `min-width` em `em`.
+- Para o layout do mobile responsividade mínima deve suportar até 320px (20em) de largura sem quebrar os elementos. 
 - **JavaScript somente ES6+** — `const`/`let` (nunca `var`), arrow functions, template literals, `===`/`!==`. Aplique desde o primeiro rascunho.
 
 ## Regras do repositório
