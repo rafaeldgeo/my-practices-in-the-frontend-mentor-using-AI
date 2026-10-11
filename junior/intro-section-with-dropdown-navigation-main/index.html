@@ -2,38 +2,128 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  
-  <title>Frontend Mentor | Intro section with dropdown navigation</title>
 
-  
-  <style>
-    .attribution { font-size: 0.6875rem; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <title>Frontend Mentor | Intro section with dropdown navigation</title>
 </head>
 <body>
 
-  Features
-  Company
-  Careers
-  About
+  <header class="header">
+    <div class="header__inner">
+      <a class="header__logo" href="#">
+        <img src="images/logo.svg" alt="Snap">
+      </a>
 
-  Login
-  Register
+      <button class="header__toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+        <img class="header__toggle-icon header__toggle-icon--open" src="images/icon-menu.svg" alt="">
+        <img class="header__toggle-icon header__toggle-icon--close" src="images/icon-close-menu.svg" alt="">
+      </button>
 
-  Make remote work
+      <nav class="nav" id="nav-panel" aria-label="Main">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <button class="nav__trigger" type="button" aria-expanded="false" aria-haspopup="true">
+              Features
+              <img class="nav__arrow" src="images/icon-arrow-down.svg" alt="">
+            </button>
+            <ul class="dropdown dropdown--icons">
+              <li class="dropdown__item">
+                <a class="dropdown__link" href="#">
+                  <img class="dropdown__icon" src="images/icon-todo.svg" alt="">
+                  Todo List
+                </a>
+              </li>
+              <li class="dropdown__item">
+                <a class="dropdown__link" href="#">
+                  <img class="dropdown__icon" src="images/icon-calendar.svg" alt="">
+                  Calendar
+                </a>
+              </li>
+              <li class="dropdown__item">
+                <a class="dropdown__link" href="#">
+                  <img class="dropdown__icon" src="images/icon-reminders.svg" alt="">
+                  Reminders
+                </a>
+              </li>
+              <li class="dropdown__item">
+                <a class="dropdown__link" href="#">
+                  <img class="dropdown__icon" src="images/icon-planning.svg" alt="">
+                  Planning
+                </a>
+              </li>
+            </ul>
+          </li>
 
-  Get your team in sync, no matter your location. Streamline processes, 
-  create team rituals, and watch productivity soar.
+          <li class="nav__item">
+            <button class="nav__trigger" type="button" aria-expanded="false" aria-haspopup="true">
+              Company
+              <img class="nav__arrow" src="images/icon-arrow-down.svg" alt="">
+            </button>
+            <ul class="dropdown dropdown--text">
+              <li class="dropdown__item"><a class="dropdown__link" href="#">History</a></li>
+              <li class="dropdown__item"><a class="dropdown__link" href="#">Our Team</a></li>
+              <li class="dropdown__item"><a class="dropdown__link" href="#">Blog</a></li>
+            </ul>
+          </li>
 
-  Learn more
-  
-  <footer class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+          <li class="nav__item"><a class="nav__link" href="#">Careers</a></li>
+          <li class="nav__item"><a class="nav__link" href="#">About</a></li>
+        </ul>
+
+        <div class="nav__actions">
+          <a class="nav__link" href="#">Login</a>
+          <a class="button button--outline" href="#"><span class="button__label">Register</span></a>
+        </div>
+      </nav>
+
+      <div class="overlay" aria-hidden="true"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <picture class="hero__picture">
+        <source media="(min-width: 64em)" srcset="images/image-hero-desktop.png">
+        <img class="hero__image" src="images/image-hero-mobile.png" alt="Person using a laptop, surrounded by geometric shapes">
+      </picture>
+
+      <div class="hero__content">
+        <h1 class="hero__title">Make <span class="hero__title-line">remote work</span></h1>
+        <p class="hero__text">
+          Get your team in sync, no matter your location. Streamline processes,
+          create team rituals, and watch productivity soar.
+        </p>
+        <a class="button button--primary hero__cta" href="#"><span class="button__label">Learn more</span></a>
+
+        <ul class="clients">
+          <li class="clients__item"><img class="clients__logo" src="images/client-databiz.svg" alt="Databiz"></li>
+          <li class="clients__item"><img class="clients__logo" src="images/client-audiophile.svg" alt="Audiophile"></li>
+          <li class="clients__item"><img class="clients__logo" src="images/client-meet.svg" alt="Meet"></li>
+          <li class="clients__item"><img class="clients__logo" src="images/client-maker.svg" alt="Maker"></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="attribution">
+      Challenge by
+      <a
+        href="https://www.frontendmentor.io/profile/rafaeldgeo"
+        target="_blank"
+        rel="noopener"
+        >Frontend Mentor</a>. Coded by
+      <a
+        href="https://www.linkedin.com/in/rafaeldgeo/"
+        target="_blank"
+        rel="noopener"
+        >Rafael Dias de Almeida</a>.
+    </div>
   </footer>
 </body>
 </html>
