@@ -1,1 +1,283 @@
 @use 'mixins' as *;
+
+// ---------- button ----------
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: var(--radius-button);
+  line-height: var(--lh-body);
+  white-space: nowrap;
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    color var(--transition);
+
+  &--primary {
+    min-height: 3rem;
+    padding-inline: var(--spacing-300);
+    border-color: var(--color-gray-950);
+    background-color: var(--color-gray-950);
+    color: var(--color-white);
+    font-size: var(--fs-preset-5);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--ls-snug);
+
+    &:hover,
+    &:active {
+      background-color: transparent;
+      color: var(--color-gray-950);
+    }
+
+    @include respond-to(tablet) {
+      min-height: 3.5rem;
+      padding-inline: var(--spacing-400);
+      font-size: var(--fs-preset-4);
+    }
+  }
+
+  &--outline {
+    min-height: 2.5rem;
+    padding-inline: var(--spacing-300);
+    border-color: var(--color-gray-500);
+    color: var(--color-gray-500);
+    font-size: var(--fs-preset-6);
+    line-height: var(--lh-small);
+
+    &:hover,
+    &:active {
+      border-color: var(--color-gray-950);
+      color: var(--color-gray-950);
+    }
+  }
+}
+
+// ---------- nav ----------
+// mobile/tablet: painel lateral; desktop: navbar horizontal
+.nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+  padding: 5rem var(--spacing-300) var(--spacing-300);
+  overflow-y: auto;
+  background-color: var(--color-white);
+  transform: translateX(100%);
+  visibility: hidden;
+  transition:
+    transform 0.3s ease,
+    visibility 0s linear 0.3s;
+
+  @include respond-to(mobile) {
+    width: 15rem;
+  }
+
+  @include respond-to(tablet) {
+    width: 17.6875rem;
+  }
+
+  &--open {
+    transform: none;
+    visibility: visible;
+    transition: transform 0.3s ease;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-200);
+  }
+
+  &__item {
+    position: relative;
+  }
+
+  &__link,
+  &__trigger {
+    color: var(--color-gray-500);
+    transition: color var(--transition);
+
+    &:hover {
+      color: var(--color-gray-950);
+    }
+  }
+
+  &__trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-200);
+  }
+
+  &__arrow {
+    width: 0.625rem;
+    transition: transform var(--transition);
+  }
+
+  &__item--open &__arrow {
+    transform: rotate(180deg);
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-200);
+    margin-top: var(--spacing-400);
+    font-size: var(--fs-preset-6);
+    line-height: var(--lh-small);
+
+    > .button {
+      width: 100%;
+    }
+  }
+
+  @include respond-to(desktop) {
+    position: static;
+    z-index: auto;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    width: auto;
+    height: auto;
+    margin-left: var(--spacing-800);
+    padding: 0;
+    overflow: visible;
+    background-color: transparent;
+    transform: none;
+    visibility: visible;
+    transition: none;
+
+    &__list {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--spacing-500);
+    }
+
+    &__trigger {
+      gap: var(--spacing-100);
+    }
+
+    &__item:hover &__arrow,
+    &__item:focus-within &__arrow {
+      transform: rotate(180deg);
+    }
+
+    &__actions {
+      flex-direction: row;
+      gap: var(--spacing-500);
+      margin-top: 0;
+
+      > .button {
+        width: auto;
+      }
+    }
+  }
+}
+
+// ---------- dropdown ----------
+.dropdown {
+  display: none;
+  flex-direction: column;
+  gap: var(--spacing-200);
+  margin-top: var(--spacing-200);
+  padding-left: var(--spacing-300);
+
+  .nav__item--open > & {
+    display: flex;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-200);
+    color: var(--color-gray-500);
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 1rem;
+    height: 1rem;
+    object-fit: contain;
+  }
+
+  @include respond-to(desktop) {
+    position: absolute;
+    top: calc(100% + var(--spacing-200));
+    left: 0;
+    z-index: 5;
+    display: flex;
+    gap: var(--spacing-100);
+    margin-top: 0;
+    padding: 1.25rem var(--spacing-300);
+    border-radius: var(--radius-dropdown);
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-dropdown);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity var(--transition),
+      visibility var(--transition);
+
+    // ponte entre o gatilho e o cartão para o hover não se perder
+    &::before {
+      content: '';
+      position: absolute;
+      top: calc(var(--spacing-200) * -1);
+      right: 0;
+      left: 0;
+      height: var(--spacing-200);
+    }
+
+    &--icons {
+      left: -4.6875rem; // deslocamento do design mantido de propósito
+    }
+
+    .nav__item:hover > &,
+    .nav__item:focus-within > & {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+// ---------- overlay ----------
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background-color: var(--color-overlay);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0s linear 0.3s;
+
+  &--visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease;
+  }
+
+  @include respond-to(desktop) {
+    display: none;
+  }
+}
+
+// ---------- attribution ----------
+.attribution {
+  padding: var(--spacing-200);
+  color: var(--color-gray-500);
+  font-size: 0.6875rem;
+  line-height: var(--lh-body);
+  text-align: center;
+
+  a {
+    color: var(--color-gray-950);
+    text-decoration: underline;
+  }
+}

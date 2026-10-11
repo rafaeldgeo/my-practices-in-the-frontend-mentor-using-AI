@@ -1,1 +1,83 @@
-//reset mínimo consumindo os tokens
+@use 'mixins' as *;
+
+// reset mínimo consumindo os tokens
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--color-gray-50);
+  color: var(--color-gray-950);
+  font-family: var(--font-family);
+  font-size: var(--fs-preset-5);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-body);
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+img,
+picture {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gray-950);
+  outline-offset: 3px;
+}
+
+// tipografia fluida: 64px @768 -> 80px @1440
+:root {
+  @include respond-to(tablet) {
+    --fs-hero: clamp(4rem, 2.381vw + 2.857rem, 5rem);
+    --fs-body: 1.125rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}

@@ -1,7 +1,63 @@
-:root {
-    //cores
-    //spacing
-    //tipografia fluida
-}
+// Breakpoints (consumidos pelo mixin respond-to)
+$breakpoints: (
+  mobile: 23.4375em,   // 375px
+  tablet: 48em,        // 768px
+  desktop: 64em,       // 1024px: navbar horizontal (abaixo disso, menu hambúrguer)
+  hero: 64em,          // 1024px: hero em duas colunas
+);
 
-//breakpoints
+:root {
+  // cores
+  --color-white: #ffffff;
+  --color-gray-950: #151515;
+  --color-gray-500: #686868;
+  --color-gray-400: #adadad;
+  --color-gray-200: #d8d8d8;
+  --color-gray-50: #fafafa;
+  --color-blue-400: #4bb1da;
+  --color-yellow-300: #edd556;
+  --color-purple-600: #8e4cb6;
+  --color-overlay: hsl(0 0% 0% / 0.6);
+
+  // spacing
+  --spacing-0: 0;
+  --spacing-100: 0.5rem;
+  --spacing-200: 1rem;
+  --spacing-300: 1.5rem;
+  --spacing-400: 2rem;
+  --spacing-500: 2.5rem;
+  --spacing-600: 3rem;
+  --spacing-700: 3.5rem;
+  --spacing-800: 4rem;
+  --spacing-900: 4.5rem;
+
+  // tipografia
+  --font-family: 'Epilogue', sans-serif;
+  --fw-medium: 500;
+  --fw-bold: 700;
+
+  --fs-preset-1: 5rem;
+  --fs-preset-2: 4rem;
+  --fs-preset-3: 2.25rem;
+  --fs-preset-4: 1.125rem;
+  --fs-preset-5: 1rem;
+  --fs-preset-6: 0.875rem;
+
+  --lh-tight: 1;
+  --lh-body: 1.55;
+  --lh-small: 1.15;
+  --ls-tight: -0.0625rem;
+  --ls-snug: -0.015625rem;
+
+  // tipografia fluida (36px @375 -> 64px @768; redefinida em _base.scss para 768 -> 1440)
+  --fs-hero: clamp(2.25rem, 7.125vw + 0.58rem, 4rem);
+  --fs-body: clamp(1rem, 0.509vw + 0.881rem, 1.125rem);
+
+  // radius e sombra
+  --radius-button: 0.9375rem;
+  --radius-dropdown: 0.625rem;
+  --shadow-dropdown: 0 0.625rem 2.5rem 0 hsl(0 0% 0% / 0.1491);
+
+  // animação
+  --transition: 0.2s ease;
+}

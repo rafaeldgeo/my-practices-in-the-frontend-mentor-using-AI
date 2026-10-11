@@ -122,10 +122,10 @@ Demais elementos (sem fluidez, valores por breakpoint — estimados):
 | Variável Sass | Valor | Observação |
 |---|---|---|
 | `tablet` | `48em` (768px) | Início do layout de tablet (âncora de 64px do título). **Menu hambúrguer é mantido até 768px inclusive** |
-| `desktop` | `48.0625em` (769px) | Navbar horizontal + dropdowns a partir de 769px (decidido: há espaço horizontal acima de 768px) |
+| `desktop` | `64em` (1024px) | Navbar horizontal + dropdowns a partir de 1024px (entre 769px e 1023px a navbar não cabe → menu hambúrguer) |
 | referência | `90em` (1440px) | Layout de referência do design desktop; não é breakpoint, só âncora do `clamp()` |
 
-Mobile-first (`min-width`, `em`), suportar até 320px (`20em`). Como o menu hambúrguer vale até 768px e o `clamp()` do título muda de trecho em 768px, `tablet` (48em) redefine só tipografia/medidas de layout e `desktop` (48.0625em) troca o menu por navbar.
+Mobile-first (`min-width`, `em`), suportar até 320px (`20em`). O menu hambúrguer vale até 1023px (painel de tablet entre 768px e 1023px) e o `clamp()` do título muda de trecho em 768px; `tablet` (48em) redefine tipografia/medidas e `desktop` (64em) troca o menu por navbar. O layout tem **container de `max-width: 90rem` (1440px)** centralizado (header e hero); o fundo do body é o mesmo do container (`--color-gray-50`).
 
 Medidas estimadas por layout:
 
@@ -171,7 +171,7 @@ Medidas estimadas por layout:
 
 ## 8. Decisões registradas
 
-1. Menu hambúrguer até 768px; navbar horizontal a partir de 769px (`48.0625em`).
+1. Menu hambúrguer até 1023px; navbar horizontal a partir de 1024px (`64em`). *(ajustado: em 769–1023px a navbar não cabia)*
 2. Título fluido em dois trechos (36→64 entre 375–768; 64→80 entre 768–1440); parágrafo 16→18 entre 375–768.
 3. Radius: botões 15px, menu/dropdown 10px. Sombra do dropdown: 0 / 10 / 40 / 0, `#000` 14.91%.
 4. Medidas de layout (§6) e `--color-overlay` seguem **estimados** — ajustar comparando com o design no navegador.
@@ -203,12 +203,12 @@ O botão hambúrguer/fechar é **um único `<button>`** (`header__toggle`) que a
 | Variável | Valor | Função |
 |---|---|---|
 | `tablet` | `48em` (768px) | Tipografia/medidas de tablet |
-| `desktop` | `48.0625em` (769px) | Navbar horizontal + dropdowns |
+| `desktop` | `64em` (1024px) | Navbar horizontal + dropdowns |
 | `hero` | `64em` (1024px) | Hero em duas colunas (texto à esquerda, imagem à direita) |
 
 ### 9.3 Layout
 
-- **Hero:** abaixo de 64em, empilhado (imagem acima, texto centralizado). A partir de 64em, duas colunas com texto à esquerda. Entre 769px e 1023px a navbar já é horizontal, mas o hero continua empilhado.
+- **Hero:** abaixo de 64em, empilhado (imagem acima, texto centralizado). A partir de 64em, duas colunas com texto à esquerda. Hero e navbar mudam no mesmo ponto (1024px); abaixo disso, hero empilhado e menu hambúrguer.
 - **Imagem do hero:** mobile e tablet usam `image-hero-mobile.png` com largura 100% (sem margens laterais); desktop usa `image-hero-desktop.png`, com tamanho que **escala com a viewport** (~480px @1440).
 - **Recuos fluidos:** o recuo lateral do conteúdo do hero (~165px @1440) e a margem direita da imagem (~130px) escalam com `clamp()` — sem valores fixos.
 - **Header:** padding lateral 16px (mobile), 40px (tablet e desktop).
