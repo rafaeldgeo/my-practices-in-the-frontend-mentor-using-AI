@@ -1,0 +1,156 @@
+@use 'sass:list';
+@use 'mixins' as *;
+
+// ---------- header ----------
+.header {
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 90rem;
+    min-height: 4.5rem;
+    margin-inline: auto;
+    padding-inline: var(--spacing-200);
+
+    @include respond-to(tablet) {
+      min-height: 5.25rem;
+      padding-inline: var(--spacing-500);
+    }
+  }
+
+  &__logo {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  // botão único: abre e fecha o menu, sempre acima do painel e do overlay
+  &__toggle {
+    position: relative;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+
+    @include respond-to(desktop) {
+      display: none;
+    }
+  }
+
+  &__toggle-icon--close,
+  &__toggle[aria-expanded='true'] &__toggle-icon--open {
+    display: none;
+  }
+
+  &__toggle[aria-expanded='true'] &__toggle-icon--close {
+    display: block;
+  }
+}
+
+// ---------- hero ----------
+.hero {
+  display: flex;
+  flex-direction: column;
+  max-width: 90rem;
+  margin-inline: auto;
+  padding-bottom: var(--spacing-800);
+
+  &__image {
+    width: 100%;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: clamp(2.5rem, 7.5vw, 3.5rem) var(--spacing-200) 0;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: var(--fs-hero);
+    font-weight: var(--fw-bold);
+    line-height: var(--lh-tight);
+    letter-spacing: var(--ls-tight);
+  }
+
+  &__text {
+    max-width: 34.5rem;
+    margin-top: clamp(1.5rem, 4vw, 3rem);
+    color: var(--color-gray-500);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+  }
+
+  &__cta {
+    margin-top: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  @include respond-to(hero) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    padding-top: var(--spacing-700);
+
+    &__picture {
+      grid-column: 2;
+      grid-row: 1;
+      margin-right: clamp(var(--spacing-400), 9vw, 8.125rem);
+    }
+
+    &__image {
+      width: clamp(15rem, 33.33vw, 30rem);
+    }
+
+    &__content {
+      grid-column: 1;
+      grid-row: 1;
+      align-items: flex-start;
+      padding: 0 var(--spacing-400) 0 clamp(var(--spacing-500), 11.46vw, 10.3rem);
+      text-align: left;
+    }
+
+    &__title-line {
+      display: block;
+    }
+
+    &__text {
+      max-width: 26.5rem;
+    }
+  }
+}
+
+// ---------- clients ----------
+// larguras intrínsecas dos SVGs: databiz, audiophile, meet, maker
+$client-widths: 7.125rem, 4.5625rem, 5.625rem, 5.1875rem;
+
+.clients {
+  --clients-scale: 0.72;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-200) var(--spacing-300);
+  margin-top: clamp(3rem, 8.5vw, 7rem);
+
+  @for $i from 1 through list.length($client-widths) {
+    &__item:nth-child(#{$i}) &__logo {
+      width: calc(#{list.nth($client-widths, $i)} * var(--clients-scale));
+    }
+  }
+
+  @include respond-to(tablet) {
+    --clients-scale: 1.4;
+
+    column-gap: var(--spacing-700);
+  }
+
+  @include respond-to(hero) {
+    --clients-scale: 1;
+
+    justify-content: flex-start;
+    column-gap: var(--spacing-500);
+  }
+}
