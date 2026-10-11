@@ -16,11 +16,12 @@ Os sites finalizados são publicados no GitHub Pages direto do repositório (`ht
 - `index.html` — página única. `scss/` (`main.scss` + parciais `_variables`, `_mixins`, `_base`, `_layout`, `_components`) → `css/style.css` via `npm run build` (compressed, sem source map). Os parciais ainda são esqueletos (só `_mixins.scss` tem o mixin `respond-to($bp)`, que lê o mapa `$breakpoints` — **ainda não declarado** em `_variables.scss`).
 - `images/` — `logo.svg`, `icon-menu/close-menu/arrow-down/arrow-up.svg`, ícones do dropdown (`icon-todo/calendar/reminders/planning.svg`), logos de clientes (`client-databiz/audiophile/meet/maker.svg`), `image-hero-mobile.png`, `image-hero-desktop.png`, `favicon-32x32.png`.
 - `design/` — PNGs exportados do Figma (não há `.fig`): `home/` (mobile 375, tablet 768, desktop 1440), `menu/` (mobile/tablet collapsed/expanded, desktop com dropdowns abertos), `components/` (botões e navbar, estados default/active), `style-guide/` (cores, espaçamentos, tipografia). Consulte-os antes de implementar; o MCP do Figma esbarrou em limite de requisições.
+- `js/main.js` — abre/fecha o menu mobile/tablet (painel, overlay, `aria-expanded`, `Esc`, submenus independentes); desktop (≥1024px) é só CSS.
 - `relatorio.txt` — anotações pessoais do processo; não faz parte do site.
 
 **Design**
 - Fonte **Epilogue** (Google Fonts, pesos 500 e 700). Presets: 80px/64px/36px bold, line-height 100%, letter-spacing -1px; 18px e 16px (bold: 155% / -0.25px; medium: 155% / 0); 14px medium 115%. Use `clamp()` entre mobile e desktop.
-- Layouts em 3 larguras: 375 (mobile), 768 (tablet), 1440 (desktop). Breakpoints sugeridos em `em` (mobile-first): tablet `48em`, desktop `90em`/ponto intermediário a definir — confirmar onde a navbar vira horizontal (design indica desktop 1440; tablet ainda usa menu hambúrguer).
+- Layouts em 3 larguras: 375 (mobile), 768 (tablet), 1440 (desktop). Breakpoints em `em` (mobile-first, variáveis em `scss/_variables.scss`): tablet `48em`; desktop `64em` (1024px) — abaixo disso o menu é o painel hambúrguer, pois a navbar não cabe; container `max-width: 90rem` (1440px) centralizado.
 - Fundo da página off-white (não branco puro); botões: "Learn more" preenchido escuro com hover em outline; "Register" outline com hover/active. Confira cores exatas em `style-guide-colors.png`.
 
 **Pontos de atenção**

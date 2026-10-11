@@ -14,6 +14,7 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 
 * 1- [Tech-book-club-landing-page](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor-using-AI/junior/tech-book-club-landing-page/):link: | **CSS** | Claude Code <sup>CLI + VsCode</sup>
 * 2- [Suite-landing-page](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor-using-AI/junior/suite-landing-page/):link: | **CSS** | Claude Code <sup>CLI + Codespaces</sup>
+* 3- [Intro-section-with-dropdown-navigation-main/](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor-using-AI/junior/intro-section-with-dropdown-navigation-main/):link: | **SASS** | **JS** <sup>Vanilla</sup> | Claude Code <sup>CLI + Codespaces</sup>
 
 **My Frontend Mentor: [@rafaeldgeo](https://www.frontendmentor.io/profile/rafaeldgeo)**:link:
 
