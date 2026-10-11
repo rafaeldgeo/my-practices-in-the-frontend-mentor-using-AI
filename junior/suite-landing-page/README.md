@@ -4,3 +4,4 @@
 
 ## [My Solution](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor-using-AI/junior/suite-landing-page/) 🚀
 **My Frontend Mentor: [@rafaeldgeo](https://www.frontendmentor.io/profile/rafaeldgeo)**
+
