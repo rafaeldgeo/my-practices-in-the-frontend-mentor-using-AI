@@ -5,53 +5,108 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Conference ticket generator</title>
+  <link rel="stylesheet" href="./css/style.css">
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 0.6875rem; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <title>Frontend Mentor | Conference ticket generator</title>
 </head>
 <body>
 
-  <!-- Form starts -->
+  <main class="page">
+    <header class="page__header">
+      <img class="page__logo" src="./assets/images/logo-full.svg" alt="Coding Conf">
+      <h1 class="page__title">Your Journey to Coding Conf 2025 Starts Here!</h1>
+      <p class="page__subtitle">Secure your spot at next year's biggest coding conference.</p>
+    </header>
 
-  Your Journey to Coding Conf 2025 Starts Here!
+    <form class="form" novalidate>
+      <div class="form__group">
+        <label class="form__label" for="avatar">Upload Avatar</label>
+        <div class="dropzone">
+          <input
+            class="dropzone__input"
+            type="file"
+            id="avatar"
+            name="avatar"
+            accept="image/jpeg,image/png"
+            aria-describedby="avatar-hint avatar-error"
+            required
+          >
+          <label class="dropzone__area" for="avatar">
+            <span class="dropzone__icon">
+              <img src="./assets/images/icon-upload.svg" alt="">
+            </span>
+            <span class="dropzone__text">Drag and drop or click to upload</span>
+          </label>
+        </div>
+        <p class="form__hint" id="avatar-hint">
+          <img src="./assets/images/icon-info.svg" alt="">
+          Upload your photo (JPG or PNG, max size: 500KB).
+        </p>
+        <p class="form__error" id="avatar-error" role="alert" hidden></p>
+      </div>
 
-  Secure your spot at next year's biggest coding conference.
+      <div class="form__group">
+        <label class="form__label" for="name">Full Name</label>
+        <input
+          class="form__input"
+          type="text"
+          id="name"
+          name="name"
+          autocomplete="name"
+          aria-describedby="name-error"
+          required
+        >
+        <p class="form__error" id="name-error" role="alert" hidden></p>
+      </div>
 
-  Upload Avatar
-  Drag and drop or click to upload
-  Upload your photo (JPG or PNG, max size: 500KB).
+      <div class="form__group">
+        <label class="form__label" for="email">Email Address</label>
+        <input
+          class="form__input"
+          type="email"
+          id="email"
+          name="email"
+          autocomplete="email"
+          placeholder="example@email.com"
+          aria-describedby="email-error"
+          required
+        >
+        <p class="form__error" id="email-error" role="alert" hidden></p>
+      </div>
 
-  Full Name
+      <div class="form__group">
+        <label class="form__label" for="github">GitHub Username</label>
+        <input
+          class="form__input"
+          type="text"
+          id="github"
+          name="github"
+          autocomplete="off"
+          placeholder="@yourusername"
+          aria-describedby="github-error"
+          required
+        >
+        <p class="form__error" id="github-error" role="alert" hidden></p>
+      </div>
 
-  Email Address
-  example@email.com
+      <button class="button" type="submit">Generate My Ticket</button>
+    </form>
+  </main>
 
-  GitHub Username
-  @yourusername
-
-  Generate My Ticket
-
-  <!-- Form ends -->
-
-  <!-- Generated tickets starts -->
-
-  Congrats, <!-- Full Name -->! Your ticket is ready.
-
-  We've emailed your ticket to <!-- Email Address --> and will send updates in the run up to the event.
-
-  Coding Conf
-  Jan 31, 2025 / Austin, TX
-
-  <!-- Generated tickets ends -->
-  
-  <footer class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+  <footer>
+    <div class="attribution">
+      Challenge by
+      <a
+        href="https://www.frontendmentor.io/profile/rafaeldgeo"
+        target="_blank"
+        rel="noopener"
+        >Frontend Mentor</a>. Coded by
+      <a
+        href="https://www.linkedin.com/in/rafaeldgeo/"
+        target="_blank"
+        rel="noopener"
+        >Rafael Dias de Almeida</a>.
+    </div>
   </footer>
 </body>
 </html>
