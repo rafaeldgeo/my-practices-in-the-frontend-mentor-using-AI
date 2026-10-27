@@ -1,11 +1,12 @@
 import { initAvatarUpload } from './avatar-upload.js';
 import { initFormValidation } from './form-validation.js';
+import { initTicket } from './ticket.js';
 
 const avatar = initAvatarUpload();
+const ticket = initTicket();
 
 initFormValidation({
   form: document.querySelector('.form'),
   avatar,
-  // Ticket generation is wired here in issue #11
-  onValid: () => {},
+  onValid: ticket.show,
 });
