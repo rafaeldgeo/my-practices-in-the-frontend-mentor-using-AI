@@ -18,6 +18,11 @@ $bp-desktop: 90em;
   --spacing-600: 3rem;
   --spacing-800: 4rem;
 
+  --color-input-bg: rgb(255 255 255 / 8%);
+  --color-input-bg-hover: rgb(255 255 255 / 20%);
+
+  --radius-12: 0.75rem;
+
   --font-family: 'Inconsolata', monospace;
 
   --text-preset-1-size: clamp(1.875rem, 1.2148rem + 2.8169vw, 3.75rem);
@@ -34,4 +39,9 @@ $bp-desktop: 90em;
   --text-preset-6-weight: 500;
   --text-preset-6-line-height: 1.2;
   --text-preset-6-letter-spacing: 0;
+
+  --text-preset-7-size: 0.75rem;
+  --text-preset-7-weight: 400;
+  --text-preset-7-line-height: 1.2;
+  --text-preset-7-letter-spacing: -0.2px;
 }

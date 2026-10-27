@@ -1,0 +1,107 @@
+.form {
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-100);
+  }
+
+  &__label {
+    font-size: var(--text-preset-6-size);
+    font-weight: var(--text-preset-6-weight);
+    line-height: var(--text-preset-6-line-height);
+    letter-spacing: var(--text-preset-6-letter-spacing);
+  }
+
+  &__input {
+    width: 100%;
+    padding: var(--spacing-200);
+    font: inherit;
+    color: var(--color-neutral-0);
+    background-color: var(--color-input-bg);
+    border: 1px solid var(--color-neutral-500);
+    border-radius: var(--radius-12);
+    transition: background-color 0.15s ease;
+
+    &::placeholder {
+      color: var(--color-neutral-300);
+      opacity: 0.7;
+    }
+
+    &:hover {
+      background-color: var(--color-input-bg-hover);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-neutral-500);
+      outline-offset: 2px;
+    }
+
+    &[aria-invalid='true'] {
+      border-color: var(--color-orange-500);
+    }
+  }
+
+  &__hint,
+  &__error {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-100);
+    font-size: var(--text-preset-7-size);
+    font-weight: var(--text-preset-7-weight);
+    line-height: var(--text-preset-7-line-height);
+    letter-spacing: var(--text-preset-7-letter-spacing);
+  }
+
+  &__hint {
+    color: var(--color-neutral-300);
+  }
+
+  &__error {
+    color: var(--color-orange-500);
+
+    // Same icon as the hint, recolored through a mask
+    &::before {
+      content: '';
+      flex-shrink: 0;
+      width: 1rem;
+      height: 1rem;
+      background-color: currentColor;
+      mask: url('../assets/images/icon-info.svg') center / contain no-repeat;
+    }
+
+    &[hidden] {
+      display: none;
+    }
+  }
+}
+
+.button {
+  width: 100%;
+  padding: var(--spacing-200);
+  font: inherit;
+  font-weight: 700;
+  color: var(--color-neutral-900);
+  cursor: pointer;
+  background-color: var(--color-orange-500);
+  border: 0;
+  border-radius: var(--radius-12);
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: var(--color-orange-700);
+    box-shadow: 0 2px 0 var(--color-orange-500);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-neutral-900);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px var(--color-neutral-0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .form__input,
+  .button {
+    transition: none;
+  }
+}

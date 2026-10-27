@@ -9,4 +9,4 @@ Diferente das outras praticas que foram separadas prompt para construção do HT
 
 Ocorrências: A várias sessão aplicadas em cada issue parecem que se tornam micro decisões, se nos desafios anteriores as sessões eram divididas por tecnologia em uso, havendo um inquerito do assistente para satisfazer duvida, neste modelos os inqueritos são poucos. Commits manuais podem ser esquecidos
 
-PARA O PRÓXIMO DESAFIO: Utilizar milestones e issue para teste de planejamento.
+PARA O PRÓXIMO DESAFIO: Testar issue com menos etapas que compreende HTML, CSS e JS. Pedir para o assistente aplicar o comentário e fazer o commit para evitar esquecimento.
