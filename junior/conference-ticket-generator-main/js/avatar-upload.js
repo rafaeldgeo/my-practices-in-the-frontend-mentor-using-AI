@@ -127,6 +127,8 @@ export const initAvatarUpload = () => {
   return {
     getFile: () => currentFile,
     getPreviewUrl: () => previewUrl,
+    showError,
+    focus: () => input.focus(),
     reset,
   };
 };
