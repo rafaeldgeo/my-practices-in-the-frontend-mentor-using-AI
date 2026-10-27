@@ -54,6 +54,10 @@
 
   &__hint {
     color: var(--color-neutral-300);
+
+    &[hidden] {
+      display: none;
+    }
   }
 
   &__error {
