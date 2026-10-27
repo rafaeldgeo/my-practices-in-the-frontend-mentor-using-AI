@@ -1,3 +1,5 @@
+@use 'mixins';
+
 // The ticket scales as a whole: 1cqw = 6px at the full 600px width
 .page__section[hidden] {
   display: none;
@@ -6,6 +8,23 @@
 .ticket-screen {
   .page__header {
     margin-bottom: var(--spacing-800);
+
+    @include mixins.tablet {
+      margin-bottom: 5rem;
+    }
+
+    @include mixins.desktop {
+      margin-bottom: 7.5rem;
+    }
+  }
+
+  .page__subtitle {
+    max-width: 31rem;
+    margin-inline: auto;
+
+    @include mixins.tablet {
+      margin-top: 2.125rem;
+    }
   }
 
   .highlight {
@@ -42,7 +61,7 @@
     grid-template-areas:
       'logo brand'
       '. event';
-    column-gap: 2.5cqw;
+    column-gap: 3.3cqw;
   }
 
   &__logo {
@@ -53,15 +72,16 @@
 
   &__brand {
     grid-area: brand;
-    font-size: 6cqw;
+    font-size: 6.4cqw;
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.1cqw;
   }
 
   &__event {
-    margin-top: 1cqw;
-    font-size: 2.3cqw;
+    grid-area: event;
+    margin-top: 2.2cqw;
+    font-size: max(3.1cqw, 0.875rem);
     line-height: 1.2;
     color: var(--color-neutral-300);
   }
@@ -83,12 +103,12 @@
   &__info {
     display: flex;
     flex-direction: column;
-    gap: 1cqw;
+    gap: 1.8cqw;
     min-width: 0;
   }
 
   &__name {
-    font-size: 4.5cqw;
+    font-size: max(4.8cqw, 1.125rem);
     font-weight: 500;
     line-height: 1.1;
     letter-spacing: -0.08cqw;
@@ -98,14 +118,14 @@
   &__github {
     display: flex;
     align-items: center;
-    gap: 1.2cqw;
-    font-size: 2.7cqw;
+    gap: 2cqw;
+    font-size: max(3cqw, 0.875rem);
     line-height: 1.2;
     color: var(--color-neutral-300);
 
     img {
-      width: 2.7cqw;
-      height: 2.7cqw;
+      width: max(3cqw, 0.875rem);
+      height: max(3cqw, 0.875rem);
     }
   }
 
@@ -113,8 +133,13 @@
   &__serial {
     display: grid;
     place-items: center;
-    margin-block: 8cqw;
-    border-left: 0.4cqw dashed var(--color-neutral-500);
+    margin-block: 7.5cqw;
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--color-neutral-500) 0 2.7cqw,
+        transparent 2.7cqw 5.4cqw
+      )
+      left / 0.5cqw 100% no-repeat;
   }
 
   &__number {

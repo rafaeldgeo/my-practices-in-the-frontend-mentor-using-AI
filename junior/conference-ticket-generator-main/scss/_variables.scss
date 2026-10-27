@@ -30,15 +30,20 @@ $bp-desktop: 90em;
 
   --font-family: 'Inconsolata', monospace;
 
-  --text-preset-1-size: clamp(1.875rem, 1.2148rem + 2.8169vw, 3.75rem);
+  --text-preset-1-size: clamp(1.875rem, 0.0856rem + 7.634vw, 3.75rem);
   --text-preset-1-weight: 800;
   --text-preset-1-line-height: 1.1;
   --text-preset-1-letter-spacing: -1px;
 
-  --text-preset-4-size: clamp(1.25rem, 1.162rem + 0.3756vw, 1.5rem);
+  --text-preset-4-size: clamp(1.25rem, 1.0114rem + 1.018vw, 1.5rem);
   --text-preset-4-weight: 500;
   --text-preset-4-line-height: 1.2;
   --text-preset-4-letter-spacing: -0.5px;
+
+  --text-preset-5-size: 1.25rem;
+  --text-preset-5-weight: 500;
+  --text-preset-5-line-height: 1.1;
+  --text-preset-5-letter-spacing: -0.5px;
 
   --text-preset-6-size: clamp(0.875rem, 0.787rem + 0.3756vw, 1.125rem);
   --text-preset-6-weight: 500;
