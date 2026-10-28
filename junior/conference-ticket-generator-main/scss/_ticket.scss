@@ -1,0 +1,153 @@
+@use 'mixins';
+
+// The ticket scales as a whole: 1cqw = 6px at the full 600px width
+.page__section[hidden] {
+  display: none;
+}
+
+.ticket-screen {
+  .page__header {
+    margin-bottom: var(--spacing-800);
+
+    @include mixins.tablet {
+      margin-bottom: 5rem;
+    }
+
+    @include mixins.desktop {
+      margin-bottom: 7.5rem;
+    }
+  }
+
+  .page__subtitle {
+    max-width: 31rem;
+    margin-inline: auto;
+
+    @include mixins.tablet {
+      margin-top: 2.125rem;
+    }
+  }
+
+  .highlight {
+    background: var(--gradient-01);
+    background-clip: text;
+    color: transparent;
+  }
+
+  #ticket-email {
+    color: var(--color-orange-500);
+    background: none;
+  }
+}
+
+.ticket {
+  display: grid;
+  grid-template-columns: 1fr 18.9%;
+  container-type: inline-size;
+  width: min(100%, 37.5rem);
+  aspect-ratio: 600 / 280;
+  background: url('../assets/images/pattern-ticket.svg') center / 100% 100% no-repeat;
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4cqw;
+    min-width: 0;
+  }
+
+  &__header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      'logo brand'
+      '. event';
+    column-gap: 3.3cqw;
+  }
+
+  &__logo {
+    grid-area: logo;
+    width: 6.7cqw;
+    height: auto;
+  }
+
+  &__brand {
+    grid-area: brand;
+    font-size: 6.4cqw;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.1cqw;
+  }
+
+  &__event {
+    grid-area: event;
+    margin-top: 2.2cqw;
+    font-size: max(3.1cqw, 0.875rem);
+    line-height: 1.2;
+    color: var(--color-neutral-300);
+  }
+
+  &__attendee {
+    display: flex;
+    align-items: center;
+    gap: 2.5cqw;
+  }
+
+  &__avatar {
+    flex-shrink: 0;
+    width: 13.3cqw;
+    height: 13.3cqw;
+    object-fit: cover;
+    border-radius: 2cqw;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8cqw;
+    min-width: 0;
+  }
+
+  &__name {
+    font-size: max(4.8cqw, 1.125rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.08cqw;
+    overflow-wrap: anywhere;
+  }
+
+  &__github {
+    display: flex;
+    align-items: center;
+    gap: 2cqw;
+    font-size: max(3cqw, 0.875rem);
+    line-height: 1.2;
+    color: var(--color-neutral-300);
+
+    img {
+      width: max(3cqw, 0.875rem);
+      height: max(3cqw, 0.875rem);
+    }
+  }
+
+  // Dashed divider sits between the notches
+  &__serial {
+    display: grid;
+    place-items: center;
+    margin-block: 7.5cqw;
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--color-neutral-500) 0 2.7cqw,
+        transparent 2.7cqw 5.4cqw
+      )
+      left / 0.5cqw 100% no-repeat;
+  }
+
+  &__number {
+    font-size: 4.5cqw;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color-neutral-300);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+}

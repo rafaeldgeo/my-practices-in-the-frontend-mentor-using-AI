@@ -1,0 +1,96 @@
+@use 'mixins';
+
+@font-face {
+  font-family: 'Inconsolata';
+  src: url('../assets/fonts/static/Inconsolata-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inconsolata';
+  src: url('../assets/fonts/static/Inconsolata-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inconsolata';
+  src: url('../assets/fonts/static/Inconsolata-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inconsolata';
+  src: url('../assets/fonts/static/Inconsolata-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: var(--font-family);
+  font-size: var(--text-preset-6-size);
+  font-weight: var(--text-preset-6-weight);
+  line-height: var(--text-preset-6-line-height);
+  color: var(--color-neutral-0);
+  background-color: var(--color-neutral-900);
+  background-image:
+    url('../assets/images/pattern-lines.svg'),
+    url('../assets/images/background-mobile.png');
+  background-position: top center, top center;
+  background-repeat: no-repeat;
+  background-size: auto, cover;
+
+  @include mixins.tablet {
+    background-image:
+      url('../assets/images/pattern-lines.svg'),
+      url('../assets/images/background-tablet.png');
+  }
+
+  @include mixins.desktop {
+    background-image:
+      url('../assets/images/pattern-lines.svg'),
+      url('../assets/images/background-desktop.png');
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-neutral-0);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.highlight {
+  color: var(--color-orange-500);
+}

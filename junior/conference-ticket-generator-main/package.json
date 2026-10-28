@@ -1,0 +1,19 @@
+{
+  "name": "conference-ticket-generator-main",
+  "version": "1.0.0",
+  "description": "Frontend Mentor - Conference ticket generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "sass scss/main.scss:css/style.css --style=compressed --no-source-map",
+    "watch": "sass --watch scss/main.scss:css/style.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "sass": "^1.106.1"
+  },
+  "private": true
+}

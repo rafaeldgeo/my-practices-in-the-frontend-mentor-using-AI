@@ -1,0 +1,57 @@
+$bp-tablet: 48em;
+$bp-desktop: 90em;
+
+:root {
+  --color-neutral-900: #0d082d;
+  --color-neutral-700: #4b4869;
+  --color-neutral-500: #8784a5;
+  --color-neutral-300: #d1d0d5;
+  --color-neutral-0: #fff;
+  --color-orange-700: #e1604f;
+  --color-orange-500: #f57463;
+
+  --spacing-25: 0.125rem;
+  --spacing-100: 0.5rem;
+  --spacing-200: 1rem;
+  --spacing-300: 1.5rem;
+  --spacing-400: 2rem;
+  --spacing-500: 2.5rem;
+  --spacing-600: 3rem;
+  --spacing-800: 4rem;
+
+  --gradient-01: linear-gradient(90deg, #f37362 0%, #fff 100%);
+
+  --color-input-bg: rgb(255 255 255 / 8%);
+  --color-input-bg-hover: rgb(255 255 255 / 20%);
+
+  --radius-4: 0.25rem;
+  --radius-8: 0.5rem;
+  --radius-12: 0.75rem;
+
+  --font-family: 'Inconsolata', monospace;
+
+  --text-preset-1-size: clamp(1.875rem, 0.0856rem + 7.634vw, 3.75rem);
+  --text-preset-1-weight: 800;
+  --text-preset-1-line-height: 1.1;
+  --text-preset-1-letter-spacing: -1px;
+
+  --text-preset-4-size: clamp(1.25rem, 1.0114rem + 1.018vw, 1.5rem);
+  --text-preset-4-weight: 500;
+  --text-preset-4-line-height: 1.2;
+  --text-preset-4-letter-spacing: -0.5px;
+
+  --text-preset-5-size: 1.25rem;
+  --text-preset-5-weight: 500;
+  --text-preset-5-line-height: 1.1;
+  --text-preset-5-letter-spacing: -0.5px;
+
+  --text-preset-6-size: clamp(0.875rem, 0.787rem + 0.3756vw, 1.125rem);
+  --text-preset-6-weight: 500;
+  --text-preset-6-line-height: 1.2;
+  --text-preset-6-letter-spacing: 0;
+
+  --text-preset-7-size: 0.75rem;
+  --text-preset-7-weight: 400;
+  --text-preset-7-line-height: 1.2;
+  --text-preset-7-letter-spacing: -0.2px;
+}

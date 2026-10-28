@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="./css/style.css">
+
+  <title>Frontend Mentor | Conference ticket generator</title>
+</head>
+<body>
+
+  <main class="page">
+    <header class="page__brand">
+      <img class="page__logo" src="./assets/images/logo-full.svg" alt="Coding Conf">
+    </header>
+
+    <section class="page__section" id="form-screen" aria-labelledby="form-title">
+      <header class="page__header">
+        <h1 class="page__title" id="form-title">Your Journey to Coding Conf 2025 Starts Here!</h1>
+        <p class="page__subtitle">Secure your spot at next year's biggest coding conference.</p>
+      </header>
+
+      <form class="form" novalidate>
+        <div class="form__group">
+          <label class="form__label" for="avatar">Upload Avatar</label>
+          <div class="dropzone">
+            <input
+              class="dropzone__input"
+              type="file"
+              id="avatar"
+              name="avatar"
+              accept="image/jpeg,image/png"
+              aria-describedby="avatar-hint"
+              required
+            >
+            <label class="dropzone__area" for="avatar">
+              <span class="dropzone__icon">
+                <img src="./assets/images/icon-upload.svg" alt="">
+              </span>
+              <span class="dropzone__text">Drag and drop or click to upload</span>
+            </label>
+            <div class="dropzone__preview" hidden>
+              <img class="dropzone__image" alt="">
+              <div class="dropzone__actions">
+                <button class="dropzone__action dropzone__action--remove" type="button">Remove image</button>
+                <button class="dropzone__action dropzone__action--change" type="button">Change image</button>
+              </div>
+            </div>
+          </div>
+          <p class="form__hint" id="avatar-hint">
+            <img src="./assets/images/icon-info.svg" alt="">
+            Upload your photo (JPG or PNG, max size: 500KB).
+          </p>
+          <p class="form__error" id="avatar-error" role="alert" hidden></p>
+        </div>
+
+        <div class="form__group">
+          <label class="form__label" for="name">Full Name</label>
+          <input
+            class="form__input"
+            type="text"
+            id="name"
+            name="name"
+            autocomplete="name"
+            aria-describedby="name-error"
+            required
+          >
+          <p class="form__error" id="name-error" role="alert" hidden></p>
+        </div>
+
+        <div class="form__group">
+          <label class="form__label" for="email">Email Address</label>
+          <input
+            class="form__input"
+            type="email"
+            id="email"
+            name="email"
+            autocomplete="email"
+            placeholder="example@email.com"
+            aria-describedby="email-error"
+            required
+          >
+          <p class="form__error" id="email-error" role="alert" hidden></p>
+        </div>
+
+        <div class="form__group">
+          <label class="form__label" for="github">GitHub Username</label>
+          <input
+            class="form__input"
+            type="text"
+            id="github"
+            name="github"
+            autocomplete="off"
+            placeholder="@yourusername"
+            aria-describedby="github-error"
+            required
+          >
+          <p class="form__error" id="github-error" role="alert" hidden></p>
+        </div>
+
+        <button class="button" type="submit">Generate My Ticket</button>
+      </form>
+    </section>
+
+    <section class="page__section ticket-screen" id="ticket-screen" aria-labelledby="ticket-title" hidden>
+      <header class="page__header">
+        <h1 class="page__title" id="ticket-title" tabindex="-1">
+          Congrats, <span class="highlight" id="ticket-name-title"></span>! Your ticket is ready.
+        </h1>
+        <p class="page__subtitle">
+          We've emailed your ticket to <span class="highlight" id="ticket-email"></span>
+          and will send updates in the run up to the event.
+        </p>
+      </header>
+
+      <article class="ticket" aria-label="Conference ticket">
+        <div class="ticket__main">
+          <div class="ticket__header">
+            <img class="ticket__logo" src="./assets/images/logo-mark.svg" alt="">
+            <p class="ticket__brand">Coding Conf</p>
+            <p class="ticket__event">Jan 31, 2025 / Austin, TX</p>
+          </div>
+          <div class="ticket__attendee">
+            <img class="ticket__avatar" id="ticket-avatar" alt="">
+            <div class="ticket__info">
+              <p class="ticket__name" id="ticket-name"></p>
+              <p class="ticket__github">
+                <img src="./assets/images/icon-github.svg" alt="">
+                <span id="ticket-github"></span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="ticket__serial">
+          <p class="ticket__number"><span class="visually-hidden">Ticket number </span><span id="ticket-serial"></span></p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="attribution">
+      Challenge by
+      <a
+        href="https://www.frontendmentor.io/profile/rafaeldgeo"
+        target="_blank"
+        rel="noopener"
+        >Frontend Mentor</a>. Coded by
+      <a
+        href="https://www.linkedin.com/in/rafaeldgeo/"
+        target="_blank"
+        rel="noopener"
+        >Rafael Dias de Almeida</a>.
+    </div>
+  </footer>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
