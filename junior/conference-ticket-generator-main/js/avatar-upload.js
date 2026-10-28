@@ -42,6 +42,8 @@ export const initAvatarUpload = () => {
     hint.hidden = true;
     dropzone.classList.add('dropzone--error');
     input.setAttribute('aria-invalid', 'true');
+    // Hidden elements still feed aria-describedby, so point only at the visible one
+    input.setAttribute('aria-describedby', 'avatar-error');
   };
 
   const clearError = () => {
@@ -50,6 +52,7 @@ export const initAvatarUpload = () => {
     hint.hidden = false;
     dropzone.classList.remove('dropzone--error');
     input.removeAttribute('aria-invalid');
+    input.setAttribute('aria-describedby', 'avatar-hint');
   };
 
   const revokePreview = () => {
