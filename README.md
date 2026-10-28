@@ -10,11 +10,12 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 
 * 1- [Grid-landing-page-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor-using-AI/newbie/grid-landing-page-main/):link: | **CSS** | **JS** <sup>Vanilla</sup> | Claude Code <sup>Claude Desktop</sup>
 
-## Level: junior<sup>2</sup>
+## Level: junior<sup>4</sup>
 
 * 1- [Tech-book-club-landing-page](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor-using-AI/junior/tech-book-club-landing-page/):link: | **CSS** | Claude Code <sup>CLI + VsCode</sup>
 * 2- [Suite-landing-page](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor-using-AI/junior/suite-landing-page/):link: | **CSS** | Claude Code <sup>CLI + Codespaces</sup>
 * 3- [Intro-section-with-dropdown-navigation-main/](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor-using-AI/junior/intro-section-with-dropdown-navigation-main/):link: | **SASS** | **JS** <sup>Vanilla</sup> | Claude Code <sup>CLI + Codespaces</sup>
+* 4- [Conference-ticket-generator-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor-using-AI/junior/conference-ticket-generator-main/):link: | **SASS** | **JS** <sup>Vanilla</sup> | Claude Code <sup>CLI + VsCode</sup>
 
 **My Frontend Mentor: [@rafaeldgeo](https://www.frontendmentor.io/profile/rafaeldgeo)**:link:
 
