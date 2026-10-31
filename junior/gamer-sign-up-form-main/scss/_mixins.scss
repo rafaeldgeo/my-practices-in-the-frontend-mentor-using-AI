@@ -1,0 +1,37 @@
+@use 'sass:math';
+
+// Breakpoints como variáveis Sass: custom property não vale na condição de @media.
+// Valores em em (1em = 16px no navegador padrão).
+$bp-tablet: 48em; // 768px
+$bp-desktop: 64em; // 1024px
+
+// Mobile-first: estilos a partir da largura mínima informada.
+@mixin media-up($bp) {
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+
+// px -> rem (evita ficar digitando divisões e respeita o zoom de texto do usuário)
+@function rem($px) {
+  @return math.div($px, 16) * 1rem;
+}
+
+// Tamanho fluido: cresce linearmente de $min (na largura $from) a $max (na largura $to),
+// todos em px, e fica travado fora desse intervalo.
+@function fluid($min, $max, $from, $to) {
+  $slope: math.div($max - $min, $to - $from);
+  $intercept: $min - $slope * $from;
+  @return clamp(#{rem($min)}, #{rem($intercept)} + #{$slope * 100}vw, #{rem($max)});
+}
+
+// Aplica um preset tipográfico do design system (variáveis definidas em _tokens.scss).
+// Nomes: 1, 2, 3, 4, 4-masked, 5, 5-bold, 6, 6-mixed, 7.
+@mixin text-preset($name) {
+  font-family: var(--text-#{$name}-family);
+  font-weight: var(--text-#{$name}-weight);
+  font-size: var(--text-#{$name}-size);
+  line-height: var(--text-#{$name}-line);
+  letter-spacing: var(--text-#{$name}-tracking);
+  text-transform: var(--text-#{$name}-case);
+}

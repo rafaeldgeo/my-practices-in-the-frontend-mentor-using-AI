@@ -1,0 +1,219 @@
+:root {
+  --neutral-950: #060a0e;
+  --neutral-900: #0b1219;
+  --neutral-800: #17212b;
+  --neutral-700: #303d4b;
+  --neutral-600: #586b7e;
+  --neutral-500: #6e7f91;
+  --neutral-400: #7d8c9b;
+  --neutral-300: #9fadbc;
+  --neutral-100: #e1ebf5;
+  --neutral-50: #f3f8fc;
+  --lime-500: #bff538;
+  --lime-700: #80a621;
+  --red-400: #ff837a;
+  --amber-400: #ffc44d;
+  --navy-950: #020508;
+  --lime-alpha-60: #bff53899;
+  --lime-alpha-40: #bff53866;
+  --navy-alpha-80: #020508cc;
+  --navy-alpha-60: #02050899;
+  --spacing-0: 0;
+  --spacing-025: 0.125rem;
+  --spacing-050: 0.25rem;
+  --spacing-100: 0.5rem;
+  --spacing-150: 0.75rem;
+  --spacing-200: 1rem;
+  --spacing-250: 1.25rem;
+  --spacing-300: 1.5rem;
+  --spacing-400: 2rem;
+  --spacing-500: 2.5rem;
+  --spacing-600: 3rem;
+  --spacing-800: 4rem;
+  --spacing-1000: 5rem;
+  --radius-0: 0;
+  --shadow-panel: 0 24px 64px -16px var(--navy-alpha-80);
+  --shadow-well: inset 0 2px 4px var(--navy-alpha-60);
+  --shadow-button-hover: 4px 4px 0 var(--lime-alpha-40);
+  --glow-neon: 0 0 16px var(--lime-alpha-60);
+  --glow-neon-filter: 0 0 8px var(--lime-alpha-60);
+  --font-display: 'Orbitron', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --text-1-family: 'Orbitron', sans-serif;
+  --text-1-weight: 800;
+  --text-1-size: clamp(2.25rem, 2.0714285714rem + 0.8928571429vw, 2.5rem);
+  --text-1-line: 1.1111;
+  --text-1-tracking: 0.09rem;
+  --text-1-case: uppercase;
+  --text-2-family: 'Orbitron', sans-serif;
+  --text-2-weight: 800;
+  --text-2-size: 1.5rem;
+  --text-2-line: 1.3333;
+  --text-2-tracking: 0.06rem;
+  --text-2-case: none;
+  --text-3-family: 'Orbitron', sans-serif;
+  --text-3-weight: 800;
+  --text-3-size: 1rem;
+  --text-3-line: 1.5;
+  --text-3-tracking: 0.16rem;
+  --text-3-case: none;
+  --text-4-family: 'JetBrains Mono', monospace;
+  --text-4-weight: 400;
+  --text-4-size: 1rem;
+  --text-4-line: 1.5;
+  --text-4-tracking: 0rem;
+  --text-4-case: none;
+  --text-4-masked-family: 'JetBrains Mono', monospace;
+  --text-4-masked-weight: 400;
+  --text-4-masked-size: 1rem;
+  --text-4-masked-line: 1.5;
+  --text-4-masked-tracking: 0.16rem;
+  --text-4-masked-case: none;
+  --text-5-family: 'JetBrains Mono', monospace;
+  --text-5-weight: 400;
+  --text-5-size: 0.875rem;
+  --text-5-line: 1.7143;
+  --text-5-tracking: 0rem;
+  --text-5-case: none;
+  --text-5-bold-family: 'JetBrains Mono', monospace;
+  --text-5-bold-weight: 700;
+  --text-5-bold-size: 0.875rem;
+  --text-5-bold-line: 1.7143;
+  --text-5-bold-tracking: 0.14rem;
+  --text-5-bold-case: uppercase;
+  --text-6-family: 'JetBrains Mono', monospace;
+  --text-6-weight: 400;
+  --text-6-size: 0.75rem;
+  --text-6-line: 1.3333;
+  --text-6-tracking: 0.12rem;
+  --text-6-case: uppercase;
+  --text-6-mixed-family: 'JetBrains Mono', monospace;
+  --text-6-mixed-weight: 400;
+  --text-6-mixed-size: 0.75rem;
+  --text-6-mixed-line: 1.3333;
+  --text-6-mixed-tracking: 0.12rem;
+  --text-6-mixed-case: none;
+  --text-7-family: 'JetBrains Mono', monospace;
+  --text-7-weight: 400;
+  --text-7-size: 0.75rem;
+  --text-7-line: 1.3333;
+  --text-7-tracking: 0rem;
+  --text-7-case: none;
+}
+
+@media (min-width: 48em) {
+  :root {
+    --text-1-size: clamp(2.5rem, 0.2142857143rem + 4.7619047619vw, 4.5rem);
+    --text-1-line: 1.2;
+    --text-1-tracking: 0.1rem;
+  }
+}
+@media (min-width: 64em) {
+  :root {
+    --text-1-line: 1.1111;
+    --text-1-tracking: 0.18rem;
+  }
+}
+@font-face {
+  font-family: "Orbitron";
+  src: url("/assets/fonts/orbitron/static/orbitron-800.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/jetbrains-mono/static/jetbrains-mono-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/jetbrains-mono/static/jetbrains-mono-700.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  border-radius: var(--radius-0);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-width: 20em;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--neutral-950);
+  color: var(--neutral-50);
+  font-family: var(--text-4-family);
+  font-weight: var(--text-4-weight);
+  font-size: var(--text-4-size);
+  line-height: var(--text-4-line);
+  letter-spacing: var(--text-4-tracking);
+  text-transform: var(--text-4-case);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--lime-500);
+}
+
+:focus-visible {
+  outline: 2px solid var(--lime-500);
+  outline-offset: var(--spacing-025);
+}
+
+.attribution {
+  padding: var(--spacing-200);
+  font-size: 0.6875rem;
+  text-align: center;
+  color: var(--neutral-400);
+}
+.attribution a {
+  color: var(--neutral-300);
+}
+.attribution a:hover {
+  color: var(--lime-500);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+.backdrop {
+  background-image: url("/assets/images/pattern-backdrop.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: min(960px, 100vw);
+}
+
+/*# sourceMappingURL=style.css.map */

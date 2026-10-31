@@ -1,0 +1,10 @@
+// Fundo decorativo: hexágonos concêntricos (design/components/Backdrop.png),
+// centralizados e fixos atrás do conteúdo. Aplicado no body com .backdrop.
+.backdrop {
+  background-image: url('/assets/images/pattern-backdrop.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  // O SVG tem 960px; em telas estreitas encolhe para caber
+  background-size: min(960px, 100vw);
+}

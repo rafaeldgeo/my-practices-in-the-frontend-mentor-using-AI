@@ -1,0 +1,111 @@
+// Tokens do design system (ver design/design-system.md).
+@use 'sass:list';
+@use 'mixins' as m;
+
+$orbitron: "'Orbitron', sans-serif";
+$mono: "'JetBrains Mono', monospace";
+
+// Presets de largura fixa: (família, peso, tamanho px, line-height, tracking px, caixa)
+// O preset 1 é fluido e fica fora do mapa.
+$presets: (
+  '2': ($orbitron, 800, 24, 1.3333, 0.96, none),
+  '3': ($orbitron, 800, 16, 1.5, 2.56, none),
+  '4': ($mono, 400, 16, 1.5, 0, none),
+  '4-masked': ($mono, 400, 16, 1.5, 2.56, none),
+  '5': ($mono, 400, 14, 1.7143, 0, none),
+  '5-bold': ($mono, 700, 14, 1.7143, 2.24, uppercase),
+  '6': ($mono, 400, 12, 1.3333, 1.92, uppercase),
+  '6-mixed': ($mono, 400, 12, 1.3333, 1.92, none),
+  '7': ($mono, 400, 12, 1.3333, 0, none),
+);
+
+:root {
+  // Neutral
+  --neutral-950: #060a0e;
+  --neutral-900: #0b1219;
+  --neutral-800: #17212b;
+  --neutral-700: #303d4b;
+  --neutral-600: #586b7e;
+  --neutral-500: #6e7f91;
+  --neutral-400: #7d8c9b;
+  --neutral-300: #9fadbc;
+  --neutral-100: #e1ebf5;
+  --neutral-50: #f3f8fc;
+
+  // Destaques
+  --lime-500: #bff538;
+  --lime-700: #80a621;
+  --red-400: #ff837a;
+  --amber-400: #ffc44d;
+  --navy-950: #020508;
+
+  // Transparentes
+  --lime-alpha-60: #bff53899;
+  --lime-alpha-40: #bff53866;
+  --navy-alpha-80: #020508cc;
+  --navy-alpha-60: #02050899;
+
+  // Espaçamento (nomes do design: spacing-025 = 2px, 050 = 4px, 100 = 8px...)
+  --spacing-0: 0;
+  --spacing-025: #{m.rem(2)};
+  --spacing-050: #{m.rem(4)};
+  --spacing-100: #{m.rem(8)};
+  --spacing-150: #{m.rem(12)};
+  --spacing-200: #{m.rem(16)};
+  --spacing-250: #{m.rem(20)};
+  --spacing-300: #{m.rem(24)};
+  --spacing-400: #{m.rem(32)};
+  --spacing-500: #{m.rem(40)};
+  --spacing-600: #{m.rem(48)};
+  --spacing-800: #{m.rem(64)};
+  --spacing-1000: #{m.rem(80)};
+
+  // Radius: todos os cantos são retos
+  --radius-0: 0;
+
+  // Efeitos
+  --shadow-panel: 0 24px 64px -16px var(--navy-alpha-80);
+  --shadow-well: inset 0 2px 4px var(--navy-alpha-60);
+  --shadow-button-hover: 4px 4px 0 var(--lime-alpha-40);
+  --glow-neon: 0 0 16px var(--lime-alpha-60);
+  // Em filter: drop-shadow() o blur é a metade
+  --glow-neon-filter: 0 0 8px var(--lime-alpha-60);
+
+  // Famílias
+  --font-display: #{$orbitron};
+  --font-mono: #{$mono};
+
+  // Preset 1: fluido. 36px (20em) -> 40px (48em, tablet) -> 72px (90em, 1440px)
+  --text-1-family: #{$orbitron};
+  --text-1-weight: 800;
+  --text-1-size: #{m.fluid(36, 40, 320, 768)};
+  --text-1-line: 1.1111;
+  --text-1-tracking: #{m.rem(1.44)};
+  --text-1-case: uppercase;
+
+  // Presets fixos gerados do mapa
+  @each $name, $p in $presets {
+    --text-#{$name}-family: #{list.nth($p, 1)};
+    --text-#{$name}-weight: #{list.nth($p, 2)};
+    --text-#{$name}-size: #{m.rem(list.nth($p, 3))};
+    --text-#{$name}-line: #{list.nth($p, 4)};
+    --text-#{$name}-tracking: #{m.rem(list.nth($p, 5))};
+    --text-#{$name}-case: #{list.nth($p, 6)};
+  }
+}
+
+// Preset 1 em tablet/desktop: valores do design (40px/120% e 72px/111,11%)
+@include m.media-up(m.$bp-tablet) {
+  :root {
+    --text-1-size: #{m.fluid(40, 72, 768, 1440)};
+    --text-1-line: 1.2;
+    --text-1-tracking: #{m.rem(1.6)};
+  }
+}
+
+@include m.media-up(m.$bp-desktop) {
+  :root {
+    --text-1-line: 1.1111;
+    --text-1-tracking: #{m.rem(2.88)};
+  }
+}
