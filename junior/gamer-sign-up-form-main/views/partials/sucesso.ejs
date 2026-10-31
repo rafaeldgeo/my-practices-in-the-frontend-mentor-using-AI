@@ -1,0 +1,11 @@
+<%#
+  Painel de sucesso (usado pela rota GET /sucesso, issue #09).
+  callsign vem do usuário: sai escapado. O foco vai para o h2 (tabindex -1 permite foco por script
+  ou pelo servidor sem entrar na ordem de tabulação).
+%>
+<section class="panel panel--success" aria-labelledby="success-title">
+  <img class="success__icon" src="/assets/images/icon-hex-check.svg" alt="" width="48" height="48" aria-hidden="true">
+  <h2 class="success__title" id="success-title" tabindex="-1"><span class="success__slashes" aria-hidden="true">//</span> Handshake complete</h2>
+  <p class="success__text">Operator <strong class="success__callsign"><%= locals.callsign || '' %></strong> provisioned. Your account is ready.</p>
+  <a class="button button--primary" href="#">Continue to log in</a>
+</section>

@@ -1,0 +1,41 @@
+<%#
+  Readout "Operator ID". O servidor passa `readout`; sem ele, valem os padrões do estado vazio.
+  readout = {
+    pronto: 0..5,              contagem "N/5 ready"
+    callsign: 'Vortex_07'|null  null => "Unassigned"
+    provisionado: boolean,      true => "Provisioned" e linhas "Locked"
+    linhas: [{ id, rotulo, status, erro }]
+  }
+%>
+<%
+  const padrao = {
+    pronto: 0,
+    callsign: null,
+    provisionado: false,
+    linhas: [
+      { id: 'callsign', rotulo: 'Callsign', status: 'Pending', erro: false },
+      { id: 'email', rotulo: 'Email', status: 'Pending', erro: false },
+      { id: 'password', rotulo: 'Password', status: 'Pending', erro: false },
+      { id: 'confirm', rotulo: 'Confirm', status: 'Pending', erro: false },
+      { id: 'terms', rotulo: 'Terms', status: 'Required', erro: false }
+    ]
+  };
+  const r = locals.readout || padrao;
+%>
+<section class="readout" aria-labelledby="readout-title">
+  <h2 class="readout__title" id="readout-title">Operator ID</h2>
+  <% if (r.provisionado) { %>
+    <p class="readout__count readout__count--done">Provisioned</p>
+  <% } else { %>
+    <p class="readout__count"><%= r.pronto %>/5 ready</p>
+  <% } %>
+  <p class="readout__callsign<%= r.callsign ? '' : ' readout__callsign--unassigned' %>"><%= r.callsign || 'Unassigned' %></p>
+  <ul class="readout__list">
+    <% r.linhas.forEach((linha) => { %>
+      <li class="readout__row" data-field="<%= linha.id %>">
+        <span class="readout__label"><%= linha.rotulo %></span>
+        <span class="readout__status<%= linha.erro ? ' readout__status--error' : '' %>"><%= r.provisionado ? 'Locked' : linha.status %></span>
+      </li>
+    <% }) %>
+  </ul>
+</section>

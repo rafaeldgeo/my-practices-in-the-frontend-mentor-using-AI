@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
-  <title>Frontend Mentor | Gamer sign-up form</title>
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body class="backdrop">
-  <main>
-    <h1>// Join the nexus</h1>
-    <p>Initialize your NEONCORE identity</p>
-  </main>
-</body>
-</html>
+<%- include('partials/head') %>
+<main class="page">
+  <div class="page__brand">
+    <%- include('partials/brand') %>
+    <%- include('partials/readout') %>
+  </div>
+  <%- include('partials/form') %>
+</main>
+<%- include('partials/foot') %>

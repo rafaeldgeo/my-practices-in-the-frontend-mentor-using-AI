@@ -1,0 +1,111 @@
+<%#
+  Painel do formulário.
+  valores: o que o usuário digitou (a senha NUNCA volta: não existe value nos campos de senha).
+  erros: { callsign, email, password, confirm, terms } com a mensagem de cada campo.
+  Tudo que vem do usuário sai com a tag de escape do EJS (igual-escapado), nunca sem escape.
+%>
+<%
+  const valores = locals.valores || {};
+  const erros = locals.erros || {};
+%>
+<section class="panel" aria-labelledby="panel-title">
+  <form class="form" method="POST" action="/" novalidate>
+    <header class="panel__header">
+      <h2 class="panel__title" id="panel-title">New operator</h2>
+      <p class="panel__note">
+        <span class="panel__note-long">All fields required</span>
+        <span class="panel__note-short">All required</span>
+      </p>
+    </header>
+
+    <%# Callsign %>
+    <div class="field<%= erros.callsign ? ' field--error' : '' %>">
+      <label class="field__label" for="callsign"><span class="field__prompt" aria-hidden="true">&gt;</span> Callsign</label>
+      <input class="field__input" type="text" id="callsign" name="callsign"
+        value="<%= valores.callsign || '' %>" placeholder="e.g. Vortex_07"
+        autocomplete="username" autocapitalize="none" spellcheck="false" required
+        <% if (erros.callsign) { %>aria-invalid="true"<% } %>
+        aria-describedby="callsign-<%= erros.callsign ? 'error' : 'hint' %>">
+      <% if (erros.callsign) { %>
+        <p class="field__error" id="callsign-error"><img src="/assets/images/icon-alert.svg" alt="" width="16" height="16" aria-hidden="true"> <%= erros.callsign %></p>
+      <% } else { %>
+        <p class="field__hint" id="callsign-hint">3–20 characters: letters, numbers, _ or -</p>
+      <% } %>
+    </div>
+
+    <%# Email %>
+    <div class="field<%= erros.email ? ' field--error' : '' %>">
+      <label class="field__label" for="email"><span class="field__prompt" aria-hidden="true">&gt;</span> Email</label>
+      <input class="field__input" type="email" id="email" name="email"
+        value="<%= valores.email || '' %>" placeholder="you@example.com"
+        autocomplete="email" spellcheck="false" required
+        <% if (erros.email) { %>aria-invalid="true" aria-describedby="email-error"<% } %>>
+      <% if (erros.email) { %>
+        <p class="field__error" id="email-error"><img src="/assets/images/icon-alert.svg" alt="" width="16" height="16" aria-hidden="true"> <%= erros.email %></p>
+      <% } %>
+    </div>
+
+    <%# Password: sem value, nunca devolvida ao navegador %>
+    <div class="field<%= erros.password ? ' field--error' : '' %>">
+      <label class="field__label" for="password"><span class="field__prompt" aria-hidden="true">&gt;</span> Password</label>
+      <div class="field__control">
+        <input class="field__input field__input--secret" type="password" id="password" name="password"
+          autocomplete="new-password" required
+          <% if (erros.password) { %>aria-invalid="true"<% } %>
+          aria-describedby="password-<%= erros.password ? 'error' : 'hint' %>">
+        <button class="field__reveal" type="button" aria-controls="password" aria-pressed="false" aria-label="Show password">
+          <img class="field__reveal-icon" src="/assets/images/icon-eye.svg" alt="" width="20" height="20" aria-hidden="true">
+        </button>
+      </div>
+      <div class="strength" data-level="0" aria-hidden="true">
+        <span class="strength__segment"></span>
+        <span class="strength__segment"></span>
+        <span class="strength__segment"></span>
+        <span class="strength__segment"></span>
+      </div>
+      <div class="field__meta">
+        <% if (erros.password) { %>
+          <p class="field__error" id="password-error"><img src="/assets/images/icon-alert.svg" alt="" width="16" height="16" aria-hidden="true"> <%= erros.password %></p>
+        <% } else { %>
+          <p class="field__hint" id="password-hint">At least 8 characters</p>
+        <% } %>
+        <%# Weak / Fair / Good / Strong: preenchido pelo servidor (#08) e pelo JS (#12) %>
+        <p class="strength__label" id="password-strength"><%= locals.forca || '' %></p>
+      </div>
+    </div>
+
+    <%# Confirm password %>
+    <div class="field<%= erros.confirm ? ' field--error' : '' %>">
+      <label class="field__label" for="confirm"><span class="field__prompt" aria-hidden="true">&gt;</span> Confirm password</label>
+      <div class="field__control">
+        <input class="field__input field__input--secret" type="password" id="confirm" name="confirm"
+          autocomplete="new-password" required
+          <% if (erros.confirm) { %>aria-invalid="true" aria-describedby="confirm-error"<% } %>>
+        <button class="field__reveal" type="button" aria-controls="confirm" aria-pressed="false" aria-label="Show confirm password">
+          <img class="field__reveal-icon" src="/assets/images/icon-eye.svg" alt="" width="20" height="20" aria-hidden="true">
+        </button>
+      </div>
+      <% if (erros.confirm) { %>
+        <p class="field__error" id="confirm-error"><img src="/assets/images/icon-alert.svg" alt="" width="16" height="16" aria-hidden="true"> <%= erros.confirm %></p>
+      <% } %>
+    </div>
+
+    <%# Termos %>
+    <div class="checkbox<%= erros.terms ? ' checkbox--error' : '' %>">
+      <input class="checkbox__input" type="checkbox" id="terms" name="terms" value="on"
+        <%= valores.terms ? 'checked' : '' %>
+        <% if (erros.terms) { %>aria-invalid="true" aria-describedby="terms-error"<% } %>>
+      <label class="checkbox__label" for="terms">I accept the <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</label>
+      <% if (erros.terms) { %>
+        <p class="field__error" id="terms-error"><img src="/assets/images/icon-alert.svg" alt="" width="16" height="16" aria-hidden="true"> <%= erros.terms %></p>
+      <% } %>
+    </div>
+
+    <%# Rótulo de loading ("Transmitting_") é trocado pelo JS ao enviar %>
+    <button class="button button--primary" type="submit">
+      <span class="button__label">Initialize account</span>
+    </button>
+
+    <p class="form__login">Already an operator? <a href="#">Log in</a></p>
+  </form>
+</section>
