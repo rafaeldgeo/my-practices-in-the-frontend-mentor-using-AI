@@ -27,14 +27,17 @@
   <% if (r.provisionado) { %>
     <p class="readout__count readout__count--done">Provisioned</p>
   <% } else { %>
-    <p class="readout__count"><%= r.pronto %>/5 ready</p>
+    <p class="readout__count<%= r.pronto === 5 ? ' readout__count--ready' : '' %>"><%= r.pronto %>/5 ready</p>
   <% } %>
   <p class="readout__callsign<%= r.callsign ? '' : ' readout__callsign--unassigned' %>"><%= r.callsign || 'Unassigned' %></p>
   <ul class="readout__list">
-    <% r.linhas.forEach((linha) => { %>
-      <li class="readout__row" data-field="<%= linha.id %>">
+    <% r.linhas.forEach((linha) => {
+         // Estado visual da linha: locked > error > ok > pending (Pending e Required)
+         const estado = r.provisionado ? 'locked' : linha.erro ? 'error' : linha.status === 'OK' ? 'ok' : 'pending';
+    %>
+      <li class="readout__row readout__row--<%= estado %>" data-field="<%= linha.id %>">
         <span class="readout__label"><%= linha.rotulo %></span>
-        <span class="readout__status<%= linha.erro ? ' readout__status--error' : '' %>"><%= r.provisionado ? 'Locked' : linha.status %></span>
+        <span class="readout__status"><%= r.provisionado ? 'Locked' : linha.status %></span>
       </li>
     <% }) %>
   </ul>

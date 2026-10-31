@@ -1,0 +1,76 @@
+@use 'mixins' as m;
+
+// Painel do formulário (e do sucesso): superfície elevada com cantos decorativos lime
+// no canto superior esquerdo e no inferior direito. Todos os cantos reais são retos.
+
+.panel {
+  position: relative;
+  padding: var(--spacing-250);
+  background-color: var(--neutral-900);
+  border: 1px solid var(--neutral-700);
+  box-shadow: var(--shadow-panel);
+
+  @include m.media-up(m.$bp-tablet) {
+    padding: var(--spacing-500);
+  }
+
+  // Cantos em L (24px, 2px), sobrepostos à borda
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: var(--spacing-300);
+    height: var(--spacing-300);
+    border: 0 solid var(--lime-500);
+    pointer-events: none;
+  }
+
+  &::before {
+    top: -1px;
+    left: -1px;
+    border-top-width: 2px;
+    border-left-width: 2px;
+  }
+
+  &::after {
+    right: -1px;
+    bottom: -1px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-200);
+    padding-bottom: var(--spacing-200);
+    margin-bottom: var(--spacing-300);
+    border-bottom: 1px solid var(--neutral-700);
+  }
+
+  &__title {
+    color: var(--neutral-50);
+    @include m.text-preset('6');
+  }
+
+  &__note {
+    color: var(--neutral-500);
+    @include m.text-preset('6');
+  }
+
+  // Nota do cabeçalho: curta em mobile ("All required"), completa a partir do tablet
+  &__note-long {
+    display: none;
+
+    @include m.media-up(m.$bp-tablet) {
+      display: inline;
+    }
+  }
+
+  &__note-short {
+    @include m.media-up(m.$bp-tablet) {
+      display: none;
+    }
+  }
+}
