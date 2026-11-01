@@ -15,6 +15,7 @@ import {
   validarConfirmacao,
   validarTermos,
 } from './regras.js';
+import { atualizarReadout } from './readout.js';
 
 const form = document.querySelector('form.form');
 
@@ -133,6 +134,7 @@ if (form) {
       renderizarMensagem(nome, erro);
     }
     atualizarStatus();
+    atualizarReadout(nome, erro);
   };
 
   const validar = (nome) => aplicar(nome, campos[nome].regra());
