@@ -70,7 +70,7 @@
           <p class="field__hint" id="password-hint">At least 8 characters</p>
         <% } %>
         <%# Weak / Fair / Good / Strong: preenchido pelo servidor (#08) e pelo JS (#12) %>
-        <p class="strength__label" id="password-strength"><%= locals.forca || '' %></p>
+        <p class="strength__label" id="password-strength" data-level="<%= locals.nivelForca || 0 %>"><%= locals.forca || '' %></p>
       </div>
     </div>
 
