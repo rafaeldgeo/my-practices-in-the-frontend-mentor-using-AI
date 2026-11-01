@@ -1,0 +1,80 @@
+@use 'mixins' as m;
+
+// Checkbox dos termos. O <input> real continua na tela (acessível e clicável);
+// só trocamos a aparência com appearance: none. Sem sombra interna (design-system).
+// Grid: caixa (24px) | texto. A mensagem de erro ocupa a coluna do texto, na linha de baixo.
+
+.checkbox {
+  display: grid;
+  grid-template-columns: var(--spacing-300) 1fr;
+  column-gap: var(--spacing-150);
+  row-gap: var(--spacing-100);
+  align-items: start;
+
+  &__input {
+    appearance: none;
+    grid-column: 1;
+    grid-row: 1;
+    width: var(--spacing-300);
+    height: var(--spacing-300);
+    margin: 0;
+    background-color: var(--neutral-950);
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid var(--neutral-600);
+    cursor: pointer;
+    transition: border-color 120ms ease, background-color 120ms ease;
+
+    &:hover {
+      border-color: var(--neutral-300);
+    }
+
+    // Marcado: fundo lime com o tick escuro
+    &:checked {
+      background-color: var(--lime-500);
+      background-image: url('/assets/images/icon-tick-16.svg');
+      border-color: var(--lime-500);
+    }
+
+    // Foco: borda lime + anel externo com 2px de folga (igual aos campos)
+    &:focus-visible {
+      border-color: var(--lime-500);
+      outline: 2px solid var(--lime-500);
+      outline-offset: var(--spacing-025);
+    }
+  }
+
+  &__label {
+    grid-column: 2;
+    grid-row: 1;
+    color: var(--neutral-100);
+    cursor: pointer;
+    @include m.text-preset('5');
+  }
+
+  // Links do rótulo: lime com sublinhado pontilhado; ficam brancos no hover
+  &__label a {
+    color: var(--lime-500);
+    text-decoration: underline dotted;
+    text-underline-offset: 4px;
+
+    &:hover {
+      color: var(--neutral-50);
+    }
+  }
+
+  // Mensagem de erro (.field__error já define cor e ícone)
+  .field__error {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  // Erro: borda vermelha (desmarcada). O foco continua lime para o anel aparecer.
+  &--error &__input:not(:checked) {
+    border-color: var(--red-400);
+
+    &:focus-visible {
+      border-color: var(--lime-500);
+    }
+  }
+}
