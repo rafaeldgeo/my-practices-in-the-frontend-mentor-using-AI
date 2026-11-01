@@ -1,0 +1,98 @@
+@use 'mixins' as m;
+
+// Medidor de força da senha: 4 segmentos retos + rótulo (Weak/Fair/Good/Strong).
+// O nível vem de data-level (0 a 4) em .strength e em .strength__label; quem escreve o
+// valor é o servidor (#08) e o JS de UI (#12). Aqui só há estilo.
+// Força é apenas aviso: não bloqueia o envio.
+
+// nível -> cor (1 Weak, 2 Fair, 3 Good, 4 Strong)
+$levels: (
+  1: var(--red-400),
+  2: var(--amber-400),
+  3: var(--lime-500),
+  4: var(--lime-500),
+);
+
+.strength {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-050);
+
+  &__segment {
+    height: var(--spacing-050); // 4px (design: Strength meter)
+    background-color: var(--neutral-700);
+    transition: background-color 120ms ease;
+  }
+
+  &__label {
+    flex: none;
+    margin-left: auto; // fica à direita mesmo quando está sozinho (sem dica)
+    @include m.text-preset('6');
+  }
+
+  // Acende os N primeiros segmentos com a cor do nível
+  @each $level, $color in $levels {
+    &[data-level='#{$level}'] &__segment:nth-child(-n + #{$level}) {
+      background-color: $color;
+    }
+  }
+}
+
+// O rótulo fica em .field__meta, fora de .strength: mesma regra de cor por nível
+@each $level, $color in $levels {
+  .strength__label[data-level='#{$level}'] {
+    color: $color;
+  }
+}
+
+// Botão de revelar senha (olho): sobre o input, à direita
+.field__reveal {
+  position: absolute;
+  top: 50%;
+  right: 2px; // o design encosta o anel de foco a 2px da borda do campo
+  display: grid;
+  place-items: center;
+  width: m.rem(44); // 44px: o anel de foco (2px) ocupa a caixa inteira, 2px por dentro do campo
+  height: m.rem(44);
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--neutral-300);
+  cursor: pointer;
+  transform: translateY(-50%);
+
+  &-icon {
+    opacity: 0.8;
+    transition: opacity 120ms ease;
+  }
+
+  &:hover &-icon {
+    opacity: 1;
+    filter: brightness(1.4);
+  }
+
+  // Anel por dentro do campo: 2px de traço dentro da caixa de 44px (campo de 48px => 4px no total)
+  &:focus-visible {
+    outline: 2px solid var(--lime-500);
+    outline-offset: -2px;
+  }
+
+  // Senha visível: ícone lime (o JS troca o SVG para olho cortado em #12)
+  &[aria-pressed='true'] &-icon {
+    opacity: 1;
+    filter: brightness(0) saturate(100%) invert(86%) sepia(55%) saturate(700%) hue-rotate(20deg);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+}
+
+// Enviando ("Transmitting_"): o olho fica apagado e sem clique, junto com os campos
+// somente leitura (JS de UI, envio.js)
+.form[aria-busy] .field__reveal {
+  cursor: not-allowed;
+  opacity: 0.4;
+  pointer-events: none;
+}

@@ -1,0 +1,140 @@
+@use 'mixins' as m;
+
+// Readout "Operator ID".
+// < 64em: faixa de uma linha (Operator ID + callsign) e "N/5 ready" ao lado do logo;
+//         as 5 linhas ficam só para leitores de tela.
+// >= 64em: bloco completo (cabeçalho, callsign grande e as 5 linhas com linha pontilhada).
+
+.readout {
+  display: contents;
+
+  @include m.media-up(m.$bp-desktop) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    margin-top: var(--spacing-800);
+    padding-top: var(--spacing-300);
+    border-top: 1px solid var(--neutral-700);
+  }
+
+  &__title,
+  &__count {
+    color: var(--neutral-500);
+    @include m.text-preset('6');
+  }
+
+  // Faixa (tablet/mobile): o divisor vem das duas células da faixa, lado a lado
+  &__title,
+  &__callsign {
+    padding-block: var(--spacing-200) 0;
+    border-top: 1px solid var(--neutral-700);
+    margin-top: var(--spacing-300);
+
+    @include m.media-up(m.$bp-desktop) {
+      padding-block: 0;
+      border-top: 0;
+      margin-top: 0;
+    }
+  }
+
+  &__title {
+    grid-area: id;
+
+    @include m.media-up(m.$bp-desktop) {
+      grid-area: auto;
+    }
+  }
+
+  &__count {
+    grid-area: count;
+
+    &--ready,
+    &--done {
+      color: var(--lime-500);
+    }
+
+    @include m.media-up(m.$bp-desktop) {
+      grid-area: auto;
+    }
+  }
+
+  &__callsign {
+    grid-area: callsign;
+    justify-self: end;
+    color: var(--neutral-50);
+    @include m.text-preset('6-mixed');
+
+    &--unassigned {
+      color: var(--neutral-300);
+      text-transform: uppercase;
+    }
+
+    @include m.media-up(m.$bp-desktop) {
+      grid-area: auto;
+      grid-column: 1 / -1;
+      justify-self: start;
+      margin-top: var(--spacing-100);
+      color: var(--neutral-100);
+      @include m.text-preset('2');
+
+      &--unassigned {
+        color: var(--neutral-500);
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  &__list {
+    @include m.visually-hidden;
+    list-style: none;
+    padding: 0;
+
+    @include m.media-up(m.$bp-desktop) {
+      position: static;
+      grid-column: 1 / -1;
+      width: auto;
+      height: auto;
+      margin: var(--spacing-200) 0 0;
+      overflow: visible;
+      clip-path: none;
+      white-space: normal;
+      display: grid;
+      row-gap: var(--spacing-100);
+    }
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-150);
+  }
+
+  &__label {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: var(--spacing-150);
+    color: var(--neutral-300);
+    @include m.text-preset('6');
+
+    // Linha que liga o rótulo ao status
+    &::after {
+      content: '';
+      flex: 1;
+      border-top: 1px dotted var(--neutral-600);
+    }
+  }
+
+  &__status {
+    color: var(--neutral-500);
+    @include m.text-preset('6');
+  }
+
+  &__row--ok &__status,
+  &__row--locked &__status {
+    color: var(--neutral-50);
+  }
+
+  &__row--error &__status {
+    color: var(--red-400);
+  }
+}

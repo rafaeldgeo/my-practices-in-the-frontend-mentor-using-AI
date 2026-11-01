@@ -1,0 +1,68 @@
+@use 'mixins' as m;
+
+// Botão principal (<button> do formulário e <a> "Continue to log in" do sucesso).
+// Estados: padrão, hover (fundo claro + sombra deslocada), foco (anel duplo), loading.
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: var(--spacing-600); // 48px
+  padding: calc(var(--spacing-150) - 1px) var(--spacing-200); // 11px + borda = 12px; altura final 48px
+  border: 1px solid transparent;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 120ms ease, box-shadow 120ms ease;
+  @include m.text-preset('5-bold');
+
+  &--primary {
+    background-color: var(--lime-500);
+    color: var(--neutral-950);
+
+    &:hover {
+      background-color: var(--neutral-50);
+      box-shadow: var(--shadow-button-hover);
+    }
+
+    // Foco: anel lime externo; a borda lime fecha o "anel duplo" do design
+    &:focus-visible {
+      border-color: var(--lime-500);
+      outline: 2px solid var(--lime-500);
+      outline-offset: var(--spacing-025);
+    }
+  }
+
+  // Loading ("Transmitting_"): contorno lime sobre fundo escuro, sem sombra de hover.
+  // O JS (#12) aplica a classe/atributo e troca o rótulo.
+  &--loading,
+  &[aria-busy='true'] {
+    background-color: var(--neutral-900);
+    border-color: var(--lime-500);
+    color: var(--lime-500);
+    cursor: progress;
+
+    &:hover {
+      background-color: var(--neutral-900);
+      box-shadow: none;
+    }
+  }
+}
+
+// Rodapé do formulário: "Already an operator? Log in"
+.form__login {
+  color: var(--neutral-300);
+  text-align: center;
+  @include m.text-preset('5');
+
+  a {
+    color: var(--lime-500);
+    text-decoration: underline dotted;
+    text-underline-offset: 4px;
+
+    &:hover {
+      color: var(--neutral-50); // o sublinhado continua pontilhado, como no design
+    }
+  }
+}

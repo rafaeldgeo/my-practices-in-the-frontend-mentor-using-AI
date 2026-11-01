@@ -1,0 +1,81 @@
+@use 'mixins' as m;
+
+// Coluna da marca. Em mobile e tablet (< 64em) o logo, "N/5 ready", o título, o subtítulo e a
+// faixa Operator ID + callsign formam UM grid: .brand e .readout usam display: contents para
+// que seus filhos sejam itens de .page__brand. Assim o HTML tem um só readout.
+// A partir de 64em (desktop) .brand e .readout voltam a ser blocos normais.
+
+.page__brand {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'logo count'
+    'title title'
+    'tagline tagline'
+    'id callsign';
+  align-items: center;
+
+  @include m.media-up(m.$bp-desktop) {
+    display: block;
+    // Desktop: a coluna da marca fica 70px abaixo do topo do painel (no estado vazio isso é o
+    // mesmo que centralizar). Se o painel crescer (erros), a coluna não se desloca.
+    align-self: start;
+    padding-top: m.rem(70);
+  }
+}
+
+.brand {
+  display: contents;
+
+  @include m.media-up(m.$bp-desktop) {
+    display: block;
+  }
+
+  &__logo {
+    grid-area: logo;
+    justify-self: start;
+    height: auto;
+
+    @include m.media-up(m.$bp-desktop) {
+      grid-area: auto;
+    }
+  }
+
+  &__title {
+    grid-area: title;
+    margin-top: var(--spacing-400);
+    color: var(--neutral-100);
+    @include m.text-preset('1');
+
+    @include m.media-up(m.$bp-tablet) {
+      margin-top: var(--spacing-600);
+    }
+
+    @include m.media-up(m.$bp-desktop) {
+      grid-area: auto;
+      margin-top: var(--spacing-1000);
+    }
+  }
+
+  &__slashes {
+    // O espaço depois de "//" fica mais curto no design (14px a 72px): aproximação em em
+    margin-right: -0.22em;
+    color: var(--lime-500);
+  }
+
+  &__tagline {
+    grid-area: tagline;
+    margin-top: calc(var(--spacing-100) + 2px); // 10px no mobile do design
+    color: var(--neutral-300);
+    @include m.text-preset('6');
+
+    @include m.media-up(m.$bp-tablet) {
+      margin-top: var(--spacing-200);
+    }
+
+    @include m.media-up(m.$bp-desktop) {
+      grid-area: auto;
+      margin-top: var(--spacing-300);
+    }
+  }
+}

@@ -1,0 +1,37 @@
+@use 'mixins' as m;
+
+// Fundo decorativo: hexágonos concêntricos (public/assets/images/pattern-backdrop.svg, 960px).
+// No design (design/layout/) o padrão NÃO fica no centro da janela: ele é ancorado no PAINEL.
+//   desktop: tamanho natural (960px), centro na borda direita do painel e na metade da altura
+//            dele; por isso o hexágono lime aparece à direita do painel e as linhas cinza
+//            acima e abaixo; o resto fica escondido atrás do painel;
+//   tablet e mobile: largura = largura da janela (no tablet as pontas tocam as bordas),
+//            centro no centro do painel; só as pontas aparecem ao lado do painel.
+// O painel já usa ::before e ::after nos cantos lime, então o padrão fica num wrapper (.stage)
+// que envolve o painel nas telas de formulário, sucesso e erro.
+
+.stage {
+  // Sem z-index: não cria contexto de empilhamento. O ::before com z-index -1 fica atrás do
+  // painel (que tem fundo opaco) e à frente da cor de fundo do body.
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    width: min(60rem, 100vw);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    background: url('/assets/images/pattern-backdrop.svg') center / contain no-repeat;
+    pointer-events: none;
+  }
+
+  @include m.media-up(m.$bp-desktop) {
+    &::before {
+      left: 100%; // centro na borda direita do painel
+      width: m.rem(960);
+    }
+  }
+}

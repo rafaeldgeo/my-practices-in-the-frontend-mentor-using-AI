@@ -1,0 +1,63 @@
+@use 'mixins' as m;
+
+// Painel de sucesso (views/partials/sucesso.ejs). Reaproveita .panel (cantos lime, borda,
+// shadow-panel). Mobile: altura do conteúdo. Tablet/desktop: painel alto, com o conteúdo
+// centralizado na vertical e alinhado à esquerda, como nos layouts de sucesso.
+
+.panel--success {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @include m.media-up(m.$bp-tablet) {
+    justify-content: center;
+    min-height: m.rem(724);
+  }
+}
+
+// Hex-check: o SVG já embute o brilho neon (glow-neon, blur 16px) e por isso tem 78×72 com
+// folga em volta do hexágono. Tamanho natural + margem negativa alinham o hexágono ao texto.
+// Não se aplica drop-shadow por cima: o brilho ficaria dobrado.
+.success__icon {
+  width: m.rem(78);
+  max-width: none;
+  height: m.rem(72);
+  margin: m.rem(-12) 0 m.rem(8) m.rem(-16);
+}
+
+.success__title {
+  margin-bottom: var(--spacing-200);
+  color: var(--neutral-50);
+  @include m.text-preset('2');
+  text-transform: uppercase;
+
+  // O foco vai para o título (tabindex -1): sem anel, ele não é um controle
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--lime-500);
+    outline-offset: var(--spacing-100);
+  }
+}
+
+.success__slashes {
+  color: var(--lime-500);
+}
+
+.success__text {
+  margin-bottom: var(--spacing-400);
+  color: var(--neutral-300);
+  @include m.text-preset('4');
+}
+
+.success__callsign {
+  color: var(--lime-500);
+  font-weight: 400;
+  overflow-wrap: anywhere; // callsign de até 20 caracteres não estoura em 320px
+}
+
+.panel--success .button {
+  width: 100%;
+}

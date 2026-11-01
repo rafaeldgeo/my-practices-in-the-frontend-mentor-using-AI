@@ -1,0 +1,49 @@
+@use 'mixins' as m;
+
+// Estrutura da página: o body é uma coluna para a atribuição ficar colada na base;
+// o main ocupa o espaço restante e centraliza o conteúdo na vertical.
+//   < 64em : uma coluna (marca/faixa, depois o painel), largura máxima de 560px
+//   >= 64em: duas colunas (marca 560px | painel 480px), intervalo de 80px, máx. 1120px
+
+body {
+  position: relative; // referência do rodapé absoluto no desktop
+  display: flex;
+  flex-direction: column;
+}
+
+.page {
+  display: grid;
+  flex: 1;
+  align-content: start; // mobile e tablet: o conteúdo começa no topo, como no design
+  row-gap: var(--spacing-400);
+  width: min(100% - var(--spacing-400), 35rem); // margens de 16px; 560px no máximo
+  margin-inline: auto;
+  padding-block: var(--spacing-400);
+
+  @include m.media-up(m.$bp-tablet) {
+    row-gap: var(--spacing-500);
+    padding-block: var(--spacing-800);
+  }
+
+  @include m.media-up(m.$bp-desktop) {
+    // 7fr + 6fr com intervalo de 80px dão 560px + 480px quando a largura é 1120px
+    grid-template-columns: minmax(0, 7fr) minmax(0, 6fr);
+    column-gap: var(--spacing-1000);
+    align-content: center; // desktop: conjunto centralizado na vertical
+    align-items: center;
+    width: min(100% - var(--spacing-800), 70rem); // 1120px no máximo
+  }
+}
+
+.attribution {
+  margin-top: auto;
+
+  // Desktop: o conjunto marca + painel é centralizado na JANELA inteira, como no design (que
+  // não tem rodapé). O rodapé sai do fluxo e fica colado na base; o .page tem 64px de
+  // espaçamento embaixo, mais que a altura do rodapé de uma linha, então nada se sobrepõe.
+  @include m.media-up(m.$bp-desktop) {
+    position: absolute;
+    inset: auto 0 0;
+    margin-top: 0;
+  }
+}

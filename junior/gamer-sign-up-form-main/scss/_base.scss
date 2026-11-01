@@ -1,0 +1,108 @@
+@use 'mixins' as m;
+
+// Fontes locais (servidas de public/assets/fonts). font-display: swap mostra o texto
+// com a fonte de reserva enquanto o arquivo carrega.
+@font-face {
+  font-family: 'Orbitron';
+  src: url('/assets/fonts/orbitron/static/orbitron-800.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/assets/fonts/jetbrains-mono/static/jetbrains-mono-400.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/assets/fonts/jetbrains-mono/static/jetbrains-mono-700.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Reset mínimo
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  border-radius: var(--radius-0);
+}
+
+html {
+  // Evita que o iOS aumente o texto sozinho ao girar a tela
+  -webkit-text-size-adjust: 100%;
+  // Com overflow definido aqui, o overflow do body deixa de ir para a janela e passa a valer
+  // no próprio body (ver abaixo): o padrão do fundo é cortado na borda do body, sem rolagem
+  overflow-x: hidden;
+}
+
+body {
+  // 320px em px de propósito: em/rem cresce com o tamanho do texto (200% => 640px) e forçaria
+  // rolagem horizontal numa janela de 320px (WCAG 1.4.4 e 1.4.10)
+  min-width: 320px;
+  overflow-x: clip; // o padrão do fundo (.stage::before, 960px) passa da borda da janela
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--neutral-950);
+  color: var(--neutral-50);
+  @include m.text-preset('4');
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--lime-500);
+}
+
+// Foco visível: anel lime com 2px de folga (spacing-025) entre controle e anel
+:focus-visible {
+  outline: 2px solid var(--lime-500);
+  outline-offset: var(--spacing-025);
+}
+
+// Rodapé de atribuição: 11px, centralizado, na base da página
+.attribution {
+  padding: var(--spacing-200);
+  font-size: m.rem(11);
+  text-align: center;
+  color: var(--neutral-400);
+
+  a {
+    color: var(--neutral-300);
+
+    &:hover {
+      color: var(--lime-500);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

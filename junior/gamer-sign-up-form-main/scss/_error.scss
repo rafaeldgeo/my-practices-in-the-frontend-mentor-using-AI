@@ -1,0 +1,78 @@
+@use 'mixins' as m;
+
+// Tela de erro do servidor (views/erro.ejs, issue #10). O design não tem layout para ela:
+// segue a linguagem do painel de sucesso (mesmo .panel, título Orbitron, botão lime),
+// com o vermelho de erro no ícone e nos itens.
+//
+// Marcação prevista:
+//   <section class="panel panel--error" aria-labelledby="error-title">
+//     <h2 class="error-screen__title" id="error-title" tabindex="-1"><span class="error-screen__slashes" aria-hidden="true">//</span> Transmission rejected</h2>
+//     <p class="error-screen__text">...</p>
+//     <ul class="error-screen__list"><li class="error-screen__item"><img ...> mensagem</li></ul>
+//     <a class="button button--primary" href="/">Back to form</a>
+//   </section>
+
+.panel--error {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.error-screen {
+  &__title {
+    margin-bottom: var(--spacing-200);
+    color: var(--neutral-50);
+    @include m.text-preset('2');
+    text-transform: uppercase;
+
+    &:focus {
+      outline: none;
+    }
+
+    // Mesmo anel de foco do título de sucesso (o foco chega aqui por autofocus)
+    &:focus-visible {
+      outline: 2px solid var(--lime-500);
+      outline-offset: var(--spacing-100);
+    }
+  }
+
+  &__slashes {
+    color: var(--red-400);
+  }
+
+  &__text {
+    margin-bottom: var(--spacing-300);
+    color: var(--neutral-300);
+    @include m.text-preset('4');
+  }
+
+  &__list {
+    display: grid;
+    gap: var(--spacing-150);
+    width: 100%;
+    margin: 0 0 var(--spacing-400);
+    padding: 0;
+    list-style: none;
+  }
+
+  // Cada erro devolvido pelo servidor, com o ícone de alerta (reaproveita o visual de .field__error)
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-100);
+    padding: var(--spacing-150) var(--spacing-200);
+    background-color: var(--neutral-950);
+    border: 1px solid var(--red-400);
+    color: var(--red-400);
+    @include m.text-preset('5');
+
+    img {
+      flex: none;
+      margin-top: m.rem(3);
+    }
+  }
+}
+
+.panel--error .button {
+  width: 100%;
+}

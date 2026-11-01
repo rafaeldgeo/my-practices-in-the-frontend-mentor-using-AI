@@ -1,0 +1,12 @@
+<%- include('partials/head') %>
+<main class="page">
+  <div class="page__brand">
+    <%- include('partials/brand') %>
+    <%- include('partials/readout') %>
+  </div>
+  <%- include('partials/form') %>
+</main>
+<%# JS de UI: só feedback em tempo real; o envio segue sendo o POST nativo %>
+<script type="module" src="/js/validacao.js"></script>
+<script type="module" src="/js/ui.js"></script>
+<%- include('partials/foot') %>
