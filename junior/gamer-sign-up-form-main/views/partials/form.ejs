@@ -7,6 +7,10 @@
 <%
   const valores = locals.valores || {};
   const erros = locals.erros || {};
+  // Foco sem JavaScript: o atributo HTML autofocus vai só no primeiro campo com erro, na ordem
+  // em que aparecem na tela. O navegador move o foco para ele ao carregar a página.
+  const primeiroInvalido = ['callsign', 'email', 'password', 'confirm', 'terms'].find((campo) => erros[campo]);
+  const totalErros = Object.keys(erros).length;
 %>
 <section class="panel" aria-labelledby="panel-title">
   <form class="form" method="POST" action="/" novalidate>
@@ -18,12 +22,17 @@
       </p>
     </header>
 
+    <%# Região aria-live: sempre no DOM (leitores de tela só anunciam mudanças em regiões que já
+        existem); só tem texto quando há erros. Fica oculta na tela: o design não mostra banner. %>
+    <p class="form__status" id="form-status" aria-live="polite"><% if (totalErros > 0) { %><%= totalErros %> <%= totalErros === 1 ? 'field needs' : 'fields need' %> attention<% } %></p>
+
     <%# Callsign %>
-    <div class="field<%= erros.callsign ? ' field--error' : '' %>">
+    <div class="field<%= erros.callsign ? ' field--error' : (valores.callsign ? ' field--valid' : '') %>">
       <label class="field__label" for="callsign"><span class="field__prompt" aria-hidden="true">&gt;</span> Callsign</label>
       <input class="field__input" type="text" id="callsign" name="callsign"
         value="<%= valores.callsign || '' %>" placeholder="e.g. Vortex_07"
         autocomplete="username" autocapitalize="none" spellcheck="false" required
+        <%= primeiroInvalido === 'callsign' ? 'autofocus' : '' %>
         <% if (erros.callsign) { %>aria-invalid="true"<% } %>
         aria-describedby="callsign-<%= erros.callsign ? 'error' : 'hint' %>">
       <% if (erros.callsign) { %>
@@ -34,11 +43,12 @@
     </div>
 
     <%# Email %>
-    <div class="field<%= erros.email ? ' field--error' : '' %>">
+    <div class="field<%= erros.email ? ' field--error' : (valores.email ? ' field--valid' : '') %>">
       <label class="field__label" for="email"><span class="field__prompt" aria-hidden="true">&gt;</span> Email</label>
       <input class="field__input" type="email" id="email" name="email"
         value="<%= valores.email || '' %>" placeholder="you@example.com"
         autocomplete="email" spellcheck="false" required
+        <%= primeiroInvalido === 'email' ? 'autofocus' : '' %>
         <% if (erros.email) { %>aria-invalid="true" aria-describedby="email-error"<% } %>>
       <% if (erros.email) { %>
         <p class="field__error" id="email-error"><img src="/assets/images/icon-alert.svg" alt="" width="16" height="16" aria-hidden="true"> <%= erros.email %></p>
@@ -51,13 +61,14 @@
       <div class="field__control">
         <input class="field__input field__input--secret" type="password" id="password" name="password"
           autocomplete="new-password" required
+          <%= primeiroInvalido === 'password' ? 'autofocus' : '' %>
           <% if (erros.password) { %>aria-invalid="true"<% } %>
-          aria-describedby="password-<%= erros.password ? 'error' : 'hint' %>">
+          aria-describedby="password-<%= erros.password ? 'error' : 'hint' %> password-strength">
         <button class="field__reveal" type="button" aria-controls="password" aria-pressed="false" aria-label="Show password">
           <img class="field__reveal-icon" src="/assets/images/icon-eye.svg" alt="" width="20" height="20" aria-hidden="true">
         </button>
       </div>
-      <div class="strength" data-level="0" aria-hidden="true">
+      <div class="strength" data-level="<%= locals.nivelForca || 0 %>" aria-hidden="true">
         <span class="strength__segment"></span>
         <span class="strength__segment"></span>
         <span class="strength__segment"></span>
@@ -80,6 +91,7 @@
       <div class="field__control">
         <input class="field__input field__input--secret" type="password" id="confirm" name="confirm"
           autocomplete="new-password" required
+          <%= primeiroInvalido === 'confirm' ? 'autofocus' : '' %>
           <% if (erros.confirm) { %>aria-invalid="true" aria-describedby="confirm-error"<% } %>>
         <button class="field__reveal" type="button" aria-controls="confirm" aria-pressed="false" aria-label="Show confirm password">
           <img class="field__reveal-icon" src="/assets/images/icon-eye.svg" alt="" width="20" height="20" aria-hidden="true">
@@ -94,6 +106,7 @@
     <div class="checkbox<%= erros.terms ? ' checkbox--error' : '' %>">
       <input class="checkbox__input" type="checkbox" id="terms" name="terms" value="on"
         <%= valores.terms ? 'checked' : '' %>
+        <%= primeiroInvalido === 'terms' ? 'autofocus' : '' %>
         <% if (erros.terms) { %>aria-invalid="true" aria-describedby="terms-error"<% } %>>
       <label class="checkbox__label" for="terms">I accept the <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</label>
       <% if (erros.terms) { %>
