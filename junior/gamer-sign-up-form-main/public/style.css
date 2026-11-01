@@ -148,10 +148,12 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
   min-width: 20em;
+  overflow-x: clip;
   min-height: 100vh;
   min-height: 100dvh;
   background-color: var(--neutral-950);
@@ -208,12 +210,26 @@ a {
     scroll-behavior: auto !important;
   }
 }
-.backdrop {
-  background-image: url("/assets/images/pattern-backdrop.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-  background-size: min(960px, 100vw);
+.stage {
+  position: relative;
+}
+.stage::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  width: min(60rem, 100vw);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: url("/assets/images/pattern-backdrop.svg") center/contain no-repeat;
+  pointer-events: none;
+}
+@media (min-width: 64em) {
+  .stage::before {
+    left: 100%;
+    width: 60rem;
+  }
 }
 
 body {

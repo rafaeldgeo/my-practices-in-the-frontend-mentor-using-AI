@@ -12,6 +12,7 @@
   const primeiroInvalido = ['callsign', 'email', 'password', 'confirm', 'terms'].find((campo) => erros[campo]);
   const totalErros = Object.keys(erros).length;
 %>
+<div class="stage">
 <section class="panel" aria-labelledby="panel-title">
   <form class="form" method="POST" action="/" novalidate>
     <header class="panel__header">
@@ -122,3 +123,4 @@
     <p class="form__login">Already an operator? <a href="#">Log in</a></p>
   </form>
 </section>
+</div>

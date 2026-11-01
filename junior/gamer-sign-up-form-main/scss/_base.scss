@@ -41,10 +41,14 @@
 html {
   // Evita que o iOS aumente o texto sozinho ao girar a tela
   -webkit-text-size-adjust: 100%;
+  // Com overflow definido aqui, o overflow do body deixa de ir para a janela e passa a valer
+  // no próprio body (ver abaixo): o padrão do fundo é cortado na borda do body, sem rolagem
+  overflow-x: hidden;
 }
 
 body {
   min-width: 20em; // 320px
+  overflow-x: clip; // o padrão do fundo (.stage::before, 960px) passa da borda da janela
   min-height: 100vh;
   min-height: 100dvh;
   background-color: var(--neutral-950);
