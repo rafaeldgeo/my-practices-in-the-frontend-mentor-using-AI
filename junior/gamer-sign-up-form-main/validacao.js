@@ -108,4 +108,5 @@ const validarFormulario = (dados) => {
   };
 };
 
-module.exports = { validarFormulario, MENSAGENS };
+// validarCallsign é exportada para GET /sucesso reaproveitar a mesma regra (fonte única).
+module.exports = { validarFormulario, validarCallsign, MENSAGENS };

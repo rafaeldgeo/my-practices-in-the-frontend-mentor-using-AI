@@ -1,6 +1,6 @@
 const path = require('path');
 const express = require('express');
-const { validarFormulario } = require('./validacao');
+const { validarFormulario, validarCallsign } = require('./validacao');
 const { calcularForca, montarReadout } = require('./readout');
 
 const app = express();
@@ -28,8 +28,7 @@ app.get('/', (req, res) => {
 // Fluxo: requisição -> urlencoded (req.body) -> validarFormulario -> resposta.
 // Inválido: re-renderiza o formulário NO PRÓPRIO POST (a URL continua /), com os valores
 // digitados, as mensagens e o readout já calculados no servidor. Funciona sem JavaScript.
-// ATENÇÃO: a resposta válida abaixo é PROVISÓRIA; #09 a troca por res.redirect('/sucesso')
-// (Post/Redirect/Get).
+// Válido: Post/Redirect/Get, redireciona para GET /sucesso (ver o fim da rota).
 app.post('/', (req, res) => {
   // req.body pode ser undefined (ex.: Content-Type que o parser acima não lê)
   const dados = req.body || {};
@@ -50,7 +49,28 @@ app.post('/', (req, res) => {
     });
   }
 
-  res.status(200).send('ok');
+  // PRG (Post/Redirect/Get): em vez de responder HTML neste POST, mandamos o navegador fazer
+  // um GET em /sucesso. 303 See Other diz exatamente isso: "busque o resultado com GET".
+  // Assim a URL final é /sucesso e recarregar a página repete só o GET, nunca o POST.
+  // O callsign (já com trim) viaja na query string; URLSearchParams faz o encode correto.
+  // A senha NUNCA vai na URL (ficaria em histórico, logs e cabeçalho Referer).
+  const query = new URLSearchParams({ callsign: valores.callsign });
+  res.redirect(303, `/sucesso?${query}`);
+});
+
+// GET /sucesso: tela de confirmação. O callsign vem da query string, que o usuário pode editar
+// ou omitir; por isso é revalidado com a MESMA regra do formulário. Se não for um callsign
+// válido (ausente, repetido como array, com caracteres proibidos), não há sucesso a mostrar
+// e voltamos ao formulário. O valor é escapado na view (<%= %>).
+app.get('/sucesso', (req, res) => {
+  const { callsign } = req.query;
+  if (typeof callsign !== 'string' || validarCallsign(callsign) !== null) {
+    return res.redirect('/');
+  }
+  // Readout no estado final: sem erros todas as linhas ficam OK; provisionado: true troca
+  // "5/5 ready" por "Provisioned" e as linhas por "Locked" (a view decide a partir dessa flag).
+  const readout = { ...montarReadout({ erros: {}, valores: { callsign } }), provisionado: true };
+  res.render('sucesso', { callsign, readout, titulo: 'Handshake complete | NEONCORE' });
 });
 
 // Render define PORT; localmente cai para 3000. 0.0.0.0 aceita conexões externas.
