@@ -26,6 +26,14 @@ if (form && botao && rotulo) {
       evento.preventDefault();
       return;
     }
+    // Senhas reveladas voltam a ficar ocultas ANTES do envio. O valor não muda (só o type), então
+    // o POST leva a mesma senha. Reaproveita o clique do olho (senha.js): mesmo type, aria-pressed
+    // e ícone, sem duplicar a lógica. Motivos: a senha não fica legível na tela durante
+    // "Transmitting_" (ombro, gravação de tela, captura) nem na página restaurada ao voltar
+    // pelo histórico, e o gerenciador de senhas do navegador reconhece o campo type=password
+    // no envio (com type=text ele pode não oferecer salvar a credencial).
+    form.querySelectorAll('.field__reveal[aria-pressed="true"]').forEach((olho) => olho.click());
+
     botao.setAttribute('aria-busy', 'true');
     rotulo.textContent = 'Transmitting_';
     travar(true);

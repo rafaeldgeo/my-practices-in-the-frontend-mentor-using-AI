@@ -128,3 +128,50 @@ test('enviando: campos somente leitura (não disabled) e os dados chegam ao serv
   await expect(outra.locator('#password-strength')).toHaveText('Strong'); // calculado no servidor a partir da senha enviada (9 caracteres, 4 critérios)
   await expect(outra.locator('#confirm-error')).toHaveText("Passwords don't match");
 });
+
+test('enviar oculta as senhas reveladas, sem alterar o valor enviado', async ({ page }) => {
+  const f = campos(page);
+  await page.goto('/');
+  await f.callsign.fill('Vortex_07');
+  await f.email.fill('vortex@example.com');
+  await f.password.fill('Abcdef12!');
+  await f.terms.check();
+  await f.confirm.fill('Outra#Senha99'); // diferente: o servidor devolve 422 e prova o que recebeu
+  await page.getByRole('button', { name: 'Show password', exact: true }).click();
+  await page.getByRole('button', { name: 'Show confirm password', exact: true }).click();
+  await expect(f.password).toHaveAttribute('type', 'text');
+  await expect(f.confirm).toHaveAttribute('type', 'text');
+
+  // Estado logo após o submit, lido dentro da página (um listener posterior segura a navegação)
+  const durante = await f.enviar.evaluate((botao) => {
+    botao.form.addEventListener('submit', (e) => e.preventDefault());
+    botao.form.requestSubmit();
+    const olhos = [...botao.form.querySelectorAll('.field__reveal')];
+    return {
+      tipos: [...botao.form.querySelectorAll('.field__input--secret')].map((i) => i.type),
+      valores: [...botao.form.querySelectorAll('.field__input--secret')].map((i) => i.value),
+      pressed: olhos.map((o) => o.getAttribute('aria-pressed')),
+      icones: olhos.map((o) => o.querySelector('img').getAttribute('src')),
+    };
+  });
+  expect(durante.tipos).toEqual(['password', 'password']);
+  expect(durante.valores).toEqual(['Abcdef12!', 'Outra#Senha99']); // o valor não foi tocado
+  expect(durante.pressed).toEqual(['false', 'false']);
+  expect(durante.icones.every((i) => i.endsWith('icon-eye.svg'))).toBe(true);
+
+  // Envio real, em página nova: com as senhas reveladas a senha chega ao servidor igual
+  const outra = await page.context().newPage();
+  const g = campos(outra);
+  await outra.goto('/');
+  await g.callsign.fill('Vortex_07');
+  await g.email.fill('vortex@example.com');
+  await g.password.fill('Abcdef12!');
+  await g.terms.check();
+  await g.confirm.fill('Outra#Senha99');
+  await outra.getByRole('button', { name: 'Show password', exact: true }).click();
+  await expect(g.password).toHaveAttribute('type', 'text');
+  const [resposta] = await Promise.all([outra.waitForResponse((r) => r.request().method() === 'POST'), g.enviar.click()]);
+  expect(resposta.status()).toBe(422);
+  await expect(outra.locator('#password-strength')).toHaveText('Strong'); // calculada no servidor da senha recebida
+  await expect(g.password).toHaveAttribute('type', 'password'); // a página devolvida já vem oculta
+});
