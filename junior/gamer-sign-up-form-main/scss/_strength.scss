@@ -19,7 +19,7 @@ $levels: (
   gap: var(--spacing-050);
 
   &__segment {
-    height: var(--spacing-025); // 2px
+    height: var(--spacing-050); // 4px (design: Strength meter)
     background-color: var(--neutral-700);
     transition: background-color 120ms ease;
   }
@@ -49,11 +49,11 @@ $levels: (
 .field__reveal {
   position: absolute;
   top: 50%;
-  right: var(--spacing-100);
+  right: 2px; // o design encosta o anel de foco a 2px da borda do campo
   display: grid;
   place-items: center;
-  width: var(--spacing-400); // 32px
-  height: var(--spacing-400);
+  width: m.rem(44); // 44px: o anel de foco (2px) ocupa a caixa inteira, 2px por dentro do campo
+  height: m.rem(44);
   padding: 0;
   background: none;
   border: 0;
@@ -71,10 +71,10 @@ $levels: (
     filter: brightness(1.4);
   }
 
-  // Anel 4px por dentro do botão (design-system: spacing-050 para dentro)
+  // Anel por dentro do campo: 2px de traço dentro da caixa de 44px (campo de 48px => 4px no total)
   &:focus-visible {
     outline: 2px solid var(--lime-500);
-    outline-offset: calc(-1 * var(--spacing-050));
+    outline-offset: -2px;
   }
 
   // Senha visível: ícone lime (o JS troca o SVG para olho cortado em #12)
@@ -87,4 +87,12 @@ $levels: (
     cursor: not-allowed;
     opacity: 0.4;
   }
+}
+
+// Enviando ("Transmitting_"): o olho fica apagado e sem clique, junto com os campos
+// somente leitura (JS de UI, envio.js)
+.form[aria-busy] .field__reveal {
+  cursor: not-allowed;
+  opacity: 0.4;
+  pointer-events: none;
 }

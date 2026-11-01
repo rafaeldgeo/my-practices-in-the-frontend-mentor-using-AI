@@ -36,7 +36,7 @@
     display: block;
     width: 100%;
     min-height: var(--spacing-600); // 48px
-    padding: var(--spacing-150) var(--spacing-200);
+    padding: calc(var(--spacing-150) - 1px) var(--spacing-200); // 11px + borda = 12px; altura final 48px
     background-color: var(--neutral-950);
     border: 1px solid var(--neutral-600);
     box-shadow: var(--shadow-well);
@@ -104,7 +104,7 @@
 
     img {
       flex: none;
-      margin-top: 1px; // alinha o ícone de 16px à primeira linha (line-height 16px)
+      margin-top: 0; // ícone de 16px = line-height de 16px: a mensagem mede 16px, não 17px
     }
   }
 

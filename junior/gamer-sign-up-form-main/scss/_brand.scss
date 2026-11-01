@@ -17,6 +17,10 @@
 
   @include m.media-up(m.$bp-desktop) {
     display: block;
+    // Desktop: a coluna da marca fica 70px abaixo do topo do painel (no estado vazio isso é o
+    // mesmo que centralizar). Se o painel crescer (erros), a coluna não se desloca.
+    align-self: start;
+    padding-top: m.rem(70);
   }
 }
 
@@ -54,12 +58,14 @@
   }
 
   &__slashes {
+    // O espaço depois de "//" fica mais curto no design (14px a 72px): aproximação em em
+    margin-right: -0.22em;
     color: var(--lime-500);
   }
 
   &__tagline {
     grid-area: tagline;
-    margin-top: var(--spacing-100);
+    margin-top: calc(var(--spacing-100) + 2px); // 10px no mobile do design
     color: var(--neutral-300);
     @include m.text-preset('6');
 

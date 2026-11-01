@@ -233,6 +233,7 @@ a {
 }
 
 body {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
@@ -265,6 +266,13 @@ body {
 .attribution {
   margin-top: auto;
 }
+@media (min-width: 64em) {
+  .attribution {
+    position: absolute;
+    inset: auto 0 0;
+    margin-top: 0;
+  }
+}
 
 .page__brand {
   display: grid;
@@ -275,6 +283,8 @@ body {
 @media (min-width: 64em) {
   .page__brand {
     display: block;
+    align-self: start;
+    padding-top: 4.375rem;
   }
 }
 
@@ -319,11 +329,12 @@ body {
   }
 }
 .brand__slashes {
+  margin-right: -0.22em;
   color: var(--lime-500);
 }
 .brand__tagline {
   grid-area: tagline;
-  margin-top: var(--spacing-100);
+  margin-top: calc(var(--spacing-100) + 2px);
   color: var(--neutral-300);
   font-family: var(--text-6-family);
   font-weight: var(--text-6-weight);
@@ -489,9 +500,6 @@ body {
   letter-spacing: var(--text-6-tracking);
   text-transform: var(--text-6-case);
 }
-.readout__row--ok .readout__label::after {
-  border-top-style: solid;
-}
 .readout__row--ok .readout__status, .readout__row--locked .readout__status {
   color: var(--neutral-50);
 }
@@ -501,14 +509,14 @@ body {
 
 .panel {
   position: relative;
-  padding: var(--spacing-250);
+  padding: calc(var(--spacing-400) - 1px) calc(var(--spacing-250) - 1px);
   background-color: var(--neutral-900);
   border: 1px solid var(--neutral-700);
   box-shadow: var(--shadow-panel);
 }
 @media (min-width: 48em) {
   .panel {
-    padding: var(--spacing-500);
+    padding: calc(var(--spacing-500) - 1px);
   }
 }
 .panel::before, .panel::after {
@@ -537,7 +545,6 @@ body {
   justify-content: space-between;
   gap: var(--spacing-200);
   padding-bottom: var(--spacing-200);
-  margin-bottom: var(--spacing-300);
   border-bottom: 1px solid var(--neutral-700);
 }
 .panel__title {
@@ -611,7 +618,7 @@ body {
   display: block;
   width: 100%;
   min-height: var(--spacing-600);
-  padding: var(--spacing-150) var(--spacing-200);
+  padding: calc(var(--spacing-150) - 1px) var(--spacing-200);
   background-color: var(--neutral-950);
   border: 1px solid var(--neutral-600);
   box-shadow: var(--shadow-well);
@@ -677,7 +684,7 @@ body {
 }
 .field__error img {
   flex: none;
-  margin-top: 1px;
+  margin-top: 0;
 }
 .field__meta {
   display: flex;
@@ -706,7 +713,7 @@ body {
   gap: var(--spacing-050);
 }
 .strength__segment {
-  height: var(--spacing-025);
+  height: var(--spacing-050);
   background-color: var(--neutral-700);
   transition: background-color 120ms ease;
 }
@@ -752,11 +759,11 @@ body {
 .field__reveal {
   position: absolute;
   top: 50%;
-  right: var(--spacing-100);
+  right: 2px;
   display: grid;
   place-items: center;
-  width: var(--spacing-400);
-  height: var(--spacing-400);
+  width: 2.75rem;
+  height: 2.75rem;
   padding: 0;
   background: none;
   border: 0;
@@ -774,7 +781,7 @@ body {
 }
 .field__reveal:focus-visible {
   outline: 2px solid var(--lime-500);
-  outline-offset: calc(-1 * var(--spacing-050));
+  outline-offset: -2px;
 }
 .field__reveal[aria-pressed=true] .field__reveal-icon {
   opacity: 1;
@@ -783,6 +790,12 @@ body {
 .field__reveal:disabled {
   cursor: not-allowed;
   opacity: 0.4;
+}
+
+.form[aria-busy] .field__reveal {
+  cursor: not-allowed;
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 .checkbox {
@@ -830,6 +843,16 @@ body {
   line-height: var(--text-5-line);
   letter-spacing: var(--text-5-tracking);
   text-transform: var(--text-5-case);
+  max-width: 14rem;
+}
+@media (min-width: 48em) {
+  .checkbox__label {
+    max-width: none;
+  }
+}
+.form[aria-busy] .checkbox__label {
+  color: var(--neutral-400);
+  cursor: not-allowed;
 }
 .checkbox__label a {
   color: var(--lime-500);
@@ -840,7 +863,7 @@ body {
   color: var(--neutral-50);
 }
 .checkbox .field__error {
-  grid-column: 2;
+  grid-column: 1/-1;
   grid-row: 2;
 }
 .checkbox--error .checkbox__input:not(:checked) {
@@ -856,7 +879,7 @@ body {
   justify-content: center;
   width: 100%;
   min-height: var(--spacing-600);
-  padding: var(--spacing-150) var(--spacing-200);
+  padding: calc(var(--spacing-150) - 1px) var(--spacing-200);
   border: 1px solid transparent;
   text-align: center;
   text-decoration: none;
@@ -910,7 +933,6 @@ body {
 }
 .form__login a:hover {
   color: var(--neutral-50);
-  text-decoration-style: solid;
 }
 
 .panel--success {

@@ -129,10 +129,6 @@
     @include m.text-preset('6');
   }
 
-  &__row--ok &__label::after {
-    border-top-style: solid;
-  }
-
   &__row--ok &__status,
   &__row--locked &__status {
     color: var(--neutral-50);

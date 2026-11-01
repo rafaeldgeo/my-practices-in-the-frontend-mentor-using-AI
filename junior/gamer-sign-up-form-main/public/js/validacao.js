@@ -24,12 +24,13 @@ if (form) {
   const senha = $('password');
 
   // Cada campo: o elemento, a regra (devolve mensagem ou null) e o evento de "saída".
-  // `valido` indica se o campo ganha o estado visual field--valid (como o servidor faz).
+  // `valido` indica se o campo ganha o tick lime (field--valid) quando está checado e válido.
+  // Senha e confirmação também (o servidor só marca callsign e email: a senha nunca volta).
   const campos = {
     callsign: { el: $('callsign'), regra: () => validarCallsign($('callsign').value), valido: true },
     email: { el: $('email'), regra: () => validarEmail($('email').value), valido: true },
-    password: { el: senha, regra: () => validarSenha(senha.value), valido: false },
-    confirm: { el: $('confirm'), regra: () => validarConfirmacao($('confirm').value, senha.value), valido: false },
+    password: { el: senha, regra: () => validarSenha(senha.value), valido: true },
+    confirm: { el: $('confirm'), regra: () => validarConfirmacao($('confirm').value, senha.value), valido: true },
     terms: { el: $('terms'), regra: () => validarTermos($('terms').checked), valido: false },
   };
 
@@ -142,7 +143,11 @@ if (form) {
   Object.entries(campos).forEach(([nome, { el }]) => {
     const evento = nome === 'terms' ? 'change' : 'blur';
 
-    el.addEventListener(evento, () => {
+    el.addEventListener(evento, (e) => {
+      // O usuário saiu do campo para CLICAR no botão de envio: inserir a mensagem agora empurraria
+      // o botão para baixo entre o mousedown e o mouseup e o clique se perderia. Pula a
+      // validação; o servidor valida tudo no envio e devolve o formulário com as mensagens.
+      if (e.relatedTarget?.matches?.('button[type="submit"]')) return;
       estado[nome].checado = true;
       validar(nome);
     });

@@ -11,6 +11,14 @@ if (form && botao && rotulo) {
 
   const ocupado = () => botao.getAttribute('aria-busy') === 'true';
 
+  // Durante o envio os campos ficam SOMENTE LEITURA (visual dimmed do design). Nunca disabled:
+  // um campo desabilitado não entra no corpo do POST e o servidor receberia o formulário vazio.
+  const campos = form.querySelectorAll('.field__input');
+  const travar = (travado) => {
+    campos.forEach((campo) => { campo.readOnly = travado; });
+    form.toggleAttribute('aria-busy', travado);
+  };
+
   form.addEventListener('submit', (evento) => {
     // Segundo submit enquanto o primeiro está em andamento (duplo clique/Enter): cancela
     // só este, para não enviar o formulário duas vezes. O primeiro segue normalmente.
@@ -20,6 +28,7 @@ if (form && botao && rotulo) {
     }
     botao.setAttribute('aria-busy', 'true');
     rotulo.textContent = 'Transmitting_';
+    travar(true);
   });
 
   // Voltar pelo histórico pode restaurar a página (bfcache) com o botão ainda ocupado
@@ -27,5 +36,6 @@ if (form && botao && rotulo) {
     if (!evento.persisted) return;
     botao.removeAttribute('aria-busy');
     rotulo.textContent = textoOriginal;
+    travar(false);
   });
 }

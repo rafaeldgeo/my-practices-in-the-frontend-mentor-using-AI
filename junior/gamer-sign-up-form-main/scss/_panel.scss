@@ -5,13 +5,15 @@
 
 .panel {
   position: relative;
-  padding: var(--spacing-250);
+  // No design o espaçamento conta a partir da borda externa: borda de 1px + padding - 1px
+  // Mobile: 32px em cima e embaixo, 20px nas laterais
+  padding: calc(var(--spacing-400) - 1px) calc(var(--spacing-250) - 1px);
   background-color: var(--neutral-900);
   border: 1px solid var(--neutral-700);
   box-shadow: var(--shadow-panel);
 
   @include m.media-up(m.$bp-tablet) {
-    padding: var(--spacing-500);
+    padding: calc(var(--spacing-500) - 1px);
   }
 
   // Cantos em L (24px, 2px), sobrepostos à borda
@@ -45,7 +47,7 @@
     justify-content: space-between;
     gap: var(--spacing-200);
     padding-bottom: var(--spacing-200);
-    margin-bottom: var(--spacing-300);
+    // Sem margem inferior: o espaço de 24px até o primeiro campo já vem do gap do .form
     border-bottom: 1px solid var(--neutral-700);
   }
 

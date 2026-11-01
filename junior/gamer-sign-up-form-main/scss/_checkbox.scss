@@ -50,6 +50,19 @@
     color: var(--neutral-100);
     cursor: pointer;
     @include m.text-preset('5');
+
+    // Mobile: o design quebra depois de "and" ("Privacy Policy." vai para a segunda linha)
+    max-width: 14rem;
+
+    @include m.media-up(m.$bp-tablet) {
+      max-width: none;
+    }
+  }
+
+  // Enviando: o texto do rótulo apaga junto com os campos (design: Submitting)
+  .form[aria-busy] &__label {
+    color: var(--neutral-400);
+    cursor: not-allowed;
   }
 
   // Links do rótulo: lime com sublinhado pontilhado; ficam brancos no hover
@@ -65,7 +78,7 @@
 
   // Mensagem de erro (.field__error já define cor e ícone)
   .field__error {
-    grid-column: 2;
+    grid-column: 1 / -1; // no design a mensagem começa na borda esquerda, sob o quadrado
     grid-row: 2;
   }
 
