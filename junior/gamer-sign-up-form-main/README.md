@@ -1,4 +1,98 @@
-# Frontend Mentor - Gamer sign-up form
+# Frontend Mentor - Gamer sign-up form (NEONCORE)
+
+![Design preview for the Gamer sign-up form coding challenge](./preview.jpg)
+
+Solução do desafio **Gamer sign-up form** (nível junior) do [Frontend Mentor](https://www.frontendmentor.io). Este desafio é prática de front end **com retorno dos dados pelo back end**: o objetivo foi entender o mecanismo de envio de formulário e a renderização no servidor. O enunciado original está no fim deste arquivo.
+
+- **Site publicado:** _(preencher depois do deploy no Render)_
+- **Repositório:** este é um monorepo de desafios; esta solução vive em `junior/gamer-sign-up-form-main`.
+
+## Como funciona
+
+Node + Express 5 + EJS, renderização no servidor (SSR/MPA) e envio nativo de formulário (`<form method="POST">`), sem `fetch`/AJAX.
+
+| Requisição | Resposta |
+|---|---|
+| `GET /` | Formulário (EJS) |
+| `POST /` com dados válidos | `303` para `GET /sucesso?callsign=...` (Post/Redirect/Get: recarregar não reenvia o formulário) |
+| `POST /` com dados inválidos, mas com a forma do formulário | `422` e o formulário renderizado no próprio POST, com valores preservados (a senha **nunca** volta), mensagens, força da senha e readout calculados no servidor |
+| `POST /` com corpo que o formulário não produz (campo ausente, repetido, JSON) | `400` e a tela de erro `views/erro.ejs` |
+| `GET /sucesso?callsign=...` | Tela de sucesso, só se o callsign passar na mesma regra do formulário; senão volta para `/` |
+
+- **O servidor é a autoridade.** `validarFormulario(dados)` (`validacao.js`) é uma função pura que devolve `{ ok, erros, valores }`; `readout.js` calcula a força da senha e o readout. Tudo que vem do usuário é escapado no EJS (`<%= %>`).
+- **Sem JavaScript tudo funciona** (foco no primeiro campo inválido e no título do sucesso via `autofocus`, mensagens, readout, força).
+- **O JS (ES6+) só espelha a UX**, nunca envia nem bloqueia o formulário: validação ao sair do campo e a cada tecla depois de checado, medidor de força, mostrar/ocultar senha, readout "N/5 ready" e "Transmitting_" no botão. As regras do cliente (`public/js/regras.js`, `forca.js`) são um espelho das do servidor: **mudou uma, mude a outra**.
+- **Estilos:** Sass (`scss/`) compilado para `public/style.css` (versionado; nunca editar o `.css`), BEM, mobile-first, tokens como custom properties.
+
+```
+server.js, validacao.js, readout.js   # rotas, regras e cálculos do servidor
+views/                                # index, sucesso e erro (+ partials)
+scss/                                 # fonte dos estilos (main.scss só com @use)
+public/                               # style.css, js/ (UI), assets/ (fontes e imagens)
+tests/, playwright.config.js          # Playwright + Chromium + axe-core
+design/                               # imagens do design (referência)
+```
+
+## Como rodar
+
+Requer Node 18 ou superior.
+
+```bash
+npm install
+npm run build   # compila o Sass para public/style.css
+npm start       # http://localhost:3000 (usa a porta de PORT, se definida)
+npm run dev     # igual, reiniciando ao salvar (node --watch)
+npm run watch   # Sass em modo watch (rode em outro terminal)
+```
+
+## Testes
+
+Playwright + Chromium + axe-core, nos três tamanhos do design (desktop 1440, tablet 768, mobile 375). O servidor de teste sobe sozinho na porta 3100.
+
+```bash
+npx playwright install chromium   # só na primeira vez
+npm test
+```
+
+| Arquivo | O que cobre |
+|---|---|
+| `fluxo.spec.js` | fluxo feliz, erro de validação, UI em tempo real, "Transmitting_" |
+| `servidor.spec.js` | sem JavaScript, POST direto (400/422/303), escape de HTML, `/sucesso` |
+| `interacao.spec.js` | medidor, ticks, erro dos termos, senha visível, campos somente leitura ao enviar |
+| `acessibilidade.spec.js` | axe-core (WCAG 2.2 A/AA e boas práticas) em todas as telas |
+| `teclado.spec.js` | teclado, foco visível, nomes e descrições, landmarks, contraste real, movimento reduzido, reflow |
+
+## Deploy no Render
+
+O repositório tem vários projetos e **só este vai para o Render**. Web Service com:
+
+| Campo | Valor |
+|---|---|
+| Branch | `gamer-sign-up` |
+| **Root Directory** | `junior/gamer-sign-up-form-main` |
+| Build Command | `npm install` |
+| Start Command | `npm start` |
+| Variável (opcional) | `NODE_VERSION` = `22` |
+| Build Filters → Included Paths | `junior/gamer-sign-up-form-main/**` (não redeploya com mudanças nos outros desafios) |
+
+O servidor escuta em `process.env.PORT` e em `0.0.0.0`. O `public/style.css` já está versionado, então o deploy não precisa rodar o Sass. No plano gratuito o serviço "dorme" depois de um tempo sem acesso e a primeira requisição seguinte demora mais.
+
+## Diferenças em relação ao enunciado
+
+Decisões e pontos em aberto, para ficar registrado:
+
+- A validação em tempo real também roda ao sair de um campo **vazio** e o erro dos termos aparece ao desmarcar o checkbox (o enunciado prevê isso só no envio). O envio, porém, nunca é bloqueado pelo JS: o servidor valida tudo.
+- Não há espera artificial antes do sucesso: o envio é um POST real e o servidor responde.
+- Ao enviar, as senhas reveladas **não** voltam a ficar ocultas antes do POST (pendente).
+- `Terms`, `Privacy Policy` e `Log in` têm `href="#"`: o desafio não tem essas páginas.
+
+## Acessibilidade
+
+`label`/`for`, `aria-invalid` e `aria-describedby` (dica ou erro), regiões `aria-live` (erros e força da senha), foco no primeiro campo inválido e no título do sucesso e do erro, foco visível em tudo, landmarks e um `h1` por tela, texto com contraste AA, `prefers-reduced-motion`, reflow em 320px também com texto a 200%. A verificação é automatizada (axe-core e testes de teclado e de árvore de acessibilidade); falta um teste manual com leitor de tela real.
+
+---
+
+## Enunciado do desafio (Frontend Mentor)
 
 ![Design preview for the Gamer sign-up form coding challenge](./preview.jpg)
 
