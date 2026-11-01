@@ -28,6 +28,12 @@
     &:focus {
       outline: none;
     }
+
+    // Mesmo anel de foco do título de sucesso (o foco chega aqui por autofocus)
+    &:focus-visible {
+      outline: 2px solid var(--lime-500);
+      outline-offset: var(--spacing-100);
+    }
   }
 
   &__slashes {

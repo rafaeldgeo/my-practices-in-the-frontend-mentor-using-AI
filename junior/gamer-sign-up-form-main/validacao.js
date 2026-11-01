@@ -108,5 +108,18 @@ const validarFormulario = (dados) => {
   };
 };
 
+// Campos que o navegador SEMPRE envia ao submeter o formulário real (mesmo vazios, o input
+// de texto vai como callsign=). O checkbox "terms" fica de fora: só é enviado se marcado.
+const CAMPOS_OBRIGATORIOS = ['callsign', 'email', 'password', 'confirm'];
+
+// O corpo tem a forma que o formulário real produz? Função pura, separada da rota.
+// Falso quando um campo falta ou não é texto (array, objeto), ou seja, a requisição não saiu
+// do formulário (POST direto, ferramenta, corpo adulterado). Dados bem formados mas
+// inválidos (callsign=a) retornam true: esses recebem o formulário com mensagens.
+const requisicaoBemFormada = (dados) =>
+  Boolean(dados) &&
+  typeof dados === 'object' &&
+  CAMPOS_OBRIGATORIOS.every((campo) => typeof dados[campo] === 'string');
+
 // validarCallsign é exportada para GET /sucesso reaproveitar a mesma regra (fonte única).
-module.exports = { validarFormulario, validarCallsign, MENSAGENS };
+module.exports = { validarFormulario, validarCallsign, requisicaoBemFormada, MENSAGENS };

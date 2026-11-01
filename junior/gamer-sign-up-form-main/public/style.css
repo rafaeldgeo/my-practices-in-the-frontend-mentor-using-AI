@@ -980,6 +980,10 @@ body {
 .error-screen__title:focus {
   outline: none;
 }
+.error-screen__title:focus-visible {
+  outline: 2px solid var(--lime-500);
+  outline-offset: var(--spacing-100);
+}
 .error-screen__slashes {
   color: var(--red-400);
 }

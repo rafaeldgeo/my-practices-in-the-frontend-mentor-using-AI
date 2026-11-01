@@ -1,0 +1,29 @@
+<%#
+  Tela de erro do servidor (issue #10). O design não tem layout para ela: segue a linguagem do
+  painel de sucesso. Cobre o que o formulário real nunca produz (requisição malformada).
+  mensagens: array de strings devolvidas pelo servidor. Vêm de validarFormulario, mas a view
+  trata como dado não confiável: sai tudo com a tag de escape do EJS, nunca com a tag sem escape.
+  O foco vai para o título (autofocus + tabindex -1), como na tela de sucesso, sem JavaScript.
+%>
+<%
+  const mensagens = Array.isArray(locals.mensagens) ? locals.mensagens : [];
+%>
+<%- include('partials/head') %>
+<main class="page">
+  <div class="page__brand">
+    <%- include('partials/brand') %>
+  </div>
+  <section class="panel panel--error" aria-labelledby="error-title">
+    <h2 class="error-screen__title" id="error-title" tabindex="-1" autofocus><span class="error-screen__slashes" aria-hidden="true">//</span> Transmission rejected</h2>
+    <p class="error-screen__text">The server could not accept this request. Nothing was saved.</p>
+    <% if (mensagens.length > 0) { %>
+      <ul class="error-screen__list">
+        <% mensagens.forEach((mensagem) => { %>
+          <li class="error-screen__item"><img src="/assets/images/icon-alert.svg" alt="" width="16" height="16" aria-hidden="true"> <%= mensagem %></li>
+        <% }) %>
+      </ul>
+    <% } %>
+    <a class="button button--primary" href="/">Back to form</a>
+  </section>
+</main>
+<%- include('partials/foot') %>

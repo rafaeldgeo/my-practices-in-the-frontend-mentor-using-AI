@@ -1,6 +1,6 @@
 const path = require('path');
 const express = require('express');
-const { validarFormulario, validarCallsign } = require('./validacao');
+const { validarFormulario, validarCallsign, requisicaoBemFormada } = require('./validacao');
 const { calcularForca, montarReadout } = require('./readout');
 
 const app = express();
@@ -33,6 +33,20 @@ app.post('/', (req, res) => {
   // req.body pode ser undefined (ex.: Content-Type que o parser acima não lê)
   const dados = req.body || {};
   const { ok, erros, valores } = validarFormulario(dados);
+
+  // Decisão: formulário com mensagens OU tela de erro?
+  // O servidor não consegue saber se o JS foi burlado: um navegador sem JS e um JS burlado
+  // enviam o mesmo POST. Por isso o critério é a FORMA do corpo, não a validade dos dados.
+  //   - corpo com os 4 campos de texto (como o formulário real envia): 422 + formulário,
+  //     mesmo inválido; é o caminho do usuário sem JS (critério de aceite).
+  //   - corpo que o formulário nunca produz (campo ausente, array): 400 + views/erro.ejs
+  //     com os erros devolvidos por validarFormulario. Nada do corpo é ecoado além disso.
+  if (!requisicaoBemFormada(dados)) {
+    return res.status(400).render('erro', {
+      mensagens: Object.values(erros),
+      titulo: 'Transmission rejected | NEONCORE',
+    });
+  }
 
   if (!ok) {
     // A força da senha é calculada aqui, a partir da senha enviada, mas a SENHA em si não é
