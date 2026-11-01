@@ -47,7 +47,9 @@ html {
 }
 
 body {
-  min-width: 20em; // 320px
+  // 320px em px de propósito: em/rem cresce com o tamanho do texto (200% => 640px) e forçaria
+  // rolagem horizontal numa janela de 320px (WCAG 1.4.4 e 1.4.10)
+  min-width: 320px;
   overflow-x: clip; // o padrão do fundo (.stage::before, 960px) passa da borda da janela
   min-height: 100vh;
   min-height: 100dvh;

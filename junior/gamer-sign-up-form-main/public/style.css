@@ -152,7 +152,7 @@ html {
 }
 
 body {
-  min-width: 20em;
+  min-width: 320px;
   overflow-x: clip;
   min-height: 100vh;
   min-height: 100dvh;

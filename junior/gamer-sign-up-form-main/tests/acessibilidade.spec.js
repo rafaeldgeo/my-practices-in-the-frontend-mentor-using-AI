@@ -2,7 +2,8 @@
 const { test, expect } = require('@playwright/test');
 const AxeBuilder = require('@axe-core/playwright').default;
 
-const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'];
+// WCAG 2.0/2.1/2.2 A e AA + boas práticas (landmarks, títulos). Contraste de texto: ver teclado.spec.js
+const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'];
 
 const analisar = async (page) => {
   const { violations } = await new AxeBuilder({ page }).withTags(TAGS).analyze();

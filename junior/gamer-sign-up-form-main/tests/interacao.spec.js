@@ -80,7 +80,8 @@ test('senha visível mostra o texto, ícone cortado e o tick lime', async ({ pag
   await expect(f.password).toHaveAttribute('type', 'text');
   await expect(f.password).toHaveValue('Tr4nsm1t!Nexus');
   await expect(page.locator('.field--valid')).toHaveCount(1);
-  await expect(page.getByRole('button', { name: 'Hide password', exact: true }).locator('img')).toHaveAttribute('src', /icon-eye-off\.svg/);
+  await expect(olho).toHaveAttribute('aria-pressed', 'true'); // o nome não muda; o estado vai em aria-pressed
+  await expect(olho.locator('img')).toHaveAttribute('src', /icon-eye-off\.svg/);
   await expect(page.locator('.readout__row[data-field="password"] .readout__status')).toHaveText('OK');
 });
 

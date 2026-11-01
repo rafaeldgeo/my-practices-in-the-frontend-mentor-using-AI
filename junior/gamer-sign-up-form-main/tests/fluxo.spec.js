@@ -130,8 +130,9 @@ test.describe('UI em tempo real (JS)', () => {
     const olho = page.getByRole('button', { name: 'Show password', exact: true });
     await olho.click();
     await expect(f.password).toHaveAttribute('type', 'text');
-    await expect(page.getByRole('button', { name: 'Hide password', exact: true })).toHaveAttribute('aria-pressed', 'true');
-    await page.getByRole('button', { name: 'Hide password', exact: true }).click();
+    await expect(olho).toHaveAttribute('aria-pressed', 'true'); // o nome "Show password" é constante
+    await olho.click();
+    await expect(olho).toHaveAttribute('aria-pressed', 'false');
     await expect(f.password).toHaveAttribute('type', 'password');
     await expect(f.password).toHaveValue('Abcdefg1!xyz'); // o valor não muda
 

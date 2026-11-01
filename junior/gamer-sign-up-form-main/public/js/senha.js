@@ -13,7 +13,8 @@ if (senha && medidor && rotulo) {
     const { nivel, rotulo: texto } = calcularForca(senha.value);
     medidor.dataset.level = nivel;
     rotulo.dataset.level = nivel;
-    rotulo.textContent = texto;
+    // O rótulo é uma região aria-live: só é reescrito quando muda (não a cada tecla)
+    if (rotulo.textContent !== texto) rotulo.textContent = texto;
   });
 }
 
@@ -24,14 +25,12 @@ document.querySelectorAll('.field__reveal').forEach((botao) => {
   const icone = botao.querySelector('.field__reveal-icon');
   if (!campo) return;
 
-  // "Show password" / "Show confirm password" -> o nome do campo vem do rótulo inicial
-  const nome = botao.getAttribute('aria-label').replace(/^Show /, '');
-
+  // O nome do botão NÃO muda ("Show password"): quem informa o estado é aria-pressed. Mudar o
+  // nome e o aria-pressed ao mesmo tempo faria o leitor de tela dizer "Hide password, pressed".
   botao.addEventListener('click', () => {
     const visivel = campo.type === 'password';
     campo.type = visivel ? 'text' : 'password';
     botao.setAttribute('aria-pressed', String(visivel));
-    botao.setAttribute('aria-label', `${visivel ? 'Hide' : 'Show'} ${nome}`);
     if (icone) icone.src = `/assets/images/icon-eye${visivel ? '-off' : ''}.svg`;
   });
 });
