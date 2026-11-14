@@ -3,11 +3,5 @@
   "image": "mcr.microsoft.com/devcontainers/typescript-node:22",
 
   // Roda uma vez, quando o container é criado ou reconstruído
-  "postCreateCommand": "npm i -g @anthropic-ai/claude-code",
-
-  // Só documenta o segredo esperado. O valor vem do segredo
-  // cadastrado no GitHub, não deste arquivo
-  "secrets": {
-    "FIGMA_API_KEY": { "description": "Figma PAT, somente leitura" }
-  }
+  "postCreateCommand": "npm i -g @anthropic-ai/claude-code"
 }
