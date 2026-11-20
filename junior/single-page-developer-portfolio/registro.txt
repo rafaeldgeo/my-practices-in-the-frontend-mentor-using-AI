@@ -1,0 +1,17 @@
+#Desafio: Frontend Mentor - single-page-developer-portfolio
+
+Nível: Junior
+Recursos e avaliação: implementação usando claude code no terminal do vscode. Comentário: Neste desafio foi usado o openspec com o intuito de testar o framework como um gestor de implementação de projeto a partir de uma especificação já definida, sendo após a implementação de fundação definida em uma especificação, inserir um novo recurso no desafio sem quebrar o que foi construído e manter um registro documentando. Assim o openspec é avalidado como uma ferramenta de uso para implementação que possui evoluções de versões. Foi utilizado laywright + Chromiume e axe-core para teste...
+
+
+Fluxo da implementação: openspec foi instalado e iniciado dentro da pasta do projeto; Os layout do figma foram convertidos para png e inseridos na pasta /design. Primeira ação necessária foi usar a skill explore aplicada no arquivo de especificacao.md, onde após uma discussão de decisão foi gerado o arquivo decisoes-do-projeto.md que reuniu todas as decisões e conteudos do arquivo especificacao.md de modo organizado. O arquivo decisoes-do-projeto.md foi utilizado para gerar as instrucoes do config.ymal e aplicado a skill porpose para a geração das changes, e criação do CLAUDE.md a partir do /init, logo após ele foi excluido, sendo a fonte da verdade do projeto as changes.
+
+
+
+A geração do claude.md segui a metodologia anterior com ajustes para refletir os requisitos do desafio. Prompt de implementação foram inseridos os nomes das issues, sendo primeiramente, executado o --plan do claude code (mesmo critério aplicado em todos os desafios). No prompt da issue #01 Projeto Node e servidor Express, foi necessário pedir ao assistente a inclusão no package.json do watch para visualizar o SCSS na implementação e o node --watch server.js para rodar o servidor. Os prompts de implementação se resumiram a indicar as milestones e issues (e tarefas) a serem implementadas nas ordens definidas. Ponto ser destacado é o requsito do assistente explicar o que foi implementado na etapa de back end.
+Ocorrências: 
+
+PARA O PRÓXIMO DESAFIO: Ao escrever o arquivo de decisão gerado pelo explore pedir para definir no documento o que irá ser usado no config.yaml e no claude.md para que não haja duplicidade e sobreposição de instruções.
+
+
+
