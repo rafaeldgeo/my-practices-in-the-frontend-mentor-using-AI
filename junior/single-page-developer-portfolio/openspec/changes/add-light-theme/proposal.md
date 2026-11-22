@@ -26,7 +26,7 @@ O portfólio só existe no tema dark, o do design do desafio. Quem prefere um fu
 
 ## Impact
 
-- **Código:** `index.html` (script inline no `<head>` e botão no header), `scss/_tokens.scss` (tema light e tokens semânticos), `_base`, `_button`, `_contact`, `_hero`, `_skills`, `_projects`, `_header-footer` (renomeação e valores fixos), novo `js/theme.js` com função pura de resolução do tema, novos `assets/images/icon-theme-sun.svg` e `icon-theme-moon.svg`, padrões decorativos (`pattern-rings.svg`, `pattern-circle.svg`) adaptados ao tema, e `style.css` recompilado com `npm run build`.
+- **Código:** `index.html` (script inline no `<head>` e botão no header), `scss/_tokens.scss` (tema light e tokens semânticos), `_base`, `_button`, `_contact`, `_hero`, `_skills`, `_projects`, `_header-footer` (renomeação e valores fixos), novos `js/theme.js` (funções puras de resolução do tema) e `js/theme-toggle.js` (DOM), novos `assets/images/icon-theme-sun.svg` e `icon-theme-moon.svg`, padrões decorativos (`pattern-rings.svg`, `pattern-circle.svg`) adaptados ao tema, e `style.css` recompilado com `npm run build`.
 - **Specs:** nova `theme-toggle`; delta em `site-header-footer`.
 - **Testes:** novos unitários (resolução do tema), e2e (alternar, persistir, nome acessível do botão) e axe no tema light; a suíte atual continua valendo no dark sem alteração.
 - **Dependências:** nenhuma nova.

@@ -4,19 +4,20 @@
 
 ## 1. Testes unitários e de fluxo (sem código de produção)
 
-- [ ] 1.1 Escrever `tests/unit/theme.test.js` para `resolveTheme` (`"light"` → light; `"dark"`, `null`, `""`, `"blue"` → dark) e `toggleTheme` (dark ↔ light), importando de `js/theme.js`; verificar com `npm run test:unit` falhando só por `js/theme.js` não existir (módulo ausente), e não por configuração
-- [ ] 1.2 Escrever `tests/e2e/theme.spec.js` com os cenários da spec `theme-toggle`: botão "Switch to light theme" depois do link "Twitter"; alternar nos dois sentidos e nomes do botão; persistir ao recarregar (`page.reload()`); valor inválido gravado antes do carregamento (`addInitScript`) abre no dark; `emulateMedia({ colorScheme: "light" })` continua no dark; foco e acionamento por Enter/Espaço; `body` com fundo `rgb(255, 255, 255)` e texto `rgb(21, 21, 21)` no light e o inverso no dark; verificar com `npx playwright test tests/e2e/theme.spec.js` falhando porque o botão e o tema light não existem
+- [x] 1.1 Escrever `tests/unit/theme.test.js` para `resolveTheme` (`"light"` → light; `"dark"`, `null`, `""`, `"blue"` → dark) e `toggleTheme` (dark ↔ light), importando de `js/theme.js`; verificar com `npm run test:unit` falhando só por `js/theme.js` não existir (módulo ausente), e não por configuração
+- [x] 1.2 Escrever `tests/e2e/theme.spec.js` com os cenários da spec `theme-toggle`: botão "Switch to light theme" depois do link "Twitter"; alternar nos dois sentidos e nomes do botão; persistir ao recarregar (`page.reload()`); valor inválido gravado antes do carregamento (`addInitScript`) abre no dark; `emulateMedia({ colorScheme: "light" })` continua no dark; foco e acionamento por Enter/Espaço; `body` com fundo `rgb(255, 255, 255)` e texto `rgb(21, 21, 21)` no light e o inverso no dark; verificar com `npx playwright test tests/e2e/theme.spec.js` falhando porque o botão e o tema light não existem
 
 ## 2. Testes de acessibilidade no light (sem código de produção)
 
-- [ ] 2.1 Escrever `tests/e2e/a11y-light.spec.js` com os três estados (inicial, com erros, com sucesso) nos viewports mobile 375×812 e desktop 1440×900, gravando `theme=light` por `addInitScript` antes do `goto`; cada teste afirma primeiro que o light está aplicado (fundo `rgb(255, 255, 255)`), para falhar por ausência de implementação em vez de passar varrendo o dark; verificar com `npx playwright test tests/e2e/a11y-light.spec.js` falhando nessa afirmação
-- [ ] 2.2 Rodar `npm run test:unit` e `npm run test:e2e`, confirmar que só os testes novos falham (os atuais seguem verdes) e parar para revisão humana; só após a aprovação, comentar os testes e fazer o commit; verificar com `git status` mostrando só arquivos novos em `tests/`
+- [x] 2.1 Escrever `tests/e2e/a11y-light.spec.js` com os três estados (inicial, com erros, com sucesso) nos viewports mobile 375×812 e desktop 1440×900, gravando `theme=light` por `addInitScript` antes do `goto`; cada teste afirma primeiro que o light está aplicado (fundo `rgb(255, 255, 255)`), para falhar por ausência de implementação em vez de passar varrendo o dark; verificar com `npx playwright test tests/e2e/a11y-light.spec.js` falhando nessa afirmação
+- [x] 2.2 Rodar `npm run test:unit` e `npm run test:e2e`, confirmar que só os testes novos falham (os atuais seguem verdes) e parar para revisão humana; só após a aprovação, comentar os testes e fazer o commit; verificar com `git status` mostrando só arquivos novos em `tests/`
 
 ## 3. Ícones, HTML e script do tema
 
 - [ ] 3.1 Criar `assets/images/icon-theme-sun.svg` e `icon-theme-moon.svg` (traço único 24×24, caminhos relativos); verificar abrindo cada arquivo no navegador e com `ls assets/images | grep icon-theme`
-- [ ] 3.2 Criar `js/theme.js` (ES6+) com `THEME_KEY`, `resolveTheme` e `toggleTheme` exportadas e a parte de DOM (ler `localStorage` em `try/catch`, aplicar `data-theme`, ligar o clique, gravar a escolha, trocar o `aria-label` do botão); verificar com `npm run test:unit` verde
-- [ ] 3.3 Em `index.html`, adicionar o script inline (ES6+, `try/catch`, valida o valor) no `<head>` antes do `<link rel="stylesheet">`, o `<script type="module" src="./js/theme.js">` e o `<li>` com `<button type="button" class="theme-toggle" aria-label="Switch to light theme">` e `span` do ícone depois do Twitter no header; verificar com `npx playwright test tests/e2e/theme.spec.js -g "botão"` verde
+- [ ] 3.2 Criar `js/theme.js` (ES6+, só funções puras, sem DOM) com `THEME_KEY`, `resolveTheme` e `toggleTheme` exportadas; verificar com `npm run test:unit` verde, sem alterar `tests/unit/theme.test.js`
+- [ ] 3.3 Criar `js/theme-toggle.js` (ES6+, só DOM, importa de `theme.js`): ler `localStorage` em `try/catch`, aplicar `data-theme`, ligar o clique, gravar a escolha e trocar o `aria-label` do botão; verificar com `node --check js/theme-toggle.js` sem erro (o comportamento é verificado na 3.4)
+- [ ] 3.4 Em `index.html`, adicionar o script inline (ES6+, `try/catch`, valida o valor) no `<head>` antes do `<link rel="stylesheet">`, o `<script type="module" src="./js/theme-toggle.js">` e o `<li>` com `<button type="button" class="theme-toggle" aria-label="Switch to light theme">` e `span` do ícone depois do Twitter no header; verificar com `npx playwright test tests/e2e/theme.spec.js -g "botão"` verde
 
 ## 4. Tokens e tema light
 
