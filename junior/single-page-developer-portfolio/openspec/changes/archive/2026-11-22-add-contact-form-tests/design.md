@@ -7,7 +7,7 @@ Repositório estático (GitHub Pages), sem build para JS. `index.html` tem só t
 ## Goals / Non-Goals
 
 **Goals:**
-- Suíte em três camadas que falha por ausência de implementação, não por configuração.
+- Suíte em três camadas: o unit falha por ausência de implementação (não por configuração) e o e2e carrega sem erro de configuração, com execução completa na change 2.
 - Contrato técnico explícito (módulo, funções, textos) para a change 2 só cumprir.
 
 **Non-Goals:**
@@ -44,12 +44,12 @@ Repositório estático (GitHub Pages), sem build para JS. `index.html` tem só t
 
 **Sem rede.** O teste de "nenhum dado enviado" registra `page.on("request")` após o carregamento e verifica que o envio não gera requisições.
 
-**Prova de falha por ausência.** Antes de parar, rodar `npm run test:unit` e `npm run test:e2e` e mostrar que as falhas são `ERR_MODULE_NOT_FOUND` / elemento não encontrado, e não erro de configuração. Para isso, o Playwright precisa conseguir subir o servidor e abrir `index.html`; os testes devem falhar nas asserções. Atenção ao axe: o `index.html` atual tem `lang` e `title` e nenhuma violação WCAG A/AA, então o teste de estado inicial passaria sem implementação. Por isso ele exige primeiro a presença do formulário "Contact form", o que o faz falhar por ausência de implementação.
+**Prova de falha por ausência.** Antes de parar, rodar `npm run test:unit` e mostrar que falha com `ERR_MODULE_NOT_FOUND` para `js/validation.js`, e não por erro de configuração. Os testes e2e só têm a carga validada (`npx playwright test --list`, sem erro de configuração): sem o front-end eles falham todos por elemento não encontrado, o que pouco diz sobre cada teste, e cada falha espera o timeout, tornando a execução lenta. A execução do e2e e o verde dela (incluindo o axe) são critério de aceite da change 2. Atenção ao axe: o `index.html` atual tem `lang` e `title` e nenhuma violação WCAG A/AA, então o teste de estado inicial passaria sem implementação. Por isso ele exige primeiro a presença do formulário "Contact form", o que o faz falhar por ausência de implementação quando for executado.
 
 ## Risks / Trade-offs
 
 - [Testes e2e dependem de rótulos e textos exatos] → o contrato está na spec e neste design; mudanças voltam para a change 1.
-- [Falha por configuração confundida com falha por ausência] → inspecionar a saída de cada suíte antes de declarar o estado vermelho.
+- [Falha por configuração confundida com falha por ausência] → no unit, inspecionar a saída antes de declarar o estado vermelho; no e2e, `npx playwright test --list` confirma que os arquivos carregam, e a execução completa fica na change 2.
 - [Contraste do placeholder e do erro só é verificado com a UI pronta] → a suíte axe cobre isso na change 2.
 - [Testes que só têm significado com a página finalizada: axe com contraste, links dos cards no foco nos dois viewports, CTA rolando até o formulário] → a suíte inteira deve ser rodada de novo, nos dois viewports, ao fim da change 2, antes de arquivar. Testes de layout propriamente ditos (colunas por breakpoint, ausência de rolagem horizontal em 320px, links no hover do desktop) não fazem parte desta change; a decisão fica para a proposta da change 2.
 - [Download do Chromium do Playwright pesado] → `npx playwright install chromium` só do navegador necessário.

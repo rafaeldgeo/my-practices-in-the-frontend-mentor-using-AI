@@ -13,7 +13,7 @@ O portfólio ainda não tem implementação: `index.html` contém só texto solt
 - Testes unitários (`node --test`) das funções puras de validação.
 - Testes de fluxo na tela (Playwright, só Chromium): envio válido, cada erro, correção limpando o erro, CTA rolando até o formulário, links dos cards acessíveis por teclado.
 - Testes de acessibilidade (`@axe-core/playwright`, WCAG 2 A/AA e 2.1 A/AA) em três estados (inicial, com erros, sucesso) e dois viewports (mobile e desktop).
-- Demonstração de que a suíte falha **por ausência de implementação** e não por erro de configuração; depois, parada para revisão humana.
+- Demonstração de que os testes unitários falham **por ausência de implementação** e não por erro de configuração, e de que os e2e carregam sem erro de configuração (execução completa na change 2); depois, parada para revisão humana.
 
 **Dentro do escopo:** testes e configuração de teste. **Fora do escopo:** HTML, SCSS e módulo de validação (change 2); backend (o formulário não envia nem armazena nada); troca do conteúdo (é o do design, de Adam Keyes); changes futuras.
 
