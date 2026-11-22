@@ -6,8 +6,17 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <link rel="preload" href="./assets/fonts/SpaceGrotesk-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+  <!-- Aplica o tema gravado antes do CSS, para a página não piscar no tema errado -->
+  <script>
+    try {
+      document.documentElement.dataset.theme = window.localStorage.getItem("theme") === "light" ? "light" : "dark";
+    } catch {
+      document.documentElement.dataset.theme = "dark";
+    }
+  </script>
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./js/form.js"></script>
+  <script type="module" src="./js/theme-toggle.js"></script>
 
   <title>Frontend Mentor | Single-page developer portfolio</title>
 </head>
@@ -20,6 +29,7 @@
           <li><a class="social__link" href="#" aria-label="Frontend Mentor"><span class="social__icon social__icon--frontend-mentor" aria-hidden="true"></span></a></li>
           <li><a class="social__link" href="#" aria-label="LinkedIn"><span class="social__icon social__icon--linkedin" aria-hidden="true"></span></a></li>
           <li><a class="social__link" href="#" aria-label="Twitter"><span class="social__icon social__icon--twitter" aria-hidden="true"></span></a></li>
+          <li><button class="social__link theme-toggle" type="button" aria-label="Switch to light theme"><span class="social__icon theme-toggle__icon" aria-hidden="true"></span></button></li>
         </ul>
     </div>
   </header>

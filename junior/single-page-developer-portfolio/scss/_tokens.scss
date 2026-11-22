@@ -6,11 +6,16 @@
   --color-surface: #242424;
   --color-accent: #4ee1a0;
   --color-light: #d9d9d9;
-  --color-white: #fff;
+  --color-text: #fff;
   --color-muted: #939393;
   --color-line: #d9d9d9;
   --color-field-line: #c4c4c4;
   --color-error: #ff6f5b;
+  --color-overlay: rgba(21, 21, 21, 0.6);
+  // Ícones do header sobre a foto do hero, que é escura nos dois temas (não mudam no light)
+  --color-on-photo: #fff;
+  --color-on-photo-accent: #4ee1a0;
+  color-scheme: dark;
 
   --font-family: "Space Grotesk", sans-serif;
   --fs-xl: clamp(2.5rem, 0.1rem + 9.4vw, 4.5rem);
@@ -48,4 +53,19 @@
   :root {
     --fs-xl: 5.5rem;
   }
+}
+
+// Tema light: só redefine as cores; o dark é o :root acima, mesmo sem o atributo
+:root[data-theme="light"] {
+  --color-bg: #fff;
+  --color-surface: #f2f2f2;
+  --color-accent: #087a4a;
+  --color-light: #3d3d3d;
+  --color-text: #151515;
+  --color-muted: #5f5f5f;
+  --color-line: #8c8c8c;
+  --color-field-line: #767676;
+  --color-error: #b3261e;
+  --color-overlay: rgba(255, 255, 255, 0.75);
+  color-scheme: light;
 }

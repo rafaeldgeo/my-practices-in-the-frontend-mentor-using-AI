@@ -106,7 +106,7 @@
       justify-content: center;
       gap: 3.25rem;
       margin: 0;
-      background: rgba(21, 21, 21, 0.6);
+      background: var(--color-overlay);
       // opacity (e não display/visibility) mantém os links focáveis por Tab
       opacity: 0;
       transition: opacity 0.2s;

@@ -107,14 +107,14 @@
     border-bottom: 1px solid var(--color-field-line);
     border-radius: 0;
     background: none;
-    color: var(--color-white);
+    color: var(--color-text);
     font: inherit;
     font-size: var(--fs-small);
     text-transform: uppercase;
     resize: none;
 
     &:focus {
-      border-bottom-color: var(--color-white);
+      border-bottom-color: var(--color-text);
       outline: 0;
     }
 

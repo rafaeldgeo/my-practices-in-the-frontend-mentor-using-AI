@@ -23,7 +23,7 @@
 
   &__link {
     display: block;
-    color: var(--color-white);
+    color: var(--color-text);
     transition: color 0.2s;
 
     &:hover {
@@ -52,6 +52,24 @@
   }
 }
 
+// Botão de tema: parece um ícone social, sem a aparência nativa de botão
+.theme-toggle {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+
+  // O ícone mostra a ação: sol no dark (ir ao light), lua no light (ir ao dark)
+  &__icon {
+    --icon: url("./assets/images/icon-theme-sun.svg");
+  }
+}
+
+:root[data-theme="light"] .theme-toggle__icon {
+  --icon: url("./assets/images/icon-theme-moon.svg");
+}
+
 // O header fica sobre o hero em todos os tamanhos, como no design
 .site-header {
   position: absolute;
@@ -72,6 +90,19 @@
     &__inner {
       flex-direction: row;
       justify-content: space-between;
+    }
+
+    // A partir do tablet os ícones ficam sobre a foto escura: mantêm as cores claras nos dois temas
+    &__social .social__link {
+      color: var(--color-on-photo);
+
+      &:hover {
+        color: var(--color-on-photo-accent);
+      }
+
+      &:focus-visible {
+        outline-color: var(--color-on-photo-accent);
+      }
     }
   }
 

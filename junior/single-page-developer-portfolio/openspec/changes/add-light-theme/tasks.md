@@ -14,24 +14,24 @@
 
 ## 3. Ícones, HTML e script do tema
 
-- [ ] 3.1 Criar `assets/images/icon-theme-sun.svg` e `icon-theme-moon.svg` (traço único 24×24, caminhos relativos); verificar abrindo cada arquivo no navegador e com `ls assets/images | grep icon-theme`
-- [ ] 3.2 Criar `js/theme.js` (ES6+, só funções puras, sem DOM) com `THEME_KEY`, `resolveTheme` e `toggleTheme` exportadas; verificar com `npm run test:unit` verde, sem alterar `tests/unit/theme.test.js`
-- [ ] 3.3 Criar `js/theme-toggle.js` (ES6+, só DOM, importa de `theme.js`): ler `localStorage` em `try/catch`, aplicar `data-theme`, ligar o clique, gravar a escolha e trocar o `aria-label` do botão; verificar com `node --check js/theme-toggle.js` sem erro (o comportamento é verificado na 3.4)
-- [ ] 3.4 Em `index.html`, adicionar o script inline (ES6+, `try/catch`, valida o valor) no `<head>` antes do `<link rel="stylesheet">`, o `<script type="module" src="./js/theme-toggle.js">` e o `<li>` com `<button type="button" class="theme-toggle" aria-label="Switch to light theme">` e `span` do ícone depois do Twitter no header; verificar com `npx playwright test tests/e2e/theme.spec.js -g "botão"` verde
+- [x] 3.1 Criar `assets/images/icon-theme-sun.svg` e `icon-theme-moon.svg` (traço único 24×24, caminhos relativos); verificar abrindo cada arquivo no navegador e com `ls assets/images | grep icon-theme`
+- [x] 3.2 Criar `js/theme.js` (ES6+, só funções puras, sem DOM) com `THEME_KEY`, `resolveTheme` e `toggleTheme` exportadas; verificar com `npm run test:unit` verde, sem alterar `tests/unit/theme.test.js`
+- [x] 3.3 Criar `js/theme-toggle.js` (ES6+, só DOM, importa de `theme.js`): ler `localStorage` em `try/catch`, aplicar `data-theme`, ligar o clique, gravar a escolha e trocar o `aria-label` do botão; verificar com `node --check js/theme-toggle.js` sem erro (o comportamento é verificado na 3.4)
+- [x] 3.4 Em `index.html`, adicionar o script inline (ES6+, `try/catch`, valida o valor) no `<head>` antes do `<link rel="stylesheet">`, o `<script type="module" src="./js/theme-toggle.js">` e o `<li>` com `<button type="button" class="theme-toggle" aria-label="Switch to light theme">` e `span` do ícone depois do Twitter no header; verificar com `npx playwright test tests/e2e/theme.spec.js -g "botão"` verde
 
 ## 4. Tokens e tema light
 
-- [ ] 4.1 Em `scss/_tokens.scss`, renomear `--color-white` para `--color-text`, adicionar `--color-overlay` e o bloco `:root[data-theme="light"]` com a paleta do design (e `color-scheme` em cada tema); trocar os usos de `--color-white` em `_base`, `_button`, `_contact` e `_header-footer`; verificar com `grep -rn "color-white" scss` sem resultado, `npm run build` sem erro e `npm run test:e2e` da suíte atual (dark) verde
-- [ ] 4.2 Em `_projects.scss`, trocar o `rgba(21, 21, 21, 0.6)` por `var(--color-overlay)` e, em `_base.scss`, aplicar `filter: invert(1)` em `.decor` no light; verificar com `npm run build` e conferência visual do véu e dos padrões nos dois temas
-- [ ] 4.3 Em `_header-footer.scss`, estilizar `.theme-toggle` (sem borda e fundo nativos, ícone por `mask` herdando `currentColor`, tamanho dos ícones sociais, hover verde, foco visível) e trocar sol/lua por `data-theme`; verificar com `npm run build` e conferência visual do header em 320, 375, 768 e 1440px nos dois temas contra `design/`
+- [x] 4.1 Em `scss/_tokens.scss`, renomear `--color-white` para `--color-text`, adicionar `--color-overlay` e o bloco `:root[data-theme="light"]` com a paleta do design (e `color-scheme` em cada tema); trocar os usos de `--color-white` em `_base`, `_button`, `_contact` e `_header-footer`; verificar com `grep -rn "color-white" scss` sem resultado, `npm run build` sem erro e `npm run test:e2e` da suíte atual (dark) verde
+- [x] 4.2 Em `_projects.scss`, trocar o `rgba(21, 21, 21, 0.6)` por `var(--color-overlay)` e, em `_base.scss`, aplicar `filter: invert(1)` em `.decor` no light; verificar com `npm run build` e conferência visual do véu e dos padrões nos dois temas
+- [x] 4.3 Em `_header-footer.scss`, estilizar `.theme-toggle` (sem borda e fundo nativos, ícone por `mask` herdando `currentColor`, tamanho dos ícones sociais, hover verde, foco visível) e trocar sol/lua por `data-theme`; verificar com `npm run build` e conferência visual do header em 320, 375, 768 e 1440px nos dois temas contra `design/`
 
 ## 5. Integração e acessibilidade
 
-- [ ] 5.1 Rodar `npx playwright test tests/e2e/theme.spec.js tests/e2e/a11y-light.spec.js` e ajustar só tokens e estilos (verde, `muted`, `field-line`, erro, sucesso) até a suíte ficar verde; verificar também a suíte `a11y.spec.js` do dark verde
-- [ ] 5.2 Conferir a aparência do light em 320, 375, 768 e 1440px (hero em tons de cinza, miniaturas, 320px sem rolagem horizontal com `document.documentElement.scrollWidth <= window.innerWidth`) e resolver as Open Questions do design; verificar com screenshots dos dois temas lado a lado
-- [ ] 5.3 Rodar `npm run build`, `npm run test:unit` e `npm run test:e2e` completos e verificar tudo verde, com `git status` mostrando nenhum teste do grupo 1 e 2 alterado
-- [ ] 5.4 Revisar o código: nenhum `var`, `==`/`!=` ou `@import`; nenhuma edição manual de `style.css`; caminhos relativos (`grep -rnE "\bvar\b|@import" js scss` e conferir o script inline); atualizar o `README.md` com o tema light se ele descrever funcionalidades
-- [ ] 5.5 Parar para revisão humana; só após a aprovação, comentar o código e fazer o commit incluindo o `style.css` compilado
+- [x] 5.1 Rodar `npx playwright test tests/e2e/theme.spec.js tests/e2e/a11y-light.spec.js` e ajustar só tokens e estilos (verde, `muted`, `field-line`, erro, sucesso) até a suíte ficar verde; verificar também a suíte `a11y.spec.js` do dark verde
+- [x] 5.2 Conferir a aparência do light em 320, 375, 768 e 1440px (hero em tons de cinza, miniaturas, 320px sem rolagem horizontal com `document.documentElement.scrollWidth <= window.innerWidth`) e resolver as Open Questions do design; verificar com screenshots dos dois temas lado a lado
+- [x] 5.3 Rodar `npm run build`, `npm run test:unit` e `npm run test:e2e` completos e verificar tudo verde, com `git status` mostrando nenhum teste do grupo 1 e 2 alterado
+- [x] 5.4 Revisar o código: nenhum `var`, `==`/`!=` ou `@import`; nenhuma edição manual de `style.css`; caminhos relativos (`grep -rnE "\bvar\b|@import" js scss` e conferir o script inline); atualizar o `README.md` com o tema light se ele descrever funcionalidades
+- [x] 5.5 Parar para revisão humana; só após a aprovação, comentar o código e fazer o commit incluindo o `style.css` compilado
 
 ## Workflow follow-up
 

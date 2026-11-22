@@ -3,11 +3,15 @@
   --color-surface: #242424;
   --color-accent: #4ee1a0;
   --color-light: #d9d9d9;
-  --color-white: #fff;
+  --color-text: #fff;
   --color-muted: #939393;
   --color-line: #d9d9d9;
   --color-field-line: #c4c4c4;
   --color-error: #ff6f5b;
+  --color-overlay: rgba(21, 21, 21, 0.6);
+  --color-on-photo: #fff;
+  --color-on-photo-accent: #4ee1a0;
+  color-scheme: dark;
   --font-family: "Space Grotesk", sans-serif;
   --fs-xl: clamp(2.5rem, 0.1rem + 9.4vw, 4.5rem);
   --lh-xl: 1;
@@ -43,6 +47,20 @@
     --fs-xl: 5.5rem;
   }
 }
+:root[data-theme=light] {
+  --color-bg: #fff;
+  --color-surface: #f2f2f2;
+  --color-accent: #087a4a;
+  --color-light: #3d3d3d;
+  --color-text: #151515;
+  --color-muted: #5f5f5f;
+  --color-line: #8c8c8c;
+  --color-field-line: #767676;
+  --color-error: #b3261e;
+  --color-overlay: rgba(255, 255, 255, 0.75);
+  color-scheme: light;
+}
+
 @font-face {
   font-family: "Space Grotesk";
   src: url("./assets/fonts/SpaceGrotesk-VariableFont_wght.ttf") format("truetype");
@@ -71,7 +89,7 @@ html {
 body {
   min-height: 100vh;
   background: var(--color-bg);
-  color: var(--color-white);
+  color: var(--color-text);
   font-family: var(--font-family);
   font-size: var(--fs-body);
   font-weight: 500;
@@ -146,13 +164,17 @@ ul {
   max-width: none;
 }
 
+:root[data-theme=light] .decor {
+  filter: invert(1);
+}
+
 .btn {
   display: inline-block;
   padding: 0 0 0.5rem;
   border: 0;
   border-bottom: 2px solid var(--color-accent);
   background: none;
-  color: var(--color-white);
+  color: var(--color-text);
   font: 700 var(--fs-small)/1.5 var(--font-family);
   letter-spacing: 0.2em;
   text-decoration: none;
@@ -188,7 +210,7 @@ ul {
 }
 .social__link {
   display: block;
-  color: var(--color-white);
+  color: var(--color-text);
   transition: color 0.2s;
 }
 .social__link:hover {
@@ -222,6 +244,21 @@ ul {
   --icon: url("./assets/images/icon-twitter.svg");
 }
 
+.theme-toggle {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+.theme-toggle__icon {
+  --icon: url("./assets/images/icon-theme-sun.svg");
+}
+
+:root[data-theme=light] .theme-toggle__icon {
+  --icon: url("./assets/images/icon-theme-moon.svg");
+}
+
 .site-header {
   position: absolute;
   inset: 0 0 auto;
@@ -241,6 +278,15 @@ ul {
   .site-header__inner {
     flex-direction: row;
     justify-content: space-between;
+  }
+  .site-header__social .social__link {
+    color: var(--color-on-photo);
+  }
+  .site-header__social .social__link:hover {
+    color: var(--color-on-photo-accent);
+  }
+  .site-header__social .social__link:focus-visible {
+    outline-color: var(--color-on-photo-accent);
   }
 }
 @media (min-width: 64em) {
@@ -591,7 +637,7 @@ ul {
     justify-content: center;
     gap: 3.25rem;
     margin: 0;
-    background: rgba(21, 21, 21, 0.6);
+    background: var(--color-overlay);
     opacity: 0;
     transition: opacity 0.2s;
   }
@@ -707,14 +753,14 @@ ul {
   border-bottom: 1px solid var(--color-field-line);
   border-radius: 0;
   background: none;
-  color: var(--color-white);
+  color: var(--color-text);
   font: inherit;
   font-size: var(--fs-small);
   text-transform: uppercase;
   resize: none;
 }
 .form__control:focus {
-  border-bottom-color: var(--color-white);
+  border-bottom-color: var(--color-text);
   outline: 0;
 }
 .form__control:focus-visible {

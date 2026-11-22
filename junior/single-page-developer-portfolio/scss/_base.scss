@@ -30,7 +30,7 @@ html {
 body {
   min-height: 100vh;
   background: var(--color-bg);
-  color: var(--color-white);
+  color: var(--color-text);
   font-family: var(--font-family);
   font-size: var(--fs-body);
   font-weight: 500;
@@ -104,4 +104,9 @@ ul {
   z-index: -1;
   pointer-events: none;
   max-width: none;
+}
+
+// Os padrões são SVG brancos em <img>: no tema light invertem para preto, visíveis no fundo claro
+:root[data-theme="light"] .decor {
+  filter: invert(1);
 }
