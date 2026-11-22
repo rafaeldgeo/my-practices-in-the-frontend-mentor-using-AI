@@ -142,7 +142,25 @@ test.describe("aparência do light", () => {
     await page.goto("/");
   });
 
-  test("hover do ícone social usa o verde do tema light", async ({ page }) => {
+  // O footer fica sobre o fundo claro: usa o verde escuro do tema
+  test("hover do ícone social do footer usa o verde do tema light", async ({ page }) => {
+    const twitter = page.getByRole("contentinfo").getByRole("link", { name: "Twitter" });
+    await twitter.hover();
+    await expect(twitter).toHaveCSS("color", LIGHT.accent);
+  });
+
+  // Do tablet em diante o header fica sobre a foto escura: ícones claros e verde claro no hover
+  test("header sobre a foto mantém ícones claros e o verde claro no hover", async ({ page }) => {
+    await expect(getTwitter(page)).toHaveCSS("color", DARK.text);
+    await expect(getToggle(page, TO_DARK)).toHaveCSS("color", DARK.text);
+    await getTwitter(page).hover();
+    await expect(getTwitter(page)).toHaveCSS("color", DARK.accent);
+  });
+
+  // No mobile o header fica sobre o fundo claro: ícones escuros e verde escuro no hover
+  test("header no mobile usa as cores do tema light", async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 812 });
+    await expect(getTwitter(page)).toHaveCSS("color", LIGHT.text);
     await getTwitter(page).hover();
     await expect(getTwitter(page)).toHaveCSS("color", LIGHT.accent);
   });

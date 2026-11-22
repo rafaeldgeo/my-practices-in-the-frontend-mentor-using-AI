@@ -44,6 +44,8 @@ O site é estático (GitHub Pages) e o tema dark vive em custom properties de `:
 
 Os contraste de cada par foram calculados (WCAG) sobre `bg` e `surface`, nessa ordem; o axe no tema light confirma na prática.
 
+**Header sobre a foto.** A foto do hero tem fundo escuro embutido nos dois temas e, do tablet em diante, fica atrás dos ícones do header. Por isso, nessa faixa, os links do header (ícones e botão de tema) usam tokens próprios, `--color-on-photo` (`#fff`) e `--color-on-photo-accent` (`#4ee1a0`), iguais nos dois temas; abaixo do tablet o header fica sobre o fundo da página e segue as cores do tema. O footer segue o tema. Alternativas descartadas: dar fundo claro ao painel da foto no light (mexe na imagem) e pílula de fundo por ícone (muda o visual do header). O título do hero também atravessa a foto; no light o fim de "you!" no desktop fica pouco legível e é aceito por ora (Open Questions).
+
 **Padrões decorativos.** No light, `:root[data-theme="light"] .decor { filter: invert(1) }` troca o traço branco por preto, mantendo a opacidade 25% do SVG. Alternativa descartada: converter os `<img>` em `<span>` com `mask` e `currentColor`, mais "puro", mas mexe no HTML e no layout por breakpoint de três elementos.
 
 **Estratégia de testes (três camadas, TDD: testes antes da produção).**
@@ -65,6 +67,6 @@ Os contraste de cada par foram calculados (WCAG) sobre `bg` e `surface`, nessa o
 ## Open Questions
 
 Podem ser resolvidas na implementação sem alterar specs, abordagem ou tarefas:
-- Aparência da foto do hero e das miniaturas sobre o fundo claro (borda ou sombra sutil, se parecerem "coladas"); decidida na conferência visual.
+- Legibilidade do título do hero onde ele atravessa a foto escura no light ("you!" no desktop, "I'm" no tablet) e aparência das miniaturas sobre o fundo claro; decididas na conferência visual.
 - Opacidade final dos anéis e do círculo invertidos, se 25% parecer fraco ou forte demais no light.
 - Se vale gravar o tema também em uma mudança de aba aberta (evento `storage`); fora do escopo por ora.
