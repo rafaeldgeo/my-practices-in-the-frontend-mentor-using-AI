@@ -1,0 +1,19 @@
+// CTA e links de card: texto em caixa alta com sublinhado verde
+.btn {
+  display: inline-block;
+  padding: 0 0 0.5rem;
+  border: 0;
+  border-bottom: 2px solid var(--color-accent);
+  background: none;
+  color: var(--color-white);
+  font: 700 var(--fs-small)/1.5 var(--font-family);
+  letter-spacing: 0.2em;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--color-accent);
+  }
+}

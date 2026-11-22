@@ -1,0 +1,119 @@
+@use "breakpoints" as *;
+
+// Logo, ícones sociais e atribuição, compartilhados por header e footer
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-decoration: none;
+
+  @include up($bp-tablet) {
+    font-size: 2rem;
+  }
+}
+
+.social {
+  display: flex;
+  gap: 1.5625rem;
+
+  @include up($bp-tablet) {
+    gap: 2rem;
+  }
+
+  &__link {
+    display: block;
+    color: var(--color-white);
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  // Ícone desenhado por máscara para herdar a cor do link (hover verde)
+  &__icon {
+    display: block;
+    width: 1.25rem;
+    height: 1.2rem;
+    background: currentColor;
+
+    @include up($bp-tablet) {
+      width: 1.5625rem;
+      height: 1.5rem;
+    }
+
+    mask: var(--icon) center / contain no-repeat;
+
+    &--github { --icon: url("./assets/images/icon-github.svg"); }
+    &--frontend-mentor { --icon: url("./assets/images/icon-frontend-mentor.svg"); }
+    &--linkedin { --icon: url("./assets/images/icon-linkedin.svg"); }
+    &--twitter { --icon: url("./assets/images/icon-twitter.svg"); }
+  }
+}
+
+// O header fica sobre o hero em todos os tamanhos, como no design
+.site-header {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  padding-top: 1.5rem;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  @include up($bp-tablet) {
+    padding-top: 1.875rem;
+
+    &__inner {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  @include up($bp-desktop) {
+    padding-top: 2.5rem;
+  }
+}
+
+// O rodapé continua o fundo da seção Contact
+.site-footer {
+  background: var(--color-surface);
+  padding-bottom: 2rem;
+
+  .divider {
+    margin-bottom: 2.7rem;
+
+    @include up($bp-tablet) {
+      margin-bottom: 2rem;
+    }
+
+    @include up($bp-desktop) {
+      margin-bottom: 3rem;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+
+    @include up($bp-tablet) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__attribution {
+    margin-top: 3rem;
+    color: var(--color-light);
+    font-size: 0.6875rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+}

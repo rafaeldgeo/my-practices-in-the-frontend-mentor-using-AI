@@ -1,0 +1,107 @@
+@use "breakpoints" as *;
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("./assets/fonts/SpaceGrotesk-VariableFont_wght.ttf") format("truetype");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-white);
+  font-family: var(--font-family);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  line-height: var(--lh-body);
+  overflow-x: hidden;
+}
+
+img,
+picture {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.heading-xl {
+  font-size: var(--fs-xl);
+  line-height: var(--lh-xl);
+  letter-spacing: var(--ls-xl);
+  font-weight: 700;
+}
+
+.heading-l {
+  font-size: var(--fs-l);
+  line-height: var(--lh-l);
+  letter-spacing: var(--ls-l);
+  font-weight: 700;
+}
+
+.heading-m {
+  font-size: var(--fs-m);
+  line-height: 1.3333;
+  font-weight: 700;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid var(--color-line);
+}
+
+// Seções com decoração: o enfeite fica atrás do conteúdo, sem sair da seção na horizontal
+.hero,
+.skills,
+.contact {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+}
+
+.decor {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  max-width: none;
+}

@@ -1,0 +1,80 @@
+@use "breakpoints" as *;
+
+// Seção Skills: grade de 1, 2 e 3 colunas
+.skills {
+  // No mobile um segundo divisor fecha a seção; os anéis passam por ele
+  overflow-y: visible;
+
+  &__inner {
+    padding-bottom: 0;
+    text-align: center;
+
+    &::after {
+      content: "";
+      display: block;
+      margin-top: 2.3rem;
+      border-top: 1px solid var(--color-line);
+
+      @include up($bp-tablet) {
+        display: none;
+      }
+    }
+
+    @include up($bp-tablet) {
+      padding-bottom: 4rem;
+    }
+  }
+
+  .divider {
+    margin-bottom: 2.7rem;
+
+    @include up($bp-tablet) {
+      margin-bottom: 3.4rem;
+    }
+
+    @include up($bp-desktop) {
+      margin-bottom: 4.4rem;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0;
+
+    @include up($bp-tablet) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3.25rem 2rem;
+      text-align: left;
+    }
+
+    @include up($bp-desktop) {
+      grid-template-columns: repeat(3, 1fr);
+      row-gap: 3.9rem;
+    }
+  }
+
+  &__experience {
+    margin-top: 0.25rem;
+    color: var(--color-light);
+
+    @include up($bp-tablet) {
+      margin-top: 0.8rem;
+    }
+  }
+
+  &__rings {
+    right: -21.4rem;
+    bottom: -4.9rem;
+
+    @include up($bp-tablet) {
+      right: -20.75rem;
+      bottom: 0.5rem;
+    }
+
+    @include up($bp-desktop) {
+      right: -14.8rem;
+    }
+  }
+}
