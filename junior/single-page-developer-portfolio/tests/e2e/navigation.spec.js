@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 
+// Nomes acessíveis dos seis cards
 const PROJECTS = [
   "Design portfolio",
   "E-learning landing page",
@@ -8,11 +9,13 @@ const PROJECTS = [
   "Memory Game",
   "Art gallery showcase",
 ];
+// Mobile e desktop, onde os links dos cards têm comportamento diferente
 const VIEWPORTS = [
   { label: "mobile", width: 375, height: 812 },
   { label: "desktop", width: 1440, height: 900 },
 ];
 
+// Os dois CTAs "Contact me" rolam até o formulário
 test.describe("CTAs levam ao formulário", () => {
   for (const region of ["Hero", "Projects"]) {
     test(`CTA "Contact me" da região ${region}`, async ({ page }) => {
@@ -26,6 +29,7 @@ test.describe("CTAs levam ao formulário", () => {
   }
 });
 
+// Por teclado, cada link do card precisa receber foco e ficar visível
 test.describe("links dos cards acessíveis por teclado", () => {
   for (const { label, width, height } of VIEWPORTS) {
     test.describe(`${label} ${width}×${height}`, () => {

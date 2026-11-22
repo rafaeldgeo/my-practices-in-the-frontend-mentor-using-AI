@@ -1,12 +1,15 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
+// Regras WCAG 2.0/2.1 níveis A e AA
 const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"];
+// Mesmos viewports de navigation.spec.js
 const VIEWPORTS = [
   { label: "mobile", width: 375, height: 812 },
   { label: "desktop", width: 1440, height: 900 },
 ];
 
+// Roda o axe na página e devolve as violações encontradas
 const scan = async (page) => {
   const { violations } = await new AxeBuilder({ page }).withTags(TAGS).analyze();
   return violations;
@@ -22,6 +25,7 @@ for (const { label, width, height } of VIEWPORTS) {
       await expect(page.getByRole("form", { name: "Contact form" })).toBeVisible();
     });
 
+    // Os três estados do formulário (inicial, erros, sucesso) são varridos
     test("estado inicial sem violações", async ({ page }) => {
       expect(await scan(page)).toEqual([]);
     });

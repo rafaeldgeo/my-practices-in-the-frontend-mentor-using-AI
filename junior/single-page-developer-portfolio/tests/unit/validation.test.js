@@ -7,9 +7,11 @@ import {
   validateForm,
 } from "../../js/validation.js";
 
+// Mensagens esperadas, iguais às exibidas no formulário
 const EMPTY = "Can't be empty";
 const INVALID_EMAIL = "Sorry, invalid format here";
 
+// Nome: obrigatório, espaços nas pontas não contam
 describe("validateName", () => {
   it("devolve null para um nome válido", () => {
     assert.equal(validateName("Adam Keyes"), null);
@@ -29,6 +31,7 @@ describe("validateName", () => {
   });
 });
 
+// Mensagem: mesma regra do nome (obrigatória, sem só espaços)
 describe("validateMessage", () => {
   it("devolve null para uma mensagem válida", () => {
     assert.equal(validateMessage("Hello there"), null);
@@ -48,6 +51,7 @@ describe("validateMessage", () => {
   });
 });
 
+// E-mail: vazio tem mensagem própria; formato exige algo@dominio.sufixo
 describe("validateEmail", () => {
   it("devolve null para e-mails válidos", () => {
     assert.equal(validateEmail("adam@mail.com"), null);
@@ -70,6 +74,7 @@ describe("validateEmail", () => {
   });
 
   it("devolve erro de formato para e-mails inválidos", () => {
+    // Casos de borda: sem "@", sem sufixo, espaços, "@" duplicado e pontos vazios
     const invalids = [
       "adam",
       "adam@",
@@ -89,6 +94,7 @@ describe("validateEmail", () => {
   });
 });
 
+// Formulário: devolve só os campos inválidos, objeto vazio se tudo é válido
 describe("validateForm", () => {
   it("devolve objeto vazio quando tudo é válido", () => {
     assert.deepEqual(

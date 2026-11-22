@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 
+// Textos exibidos na página, usados como contrato dos testes
 const EMPTY = "Can't be empty";
 const INVALID_EMAIL = "Sorry, invalid format here";
 const SUCCESS = "Thanks for getting in touch! I'll get back to you soon.";
@@ -26,12 +27,15 @@ const fillAll = async (page, { name, email, message }) => {
   await fields.email.fill(email);
   await fields.message.fill(message);
 };
+// Dados válidos reutilizados; cada teste altera só o campo em foco
 const VALID = { name: "Jane Doe", email: "jane@mail.com", message: "Hello Adam" };
 
+// Cada teste parte da página recém-carregada
 test.beforeEach(async ({ page }) => {
   await page.goto("/");
 });
 
+// Landmarks e elementos do formulário existem com nome acessível
 test.describe("estrutura", () => {
   test("expõe regiões, formulário e seis cards", async ({ page }) => {
     for (const name of ["Hero", "Skills", "Projects", "Contact"]) {
@@ -57,6 +61,7 @@ test.describe("estrutura", () => {
   });
 });
 
+// A validação só roda no envio, com mensagens próprias (sem a nativa do navegador)
 test.describe("validação ao enviar", () => {
   test("nada é validado antes do envio", async ({ page }) => {
     const { name, email } = getFields(page);
@@ -104,6 +109,7 @@ test.describe("validação ao enviar", () => {
   });
 });
 
+// Como o erro é exposto: aria-invalid, descrição, ordem, posição e foco
 test.describe("apresentação e foco do erro", () => {
   test("campo inválido é marcado e descrito pela mensagem", async ({ page }) => {
     await fillAll(page, { ...VALID, email: "adam@invalid" });
@@ -118,6 +124,7 @@ test.describe("apresentação e foco do erro", () => {
   test("erros aparecem na ordem Name, Email, Message", async ({ page }) => {
     await submit(page);
     const { name, email, message } = getFields(page);
+    // Lê a posição vertical de cada erro pelo id referenciado em aria-describedby
     const positions = await Promise.all(
       [name, email, message].map(async (field) => {
         const id = await field.getAttribute("aria-describedby");
@@ -146,6 +153,7 @@ test.describe("apresentação e foco do erro", () => {
   });
 });
 
+// Digitar limpa o erro do campo, mas não revalida até o próximo envio
 test.describe("corrigir o campo", () => {
   test("digitar limpa só o erro do campo corrigido", async ({ page }) => {
     await submit(page);
@@ -169,6 +177,7 @@ test.describe("corrigir o campo", () => {
   });
 });
 
+// Envio válido: mensagem em role="status", campos limpos e sem requisição
 test.describe("estado de sucesso", () => {
   test("envio válido mostra sucesso e limpa os campos", async ({ page }) => {
     await fillAll(page, VALID);
