@@ -1,0 +1,10 @@
+// Breakpoints em em (mobile-first); custom property não vale em @media
+$bp-tablet: 48em;
+$bp-desktop: 64em;
+
+// Aplica o conteúdo a partir da largura mínima informada
+@mixin up($bp) {
+  @media (min-width: $bp) {
+    @content;
+  }
+}

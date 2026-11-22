@@ -1,0 +1,71 @@
+@use "breakpoints" as *;
+
+// Tokens de design (cores, tipografia, espaçamento, raio) como custom properties
+:root {
+  --color-bg: #151515;
+  --color-surface: #242424;
+  --color-accent: #4ee1a0;
+  --color-light: #d9d9d9;
+  --color-text: #fff;
+  --color-muted: #939393;
+  --color-line: #d9d9d9;
+  --color-field-line: #c4c4c4;
+  --color-error: #ff6f5b;
+  --color-overlay: rgba(21, 21, 21, 0.6);
+  // Ícones do header sobre a foto do hero, que é escura nos dois temas (não mudam no light)
+  --color-on-photo: #fff;
+  --color-on-photo-accent: #4ee1a0;
+  color-scheme: dark;
+
+  --font-family: "Space Grotesk", sans-serif;
+  --fs-xl: clamp(2.5rem, 0.1rem + 9.4vw, 4.5rem);
+  --lh-xl: 1;
+  --ls-xl: -0.03em;
+  --fs-l: clamp(2rem, 1.05rem + 4.07vw, 3rem);
+  --lh-l: 1.1667;
+  --ls-l: -0.03em;
+  --fs-m: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  --fs-body: 1rem;
+  --lh-body: 1.625;
+  --fs-tech: 1rem;
+  --fs-small: 0.9375rem;
+
+  --space-xs: 0.5rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2.5rem;
+  --space-xl: 4rem;
+  --space-xxl: 6rem;
+  --container: 69.375rem;
+  --gutter: 1rem;
+  --radius: 0.125rem;
+}
+
+@include up($bp-tablet) {
+  :root {
+    --fs-body: 1.125rem;
+    --lh-body: 1.5556;
+    --gutter: 2rem;
+  }
+}
+
+@include up($bp-desktop) {
+  :root {
+    --fs-xl: 5.5rem;
+  }
+}
+
+// Tema light: só redefine as cores; o dark é o :root acima, mesmo sem o atributo
+:root[data-theme="light"] {
+  --color-bg: #fff;
+  --color-surface: #f2f2f2;
+  --color-accent: #087a4a;
+  --color-light: #3d3d3d;
+  --color-text: #151515;
+  --color-muted: #5f5f5f;
+  --color-line: #8c8c8c;
+  --color-field-line: #767676;
+  --color-error: #b3261e;
+  --color-overlay: rgba(255, 255, 255, 0.75);
+  color-scheme: light;
+}

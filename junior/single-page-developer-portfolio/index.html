@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="preload" href="./assets/fonts/SpaceGrotesk-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+  <!-- Aplica o tema gravado antes do CSS, para a página não piscar no tema errado -->
+  <script>
+    try {
+      document.documentElement.dataset.theme = window.localStorage.getItem("theme") === "light" ? "light" : "dark";
+    } catch {
+      document.documentElement.dataset.theme = "dark";
+    }
+  </script>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./js/form.js"></script>
+  <script type="module" src="./js/theme-toggle.js"></script>
+
+  <title>Frontend Mentor | Single-page developer portfolio</title>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="logo" href="#">adamkeyes</a>
+      <ul class="social site-header__social">
+          <li><a class="social__link" href="#" aria-label="GitHub"><span class="social__icon social__icon--github" aria-hidden="true"></span></a></li>
+          <li><a class="social__link" href="#" aria-label="Frontend Mentor"><span class="social__icon social__icon--frontend-mentor" aria-hidden="true"></span></a></li>
+          <li><a class="social__link" href="#" aria-label="LinkedIn"><span class="social__icon social__icon--linkedin" aria-hidden="true"></span></a></li>
+          <li><a class="social__link" href="#" aria-label="Twitter"><span class="social__icon social__icon--twitter" aria-hidden="true"></span></a></li>
+          <li><button class="social__link theme-toggle" type="button" aria-label="Switch to light theme"><span class="social__icon theme-toggle__icon" aria-hidden="true"></span></button></li>
+        </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Hero">
+      <div class="container hero__inner">
+        <picture class="hero__portrait">
+          <source media="(min-width: 64em)" srcset="./assets/images/image-profile-desktop.webp" width="890" height="1440">
+          <source media="(min-width: 48em)" srcset="./assets/images/image-profile-tablet.webp" width="646" height="1200">
+          <img src="./assets/images/image-profile-mobile.webp" alt="Portrait of Adam Keyes, smiling, in a grayscale photo" width="348" height="766">
+        </picture>
+        <div class="hero__content">
+          <h1 class="hero__title heading-xl">Nice to <br class="hero__break">meet you! I'm <span class="hero__name">Adam Keyes</span>.</h1>
+          <p class="hero__text">Based in the UK, I'm a front-end developer passionate about building accessible web apps that users love.</p>
+          <a class="btn" href="#contact">Contact me</a>
+        </div>
+        <img class="decor hero__rings" src="./assets/images/pattern-rings.svg" alt="" aria-hidden="true" width="530" height="129">
+        <img class="decor hero__circle" src="./assets/images/pattern-circle.svg" alt="" aria-hidden="true" width="156" height="156">
+      </div>
+    </section>
+
+    <section class="skills" aria-label="Skills">
+      <div class="container skills__inner">
+        <hr class="divider">
+        <ul class="skills__list">
+          <li class="skills__item">
+            <h3 class="skills__name heading-l">HTML</h3>
+            <p class="skills__experience">4 Years Experience</p>
+          </li>
+          <li class="skills__item">
+            <h3 class="skills__name heading-l">CSS</h3>
+            <p class="skills__experience">4 Years Experience</p>
+          </li>
+          <li class="skills__item">
+            <h3 class="skills__name heading-l">JavaScript</h3>
+            <p class="skills__experience">4 Years Experience</p>
+          </li>
+          <li class="skills__item">
+            <h3 class="skills__name heading-l">Accessibility</h3>
+            <p class="skills__experience">4 Years Experience</p>
+          </li>
+          <li class="skills__item">
+            <h3 class="skills__name heading-l">React</h3>
+            <p class="skills__experience">3 Years Experience</p>
+          </li>
+          <li class="skills__item">
+            <h3 class="skills__name heading-l">Sass</h3>
+            <p class="skills__experience">3 Years Experience</p>
+          </li>
+        </ul>
+        <img class="decor skills__rings" src="./assets/images/pattern-rings.svg" alt="" aria-hidden="true" width="530" height="129">
+      </div>
+    </section>
+
+    <section class="projects" aria-label="Projects">
+      <div class="container">
+        <div class="projects__header">
+          <h2 class="projects__title heading-xl">Projects</h2>
+          <a class="btn" href="#contact">Contact me</a>
+        </div>
+        <ul class="projects__list">
+          <li class="projects__item">
+            <article class="card" aria-label="Design portfolio">
+              <div class="card__media">
+                <img class="card__image" src="./assets/images/thumbnail-project-1-small.webp"
+                  srcset="./assets/images/thumbnail-project-1-small.webp 686w, ./assets/images/thumbnail-project-1-large.webp 1080w"
+                  sizes="(min-width: 64em) 33.75rem, (min-width: 48em) 50vw, 100vw"
+                  alt="" width="686" height="506">
+                <div class="card__links">
+                  <a class="btn" href="#">View project</a>
+                  <a class="btn" href="#">View code</a>
+                </div>
+              </div>
+              <h3 class="card__title heading-m">Design portfolio</h3>
+              <ul class="card__tech"><li>HTML</li><li>CSS</li></ul>
+            </article>
+          </li>
+          <li class="projects__item">
+            <article class="card" aria-label="E-learning landing page">
+              <div class="card__media">
+                <img class="card__image" src="./assets/images/thumbnail-project-2-small.webp"
+                  srcset="./assets/images/thumbnail-project-2-small.webp 686w, ./assets/images/thumbnail-project-2-large.webp 1080w"
+                  sizes="(min-width: 64em) 33.75rem, (min-width: 48em) 50vw, 100vw"
+                  alt="" width="686" height="506">
+                <div class="card__links">
+                  <a class="btn" href="#">View project</a>
+                  <a class="btn" href="#">View code</a>
+                </div>
+              </div>
+              <h3 class="card__title heading-m">E-learning landing page</h3>
+              <ul class="card__tech"><li>HTML</li><li>CSS</li></ul>
+            </article>
+          </li>
+          <li class="projects__item">
+            <article class="card" aria-label="Todo web app">
+              <div class="card__media">
+                <img class="card__image" src="./assets/images/thumbnail-project-3-small.webp"
+                  srcset="./assets/images/thumbnail-project-3-small.webp 686w, ./assets/images/thumbnail-project-3-large.webp 1080w"
+                  sizes="(min-width: 64em) 33.75rem, (min-width: 48em) 50vw, 100vw"
+                  alt="" width="686" height="506">
+                <div class="card__links">
+                  <a class="btn" href="#">View project</a>
+                  <a class="btn" href="#">View code</a>
+                </div>
+              </div>
+              <h3 class="card__title heading-m">Todo web app</h3>
+              <ul class="card__tech"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+            </article>
+          </li>
+          <li class="projects__item">
+            <article class="card" aria-label="Entertainment web app">
+              <div class="card__media">
+                <img class="card__image" src="./assets/images/thumbnail-project-4-small.webp"
+                  srcset="./assets/images/thumbnail-project-4-small.webp 686w, ./assets/images/thumbnail-project-4-large.webp 1080w"
+                  sizes="(min-width: 64em) 33.75rem, (min-width: 48em) 50vw, 100vw"
+                  alt="" width="686" height="506">
+                <div class="card__links">
+                  <a class="btn" href="#">View project</a>
+                  <a class="btn" href="#">View code</a>
+                </div>
+              </div>
+              <h3 class="card__title heading-m">Entertainment web app</h3>
+              <ul class="card__tech"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+            </article>
+          </li>
+          <li class="projects__item">
+            <article class="card" aria-label="Memory Game">
+              <div class="card__media">
+                <img class="card__image" src="./assets/images/thumbnail-project-5-small.webp"
+                  srcset="./assets/images/thumbnail-project-5-small.webp 686w, ./assets/images/thumbnail-project-5-large.webp 1080w"
+                  sizes="(min-width: 64em) 33.75rem, (min-width: 48em) 50vw, 100vw"
+                  alt="" width="686" height="506">
+                <div class="card__links">
+                  <a class="btn" href="#">View project</a>
+                  <a class="btn" href="#">View code</a>
+                </div>
+              </div>
+              <h3 class="card__title heading-m">Memory Game</h3>
+              <ul class="card__tech"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+            </article>
+          </li>
+          <li class="projects__item">
+            <article class="card" aria-label="Art gallery showcase">
+              <div class="card__media">
+                <img class="card__image" src="./assets/images/thumbnail-project-6-small.webp"
+                  srcset="./assets/images/thumbnail-project-6-small.webp 686w, ./assets/images/thumbnail-project-6-large.webp 1080w"
+                  sizes="(min-width: 64em) 33.75rem, (min-width: 48em) 50vw, 100vw"
+                  alt="" width="686" height="506">
+                <div class="card__links">
+                  <a class="btn" href="#">View project</a>
+                  <a class="btn" href="#">View code</a>
+                </div>
+              </div>
+              <h3 class="card__title heading-m">Art gallery showcase</h3>
+              <ul class="card__tech"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-label="Contact">
+      <div class="container contact__inner">
+        <div class="contact__intro">
+          <h2 class="contact__title heading-xl">Contact</h2>
+          <p class="contact__text">I would love to hear about your project and how I could help. Please fill in the form, and I'll get back to you as soon as possible.</p>
+        </div>
+        <form class="form" novalidate aria-label="Contact form">
+          <div class="form__field">
+            <label class="form__label" for="name">Name</label>
+            <input class="form__control" type="text" id="name" name="name" autocomplete="name" placeholder=" ">
+            <p class="form__error" id="name-error"></p>
+          </div>
+          <div class="form__field form__field--email">
+            <label class="form__label" for="email">Email</label>
+            <input class="form__control" type="email" id="email" name="email" autocomplete="email" placeholder=" ">
+            <p class="form__error" id="email-error"></p>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="message">Message</label>
+            <textarea class="form__control form__control--message" id="message" name="message" rows="4" placeholder=" "></textarea>
+            <p class="form__error" id="message-error"></p>
+          </div>
+          <button class="btn form__submit" type="submit">Send message</button>
+          <p class="form__success" role="status"></p>
+        </form>
+        <img class="decor contact__rings" src="./assets/images/pattern-rings.svg" alt="" aria-hidden="true" width="530" height="129">
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <hr class="divider">
+      <div class="site-footer__inner">
+        <a class="logo" href="#">adamkeyes</a>
+        <ul class="social site-footer__social">
+          <li><a class="social__link" href="#" aria-label="GitHub"><span class="social__icon social__icon--github" aria-hidden="true"></span></a></li>
+          <li><a class="social__link" href="#" aria-label="Frontend Mentor"><span class="social__icon social__icon--frontend-mentor" aria-hidden="true"></span></a></li>
+          <li><a class="social__link" href="#" aria-label="LinkedIn"><span class="social__icon social__icon--linkedin" aria-hidden="true"></span></a></li>
+          <li><a class="social__link" href="#" aria-label="Twitter"><span class="social__icon social__icon--twitter" aria-hidden="true"></span></a></li>
+        </ul>
+      </div>
+      <p class="site-footer__attribution">Challenge by <a href="https://www.frontendmentor.io/profile/rafaeldgeo" target="_blank" rel="noopener">Frontend Mentor</a>. Coded by <a href="https://www.linkedin.com/in/rafaeldgeo/" target="_blank" rel="noopener">Rafael Dias de Almeida</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>

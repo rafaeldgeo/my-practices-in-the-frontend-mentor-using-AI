@@ -1,0 +1,50 @@
+schema: spec-driven
+
+# Contexto do projeto: só o que não se infere do código. Entra em todo artefato, então fica curto.
+context: |
+  Desafio Frontend Mentor "Single-page developer portfolio" (nível junior): ficar o mais próximo
+  possível do design, com layout correto em cada tamanho de tela e hover/foco em todo elemento
+  interativo. Site estático, sem backend, publicado no GitHub Pages direto do repositório em
+  https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor-using-AI/<nível>/<desafio>/.
+  Todos os caminhos de assets são relativos.
+  Fontes de verdade: as specs em openspec/specs/ (comportamento), o proposal.md e o design.md da
+  change em curso (escopo e decisões) e design/ (layouts mobile, tablet e desktop, estado ativo
+  e design system). Não mantenha o mesmo conteúdo em dois lugares.
+  Plano de changes: 1) testes (TDD), que falham por ausência de implementação e definem o
+  contrato; 2) implementação, até a suíte da change 1 passar sem alterá-la; 3) evolução, ainda
+  não definida (não antecipar nas changes 1 e 2).
+  Stack: HTML5 semântico (lang="en"), Sass/SCSS compilado para style.css (versionado, nunca
+  editar o .css), BEM, mobile-first com min-width em em, JavaScript ES6+ (nunca var). Cite a
+  stack só em design.md e tasks.md; as specs descrevem comportamento observável.
+  Escreva todos os artefatos (proposal, specs, design, tasks) em português do Brasil.
+  Mantenha em inglês os termos estruturais que o OpenSpec interpreta: cabeçalhos
+  "## ADDED/MODIFIED/REMOVED/RENAMED Requirements" e "## Purpose", "### Requirement:",
+  "#### Scenario:", os passos **WHEN**/**GIVEN**/**THEN** e SHALL/MUST no texto normativo.
+  O texto exibido na página (lang="en") continua em inglês, como no design.
+
+# Regras por artefato
+rules:
+  proposal:
+    - Declare o que está dentro e o que está fora do escopo (sem backend; conteúdo é o do design, de Adam Keyes).
+    - Indique a qual change do plano (1, 2 ou 3) a proposta pertence e não antecipe as seguintes.
+  specs:
+    - Descreva só comportamento observável, com um cenário (#### Scenario:) por regra testável. Não cite stack nem arquitetura.
+    - 'Na change 1, fixe o contrato que a change 2 deve cumprir: caminho do módulo de validação e nomes das funções puras, rótulos acessíveis dos campos (Name, Email, Message), texto exato das mensagens de erro, texto, role="status" e posição da mensagem de sucesso, nome acessível do botão de envio e dos CTAs, ordem dos erros e destino do foco após envio inválido.'
+    - A change 2 não altera a spec contact-form, só a cumpre. Se um teste da change 1 estiver errado, o ajuste volta para a change 1.
+    - 'Decisão ainda não confirmada com o humano não vira requisito: registre-a como pergunta em aberto (Open Questions) no design.md.'
+  design:
+    - Registre a stack, os tokens de design (custom properties em :root), os breakpoints como variáveis Sass consumidas por mixin e as decisões em aberto (servidor estático, caminho do módulo de validação, cor do erro, destino dos links dos cards) em Open Questions.
+    - 'Quando se tratar de teste, descreva a estratégia em três camadas: unitários (node --test), fluxo na tela (Playwright, só Chromium) e acessibilidade (@axe-core/playwright).'
+  tasks:
+    - Siga TDD. Em cada grupo, tarefas que escrevem testes vêm antes das que escrevem código de produção, e nunca se misturam na mesma tarefa.
+    - Na change 2, a suíte da change 1 é o critério de pronto; nenhuma tarefa pode alterar um teste para fazê-lo passar.
+    - Validação do SCSS é feita com npm run build; nunca inclua tarefa com sass --watch.
+
+# Orientação por operação
+operations:
+  apply:
+    guidance:
+      - Na sessão que escreve testes, não escreva código de produção. Rode os testes, mostre que falham por ausência de implementação (não por erro de configuração) e pare para revisão humana.
+      - Só depois da aprovação do humano, comente o código e faça o commit.
+      - Não inicie sass --watch (bloqueia a sessão); valide a compilação com npm run build.
+      - Escreva JavaScript sempre em ES6+ (const/let, arrow functions, template literals, ===), sem que seja pedido.

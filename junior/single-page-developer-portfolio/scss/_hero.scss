@@ -1,0 +1,160 @@
+@use "breakpoints" as *;
+
+// Seção Hero: retrato por breakpoint, título e padrões decorativos
+.hero {
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // Abre espaço para o retrato (173px de largura, 381px de altura) sob o header
+    padding-top: 26.6rem;
+    padding-bottom: 5rem;
+    text-align: center;
+  }
+
+  // Coluna cinza do retrato: sempre colada ao topo, atrás do header
+  &__portrait {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    img {
+      width: 10.8rem;
+      height: auto;
+    }
+  }
+
+  &__content {
+    position: relative; // o título passa por cima do retrato, como no design
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__title {
+    margin-bottom: 1.5rem;
+  }
+
+  &__text {
+    max-width: 27rem;
+    margin-bottom: 1.75rem;
+    color: var(--color-light);
+  }
+
+  &__name {
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 0.07em;
+    text-underline-offset: 0.1em;
+    text-decoration-skip-ink: none;
+  }
+
+  // Quebra manual do título: só no tablet, como no design
+  &__break {
+    display: none;
+  }
+
+  &__rings {
+    top: 7.8rem;
+    left: -23.75rem;
+  }
+
+  // O círculo fica por cima do retrato; os anéis ficam atrás do texto
+  &__circle {
+    z-index: 0;
+    top: 15.9rem;
+    right: -4rem;
+    width: 8rem;
+    height: 8rem;
+  }
+
+  @include up($bp-tablet) {
+    &__inner {
+      display: block;
+      min-height: 41.2rem;
+      padding-top: 9.5rem;
+      padding-bottom: 0;
+      text-align: left;
+    }
+
+    &__portrait {
+      left: auto;
+      right: 0;
+      transform: none;
+
+      img {
+        width: 20.125rem;
+      }
+    }
+
+    &__content {
+      align-items: flex-start;
+      max-width: 28rem;
+    }
+
+    &__title {
+      margin-bottom: 4.75rem;
+    }
+
+    &__text {
+      margin-bottom: 2.25rem;
+    }
+
+    &__break {
+      display: inline;
+    }
+
+    &__rings {
+      top: 5.3rem;
+      left: -16.75rem;
+    }
+
+    &__circle {
+      top: 29.5rem;
+    }
+  }
+
+  @include up($bp-desktop) {
+    &__inner {
+      min-height: 51.6rem;
+      padding-top: 12.5rem;
+    }
+
+    &__portrait {
+      // alinhado à borda direita do contêiner de 1110px
+      right: calc((100% - var(--container)) / 2);
+
+      img {
+        width: 27.8rem;
+      }
+    }
+
+    &__content {
+      max-width: 45rem;
+    }
+
+    &__title {
+      margin-bottom: 2.5rem;
+    }
+
+    &__text {
+      margin-bottom: 4.25rem;
+    }
+
+    &__break {
+      display: none;
+    }
+
+    &__rings {
+      top: 8rem;
+      left: -6.25rem;
+    }
+
+    &__circle {
+      top: 32.5rem;
+      right: calc((100% - var(--container)) / 2 + 23.8rem);
+    }
+  }
+}
